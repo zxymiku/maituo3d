@@ -13,10 +13,10 @@
     },
     "driveRatio": "1 : 4 主减速 (18齿主动小齿轮 : 72齿主减速大齿轮) + 正交锥齿轮四轮同轴分动",
     "steeringMechanism": "四轮独立同轴全向舵轮(非麦轮) + 1:30单头蜗杆蜗轮 + 上下双凸轮(主航向凸轮C01 + 差动副凸轮C02) + 前/后桥平行四边形转向横拉杆",
-    "partTypeCount": 84,
-    "totalInstanceCount": 250,
-    "placementCount": 230,
-    "featureCount": 85,
+    "partTypeCount": 106,
+    "totalInstanceCount": 287,
+    "placementCount": 267,
+    "featureCount": 246,
     "namingRule": "网页显示零件名与 SolidWorks 零件文件名 (<零件名>.SLDPRT) 1:1 严格对应"
   },
   "entryHtml": "打开太阳能小车.html",
@@ -694,6 +694,182 @@
       "solidworksFile": "solidworks/M3铜柱与紧固件套件.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/F01.html",
       "quantity": 12
+    },
+    {
+      "id": "G12",
+      "webPartName": "四槽马耳他间歇分度槽轮",
+      "solidworksPartName": "四槽马耳他间歇分度槽轮",
+      "solidworksFile": "solidworks/四槽马耳他间歇分度槽轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G12.html",
+      "quantity": 1
+    },
+    {
+      "id": "P56",
+      "webPartName": "槽轮主动拨盘与止动圆弧盘",
+      "solidworksPartName": "槽轮主动拨盘与止动圆弧盘",
+      "solidworksFile": "solidworks/槽轮主动拨盘与止动圆弧盘.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P56.html",
+      "quantity": 1
+    },
+    {
+      "id": "P57",
+      "webPartName": "槽轮间歇拨销与滚针套",
+      "solidworksPartName": "槽轮间歇拨销与滚针套",
+      "solidworksFile": "solidworks/槽轮间歇拨销与滚针套.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P57.html",
+      "quantity": 1
+    },
+    {
+      "id": "P58",
+      "webPartName": "槽轮分度立式精密转轴",
+      "solidworksPartName": "槽轮分度立式精密转轴",
+      "solidworksFile": "solidworks/槽轮分度立式精密转轴.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P58.html",
+      "quantity": 1
+    },
+    {
+      "id": "P59",
+      "webPartName": "模态自动切换拨叉连杆",
+      "solidworksPartName": "模态自动切换拨叉连杆",
+      "solidworksFile": "solidworks/模态自动切换拨叉连杆.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P59.html",
+      "quantity": 1
+    },
+    {
+      "id": "G13",
+      "webPartName": "48齿中央行星内齿圈壳",
+      "solidworksPartName": "48齿中央行星内齿圈壳",
+      "solidworksFile": "solidworks/48齿中央行星内齿圈壳.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G13.html",
+      "quantity": 1
+    },
+    {
+      "id": "G14",
+      "webPartName": "24齿行星差速太阳轮",
+      "solidworksPartName": "24齿行星差速太阳轮",
+      "solidworksFile": "solidworks/24齿行星差速太阳轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G14.html",
+      "quantity": 1
+    },
+    {
+      "id": "G15",
+      "webPartName": "12齿行星差速小齿轮",
+      "solidworksPartName": "12齿行星差速小齿轮",
+      "solidworksFile": "solidworks/12齿行星差速小齿轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G15.html",
+      "quantity": 3
+    },
+    {
+      "id": "P60",
+      "webPartName": "三销行星齿轮架总成",
+      "solidworksPartName": "三销行星齿轮架总成",
+      "solidworksFile": "solidworks/三销行星齿轮架总成.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P60.html",
+      "quantity": 1
+    },
+    {
+      "id": "P61",
+      "webPartName": "双速犬牙啮合套换挡滑块",
+      "solidworksPartName": "双速犬牙啮合套换挡滑块",
+      "solidworksFile": "solidworks/双速犬牙啮合套换挡滑块.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P61.html",
+      "quantity": 1
+    },
+    {
+      "id": "P62",
+      "webPartName": "高低速换挡拨叉与锁紧座",
+      "solidworksPartName": "高低速换挡拨叉与锁紧座",
+      "solidworksFile": "solidworks/高低速换挡拨叉与锁紧座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P62.html",
+      "quantity": 1
+    },
+    {
+      "id": "P63",
+      "webPartName": "前桥横向消隙转向齿条",
+      "solidworksPartName": "前桥横向消隙转向齿条",
+      "solidworksFile": "solidworks/前桥横向消隙转向齿条.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P63.html",
+      "quantity": 1
+    },
+    {
+      "id": "P64",
+      "webPartName": "后桥横向消隙转向齿条",
+      "solidworksPartName": "后桥横向消隙转向齿条",
+      "solidworksFile": "solidworks/后桥横向消隙转向齿条.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P64.html",
+      "quantity": 1
+    },
+    {
+      "id": "P65",
+      "webPartName": "转向齿条燕尾直线滑轨座",
+      "solidworksPartName": "转向齿条燕尾直线滑轨座",
+      "solidworksFile": "solidworks/转向齿条燕尾直线滑轨座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P65.html",
+      "quantity": 4
+    },
+    {
+      "id": "G16",
+      "webPartName": "舵轮主销消隙副齿轮片",
+      "solidworksPartName": "舵轮主销消隙副齿轮片",
+      "solidworksFile": "solidworks/舵轮主销消隙副齿轮片.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G16.html",
+      "quantity": 4
+    },
+    {
+      "id": "SP3",
+      "webPartName": "错齿消隙扭转弹簧",
+      "solidworksPartName": "错齿消隙扭转弹簧",
+      "solidworksFile": "solidworks/错齿消隙扭转弹簧.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/SP3.html",
+      "quantity": 4
+    },
+    {
+      "id": "P66",
+      "webPartName": "可变杠杆比转向调节摇杆",
+      "solidworksPartName": "可变杠杆比转向调节摇杆",
+      "solidworksFile": "solidworks/可变杠杆比转向调节摇杆.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P66.html",
+      "quantity": 1
+    },
+    {
+      "id": "P67",
+      "webPartName": "千分尺螺纹偏航微调丝杠",
+      "solidworksPartName": "千分尺螺纹偏航微调丝杠",
+      "solidworksFile": "solidworks/千分尺螺纹偏航微调丝杠.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P67.html",
+      "quantity": 1
+    },
+    {
+      "id": "P68",
+      "webPartName": "微分刻度游标调节旋钮",
+      "solidworksPartName": "微分刻度游标调节旋钮",
+      "solidworksFile": "solidworks/微分刻度游标调节旋钮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P68.html",
+      "quantity": 1
+    },
+    {
+      "id": "P69",
+      "webPartName": "微调滑块导轨支座",
+      "solidworksPartName": "微调滑块导轨支座",
+      "solidworksFile": "solidworks/微调滑块导轨支座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P69.html",
+      "quantity": 1
+    },
+    {
+      "id": "P70",
+      "webPartName": "中置齿轮箱横向加强隔板",
+      "solidworksPartName": "中置齿轮箱横向加强隔板",
+      "solidworksFile": "solidworks/中置齿轮箱横向加强隔板.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P70.html",
+      "quantity": 2
+    },
+    {
+      "id": "P71",
+      "webPartName": "舵轮主销防尘迷宫密封盖",
+      "solidworksPartName": "舵轮主销防尘迷宫密封盖",
+      "solidworksFile": "solidworks/舵轮主销防尘迷宫密封盖.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P71.html",
+      "quantity": 4
     }
   ]
 }

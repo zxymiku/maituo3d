@@ -360,9 +360,9 @@ def write_webapp_files(web_dir: Path, part_count: int = 49, instance_count: int 
     <div class="viewport-wrap">
       <div id="canvas-container"></div>
       <div class="hud-overlay">
-        <div class="title">底部四轮同轴锥齿分动 + 双凸轮正交连杆全向转向系统（绝不使用麦轮）</div>
-        <div>• <strong>底部四驱分动链</strong>：<code>N20直流减速电机</code> → <code>18齿:72齿(1:4)</code> → <code>底部横向主传动轴</code> → <code>底部纵向分动长轴</code> → 前/后<code>分动箱十字轴承座(16齿锥齿轮)</code> → 4套<code>舵轮同轴传力竖销</code> → <code>高抓地全向舵轮</code></div>
-        <div>• <strong>双凸轮全向转向链</strong>：<code>1:30蜗杆蜗轮</code> → <code>主航向盘形转向凸轮(C01)</code> + <code>差动转向副凸轮盘(C02)</code> → <code>前/后桥平行四边形转向横拉杆</code> → 4只<code>全向转向空心主销套筒</code>同步偏转</div>
+        <div class="title">四大工创赛创新机械机构：同轴全向舵轮(非麦轮) + 行星差速双速分动 + 马耳他槽轮间歇模态切换 + 双片错齿消隙齿条</div>
+        <div>• <strong>底部行星差速四驱链</strong>：<code>N20电机</code> → <code>18齿:72齿(1:4主减速)</code> → <code>48齿中央行星内齿圈壳+太阳轮+行星架</code> + <code>双速犬牙啮合套换挡滑块</code> → <code>前/后正交分动箱</code> → <code>高架同步带升距(Z=50mm)</code> → 4套<code>高抓地全向舵轮(零碰轮)</code></div>
+        <div>• <strong>槽轮间歇分度与消隙齿条转向链</strong>：<code>1:30蜗轮蜗杆</code> → <code>三层共轭凸轮组(C01/C02/C03)</code> + <code>四槽马耳他间歇分度槽轮(动-停-动自动切换模态)</code> → <code>千分尺可变杠杆调节器</code> → <code>前/后横向消隙转向齿条</code> + <code>舵轮主销消隙副齿轮片(零背隙)</code></div>
       </div>
       <div class="kinematics-bar">
         <span id="kin-mode">当前模式: 四轮同向全向斜行(蟹行平移)</span>
@@ -648,6 +648,11 @@ def write_webapp_files(web_dir: Path, part_count: int = 49, instance_count: int 
         mesh.rotation.z = camAngleRad;
       } else if (pl.motion === "cam_shaft_sub") {
         mesh.rotation.z = -camAngleRad;
+      } else if (pl.motion === "geneva_wheel") {
+        // 4-slot Maltese Geneva intermittent indexing: 90-deg step during first quarter revolution, locked dwell during remaining 270 deg
+        const cyc = ((camAngleRad % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        const stepRatio = cyc < Math.PI * 0.5 ? (cyc / (Math.PI * 0.5)) : 1.0;
+        mesh.rotation.z = -stepRatio * (Math.PI * 0.5);
       } else if (pl.motion === "pushrod_main") {
         pos.x += s1;
       } else if (pl.motion === "pushrod_rear") {

@@ -241,6 +241,11 @@
         mesh.rotation.z = camAngleRad;
       } else if (pl.motion === "cam_shaft_sub") {
         mesh.rotation.z = -camAngleRad;
+      } else if (pl.motion === "geneva_wheel") {
+        // 4-slot Maltese Geneva intermittent indexing: 90-deg step during first quarter revolution, locked dwell during remaining 270 deg
+        const cyc = ((camAngleRad % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        const stepRatio = cyc < Math.PI * 0.5 ? (cyc / (Math.PI * 0.5)) : 1.0;
+        mesh.rotation.z = -stepRatio * (Math.PI * 0.5);
       } else if (pl.motion === "pushrod_main") {
         pos.x += s1;
       } else if (pl.motion === "pushrod_rear") {

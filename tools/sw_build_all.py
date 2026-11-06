@@ -36,6 +36,7 @@ from mesh_builder import (  # noqa: E402
     make_cam_loop,
     make_circle_loop,
     make_gear_loop,
+    make_geneva_loop,
     make_rect_loop,
 )
 
@@ -187,6 +188,13 @@ def draw_feature_profile_in_active_sketch(model, feat: Dict[str, object], sw: Di
             draw_closed_polygon_mm(model, pts, sw)
         elif shape == "cam":
             pts = make_cam_loop(float(params["base_r"]), float(params["stroke"]), 96)
+            draw_closed_polygon_mm(model, pts, sw)
+        elif shape == "geneva":
+            pts = make_geneva_loop(
+                float(params.get("outer_r", 14.0)),
+                int(params.get("slots", 4)),
+                float(params.get("slot_depth", 5.5)),
+            )
             draw_closed_polygon_mm(model, pts, sw)
 
         for hole in feat.get("holes", []):
@@ -389,6 +397,12 @@ def verify_and_dry_run(spec: Dict[str, object], output_dir: Path) -> int:
                 pts = make_gear_loop(params["module"], params["teeth"])
             elif shape == "cam":
                 pts = make_cam_loop(params["base_r"], params["stroke"], 96)
+            elif shape == "geneva":
+                pts = make_geneva_loop(
+                    float(params.get("outer_r", 14.0)),
+                    int(params.get("slots", 4)),
+                    float(params.get("slot_depth", 5.5)),
+                )
             else:
                 raise ValueError(f"未知特征类型: {shape}")
             assert len(pts) >= 3, f"特征草图顶点不足: {feat['id']}"

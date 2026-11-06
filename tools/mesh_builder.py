@@ -273,6 +273,39 @@ def make_cam_loop(base_r: float = 16.0, stroke_mm: float = 3.8, samples: int = 9
     return pts
 
 
+def make_geneva_loop(outer_r: float = 14.0, slots: int = 4, slot_depth: float = 5.5) -> List[Point2D]:
+    """Generate a Maltese-cross Geneva intermittent indexing wheel 2D profile with radial pin slots and concave dwell arcs."""
+    pts: List[Point2D] = []
+    sector = 2.0 * math.pi / slots
+    slot_half_a = 0.14  # radial slot half-angle
+    arc_half_a = 0.24   # concave locking arc half-angle
+    root_r = max(3.5, outer_r - slot_depth)
+    dwell_dip_r = max(5.0, outer_r - 2.4)
+    for k in range(slots):
+        base_a = k * sector
+        # Radial pin slot around base_a
+        a_s1 = base_a - slot_half_a
+        a_s2 = base_a - slot_half_a * 0.65
+        a_s3 = base_a + slot_half_a * 0.65
+        a_s4 = base_a + slot_half_a
+        pts.extend([
+            (outer_r * math.cos(a_s1), outer_r * math.sin(a_s1)),
+            (root_r * math.cos(a_s2), root_r * math.sin(a_s2)),
+            (root_r * math.cos(a_s3), root_r * math.sin(a_s3)),
+            (outer_r * math.cos(a_s4), outer_r * math.sin(a_s4)),
+        ])
+        # Outer rim segment up to concave locking arc around base_a + 0.5*sector
+        mid_a = base_a + 0.5 * sector
+        for step in range(7):
+            u = step / 6.0
+            ang = (mid_a - arc_half_a) * (1.0 - u) + (mid_a + arc_half_a) * u
+            # Concave dip in the middle of the dwell sector
+            dip = math.sin(u * math.pi)
+            rad = outer_r * (1.0 - dip) + dwell_dip_r * dip
+            pts.append((rad * math.cos(ang), rad * math.sin(ang)))
+    return pts
+
+
 def map_plane_to_3d(plane: str, u: float, v: float, w: float) -> Point3D:
     if plane == "XY":
         return (u, v, w)
