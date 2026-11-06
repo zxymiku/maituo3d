@@ -1,0 +1,125 @@
+{
+  "status": "pass",
+  "partTypes": 191,
+  "libraryInstances": 367,
+  "configurations": {
+    "base": {
+      "size": [
+        223.5,
+        185.0,
+        118.9
+      ],
+      "bbox": [
+        [
+          -105.0,
+          -89.0,
+          0.0
+        ],
+        [
+          118.5,
+          96.0,
+          118.89999997615814
+        ]
+      ],
+      "partTypes": 146,
+      "instances": 293,
+      "steps": 171
+    },
+    "brush": {
+      "size": [
+        269.0,
+        185.0,
+        118.9
+      ],
+      "bbox": [
+        [
+          -105.0,
+          -89.0,
+          0.0
+        ],
+        [
+          164.0,
+          96.0,
+          118.89999997615814
+        ]
+      ],
+      "partTypes": 170,
+      "instances": 339,
+      "steps": 205
+    },
+    "pusher": {
+      "size": [
+        269.0,
+        185.0,
+        118.9
+      ],
+      "bbox": [
+        [
+          -105.0,
+          -89.0,
+          0.0
+        ],
+        [
+          164.0,
+          96.0,
+          118.89999997615814
+        ]
+      ],
+      "partTypes": 166,
+      "instances": 320,
+      "steps": 190
+    }
+  },
+  "nativeRevisionParts": 8,
+  "nativeAssemblyInstances": 339,
+  "geometryPoses": 590,
+  "changedPartConnectedBodies": {
+    "W01": 1,
+    "W02": 1,
+    "W03": 1,
+    "P23": 1,
+    "P01": 1,
+    "R5F": 1,
+    "R5P": 1,
+    "R5S": 1
+  },
+  "brokenLocalLinks": [],
+  "files": {
+    "solidworks\\R5_W02.SLDPRT": {
+      "bytes": 101611,
+      "sha256": "9ce977ad02f9f5ae028a4640b3e153e0b8b67623bbd60e7784261cdff08d4e09"
+    },
+    "solidworks\\R5_W03.SLDPRT": {
+      "bytes": 102394,
+      "sha256": "1c6fa89be798c4e2bac7d805ae3429420a5d29708a41b59764cfe1e29af5eaf7"
+    },
+    "solidworks\\R5_R5P.SLDPRT": {
+      "bytes": 86523,
+      "sha256": "c49b0a75b7a94014663be0924b845ee622922514ea8a7470312636fa45e1fee4"
+    },
+    "solidworks\\R5_R5S.SLDPRT": {
+      "bytes": 89535,
+      "sha256": "eb60535e2b7310fb145b0210fbcdb34bc8a5d7121d4d75d5a6b914625357dafc"
+    },
+    "solidworks\\R5_P23.SLDPRT": {
+      "bytes": 187871,
+      "sha256": "69beda7d9dbeceaebc68c762f11cfed28862f99b24afdf45b7a573ca0fddbe83"
+    },
+    "solidworks\\R5_P01.SLDPRT": {
+      "bytes": 501486,
+      "sha256": "c70f3f749d24b188118d64782e4ab40d73d250d1e0634788059043b6f2b2b505"
+    },
+    "solidworks\\R5_R5F.SLDPRT": {
+      "bytes": 104906,
+      "sha256": "460a9423bf0da49c47fdaa6a6b86c8b5fbf6df787edece3612404701533b7033"
+    },
+    "solidworks\\R5_W01.SLDPRT": {
+      "bytes": 96910,
+      "sha256": "3ecaadb0d72994afcd89192e6638da5fb4bd95654decbd78f744350d9efa2135"
+    },
+    "solidworks\\R5_清扫_凸轮运动装配.SLDASM": {
+      "bytes": 1541426,
+      "sha256": "4f8e358eed204999849ccbfef028ae51a8f21e842724ef354ab12191fe00d040"
+    }
+  }
+}

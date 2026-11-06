@@ -1,0 +1,2428 @@
+{
+  "version": "R4.1 实选与装配审查",
+  "date": "2026-11-04",
+  "configs": {
+    "base": {
+      "size": [
+        220.0,
+        185.0,
+        126.0
+      ],
+      "bbox": [
+        [
+          -105.0,
+          -89.0,
+          0.0
+        ],
+        [
+          115.0,
+          96.0,
+          126.0
+        ]
+      ],
+      "partTypes": 161,
+      "instances": 316,
+      "steps": 171
+    },
+    "brush": {
+      "size": [
+        269.0,
+        185.0,
+        126.0
+      ],
+      "bbox": [
+        [
+          -105.0,
+          -89.0,
+          0.0
+        ],
+        [
+          164.0,
+          96.0,
+          126.0
+        ]
+      ],
+      "partTypes": 185,
+      "instances": 362,
+      "steps": 205
+    },
+    "pusher": {
+      "size": [
+        269.0,
+        185.0,
+        126.0
+      ],
+      "bbox": [
+        [
+          -105.0,
+          -89.0,
+          0.0
+        ],
+        [
+          164.0,
+          96.0,
+          126.0
+        ]
+      ],
+      "partTypes": 181,
+      "instances": 343,
+      "steps": 190
+    }
+  },
+  "parts": 206,
+  "instances": 390,
+  "features": 1206,
+  "librarySteps": 225,
+  "reportPages": 67,
+  "atlasPages": 247,
+  "nativeFilterTables": 9,
+  "sweeps": {
+    "static": 3,
+    "drive": 360,
+    "brush": 360,
+    "pusher": 360,
+    "service": 933
+  },
+  "accessProbes": 29,
+  "connectivityAuditedParts": 115,
+  "gearEnvelopePoses": 424,
+  "geometrySha256": "423b407e2ebf9410b3cfedef9d57e6ffe28646b0cfe2598fc963367f1e38b536",
+  "finalFitSubsetProof": {
+    "allClear": true,
+    "geometryChanges": [
+      {
+        "part": "K03",
+        "addedVolumeMm3": 1.3735840697513241e-09,
+        "removedVolumeMm3": 0.38301497772365584
+      },
+      {
+        "part": "U03",
+        "addedVolumeMm3": 1.373584076690218e-09,
+        "removedVolumeMm3": 0.38301497772365584
+      }
+    ],
+    "instancesAndKinematicsUnchanged": true,
+    "unchangedPartTypes": 204,
+    "grubShaftPairsChecked": 714,
+    "grubTipHits": [],
+    "tipThresholdMm3": 0.02,
+    "proof": "最终两根模块轴只补铣0.8mm长D面；其新实体是已扫查实体的子集，其他204类及实例/运动学完全相同，因此先前全行程无碰撞结论仍覆盖；另实查紧定钉端面与轴没有非预期穿透。"
+  },
+  "files": [
+    {
+      "path": "solar-car/docs/交互与装配检查.json",
+      "bytes": 1362,
+      "sha256": "80db24fcc501ce03896bfd876fbf8d3275c9838ce25f99d1def0acf43e0faa22"
+    },
+    {
+      "path": "solar-car/docs/交付索引.json",
+      "bytes": 18419,
+      "sha256": "07cc930e73b22c9c07a4e0ccdd0c54f734aa620dd7f1f297aa8749b606492261"
+    },
+    {
+      "path": "solar-car/docs/内部机构预览.png",
+      "bytes": 304918,
+      "sha256": "b40ccdca74bf8fb6396544e9392b3e4cf3760c65d748d12f59cda0dd496f2255"
+    },
+    {
+      "path": "solar-car/docs/凸轮轮廓点.csv",
+      "bytes": 10317,
+      "sha256": "e4a9877e420abb01084e18784a1b896bea643cdfa770f7f52941eda4de572606"
+    },
+    {
+      "path": "solar-car/docs/参考机构与来源.json",
+      "bytes": 5330,
+      "sha256": "90b1e7b2015d930ad349b735817bdba4b3935af28b5d7df5f2f68f6a8605f944"
+    },
+    {
+      "path": "solar-car/docs/参考设计研究.json",
+      "bytes": 20583,
+      "sha256": "ee9a40c4cc2843e2e2934c3810d2ee8d5fff142822d3659c288698d1b7ada0f3"
+    },
+    {
+      "path": "solar-car/docs/可筛选完整尺寸表.xlsx",
+      "bytes": 462276,
+      "sha256": "8c968e5fa0e1d8c6521f6a48e1f0e8f632f0147b1557e83c2d85e838f1c6f62b"
+    },
+    {
+      "path": "solar-car/docs/可筛选尺寸表.html",
+      "bytes": 4860,
+      "sha256": "2257491680e02222d699c4f834080c02e2d5b5cc78e2c9e8e84caa51d3179c54"
+    },
+    {
+      "path": "solar-car/docs/图册与技术文档版式检查.json",
+      "bytes": 1222,
+      "sha256": "be06d68d2c2eca850117b15bb667b1dd81d7f5b4c1debc0261854514b918f04a"
+    },
+    {
+      "path": "solar-car/docs/图册页码索引.json",
+      "bytes": 15242,
+      "sha256": "a851a470767e70f8289cd3f08d353738a106bd645d92de8f33fa5d93eff2786d"
+    },
+    {
+      "path": "solar-car/docs/太阳能实物选型.json",
+      "bytes": 12914,
+      "sha256": "55bc76a2a649c83ec3d22f29e66e910b7f0d3e5686428dd047d319cb7dbd6056"
+    },
+    {
+      "path": "solar-car/docs/太阳能小车建模技术文档.pdf",
+      "bytes": 661290,
+      "sha256": "f7790237126f79b33e11864e5e4adec4f59657cd431bc1d2173305a2c039e6f3"
+    },
+    {
+      "path": "solar-car/docs/完整尺寸数据.json",
+      "bytes": 2951716,
+      "sha256": "27da0e47fbceb2eff29aef11b4e26d9631105658ccb167713e1e0fc98158a2d4"
+    },
+    {
+      "path": "solar-car/docs/工作台预览.png",
+      "bytes": 309268,
+      "sha256": "16cab8edd354ea79afe5b1173955d8ec3963fa70c472fd3b3b7c064dff8eae9e"
+    },
+    {
+      "path": "solar-car/docs/建模技术文档.html",
+      "bytes": 163581,
+      "sha256": "754636b4e8b9ed56618edd80b3b4d7180f25666373ef769de924f16ec8bc3b1f"
+    },
+    {
+      "path": "solar-car/docs/总布置尺寸图.png",
+      "bytes": 122079,
+      "sha256": "fb292634419fd741d85c6078031b06613790c69376c401908147bc172831bede"
+    },
+    {
+      "path": "solar-car/docs/总布置尺寸图.svg",
+      "bytes": 54212,
+      "sha256": "8a1c6322d00ab69d1061aa347c66f54e1e062dd3d835207082050e8e83311c4d"
+    },
+    {
+      "path": "solar-car/docs/拉伸轮廓顶点表.csv",
+      "bytes": 224019,
+      "sha256": "ac9b74a9cd53fb3cdfcafd34de2d8042f06259de715ef99345a4bf06a5e59cda"
+    },
+    {
+      "path": "solar-car/docs/控制板固定预览.png",
+      "bytes": 309468,
+      "sha256": "ba49f8a94c24e2f0992614533a46d42ec66e715d75d47bdedbacc11e0183c320"
+    },
+    {
+      "path": "solar-car/docs/推杆模块预览.png",
+      "bytes": 306490,
+      "sha256": "21bf8708116ee1ebb039cd30dbdda6410012dab07b66841f55397d88dbae8ee2"
+    },
+    {
+      "path": "solar-car/docs/数据完整性检查.json",
+      "bytes": 406,
+      "sha256": "ea6a73e5209e9666f6917beeaf3776f094ae7dc6c04f67363ac4855416d9b794"
+    },
+    {
+      "path": "solar-car/docs/文档一致性检查.json",
+      "bytes": 232,
+      "sha256": "e00b7d2f05ed9ec6f6f4fadb998aa59c66d201eb314a439bd746f3bfa07a320c"
+    },
+    {
+      "path": "solar-car/docs/最终尺寸查询检查.json",
+      "bytes": 116,
+      "sha256": "dc16401a0b8c27c2ab8f3487079e70c45e12f68321ab94804c0f660d9e34797c"
+    },
+    {
+      "path": "solar-car/docs/最终配合子集证明.json",
+      "bytes": 726,
+      "sha256": "0aabdb1909e08ac918cafb8090a0a1377f6aa7e5fd8854d40c2e2751c254aaad"
+    },
+    {
+      "path": "solar-car/docs/机械复核记录.json",
+      "bytes": 34709,
+      "sha256": "89db50a1cc2375967ca602bb65bca9f320bb8311c8c42c797df8bb9daadfa5ec"
+    },
+    {
+      "path": "solar-car/docs/模块抽换交互检查.json",
+      "bytes": 1454,
+      "sha256": "922664bf89ebb3d8c8840d4015e09726677b73cd1d4e76caf050368e467921c2"
+    },
+    {
+      "path": "solar-car/docs/模块抽换预览.png",
+      "bytes": 307368,
+      "sha256": "6ed159fcaff5d93a653c3b3eed50559de3ccc9af5a7cb7f337c6b68f1355a204"
+    },
+    {
+      "path": "solar-car/docs/清扫模块预览.png",
+      "bytes": 310322,
+      "sha256": "1edc22da0ae5744dd14b11d99e3b2ea750a341d5e3d90f40c3009a179604c2d0"
+    },
+    {
+      "path": "solar-car/docs/自制零件连通性检查.json",
+      "bytes": 15607,
+      "sha256": "0461e20bf7b16071915e146c15f1603640f8ea2a212aeb20e08ea8a611a95770"
+    },
+    {
+      "path": "solar-car/docs/表格原生筛选检查.json",
+      "bytes": 559,
+      "sha256": "a400e7b83274413776a609017826a1a6590942650e5e7c5dc1e351cb743618c2"
+    },
+    {
+      "path": "solar-car/docs/装配实例表.csv",
+      "bytes": 20049,
+      "sha256": "ce1568d38aad63c89735875614beefd6d2e3643862d0e71a269983c250188f03"
+    },
+    {
+      "path": "solar-car/docs/装配步骤.html",
+      "bytes": 94899,
+      "sha256": "9e79e52c4e8ea96abe6b97e7904dc5751345130fbfa214cec6380a18cece4ee6"
+    },
+    {
+      "path": "solar-car/docs/逐件完整尺寸图册.pdf",
+      "bytes": 1573463,
+      "sha256": "fcde1eea45780a25199867579250f8ac37c226934655493fd2ecb8c3d008c266"
+    },
+    {
+      "path": "solar-car/docs/逐步装配表.csv",
+      "bytes": 53804,
+      "sha256": "115692ac4529c2a5e11278f20828c019f94c7eab7be0cfbb2231ec7a804e8e1d"
+    },
+    {
+      "path": "solar-car/docs/逐步装配预览.png",
+      "bytes": 269794,
+      "sha256": "364582602f5f2cb0a340cfeadf6282f8d13a756e45f162e807eecd59047a10f2"
+    },
+    {
+      "path": "solar-car/docs/逐特征完整尺寸表.csv",
+      "bytes": 392630,
+      "sha256": "d19e895d0f1284ff6ebb835edb64697adcc23162c9f87fd1864321236d5bcbd2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AD1.html",
+      "bytes": 3514,
+      "sha256": "8ba8a557dc256541ed3be427a98d4ae09d15f40132b6d294e208a76942974e9d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AD1.svg",
+      "bytes": 7246,
+      "sha256": "b84198228dd45082c9036211458637d6f1adf98a6e589897f9ff9ed07ddadea9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AD2.html",
+      "bytes": 3507,
+      "sha256": "ebf1b0a07f8b608e33feeeefa449d3572c7119f22094830bba71d1c378e08056"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AD2.svg",
+      "bytes": 8341,
+      "sha256": "7994f3f61c31f99db59bc69e8247de6c5bdf9433215ac95cab488b9d37bb2786"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX1.html",
+      "bytes": 3027,
+      "sha256": "f2c2e73aa2b031c21d013f6047d3f59aef1a7ea21a6655e535b3660e4b042681"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX1.svg",
+      "bytes": 10358,
+      "sha256": "24521e9468fb2da44cb2a96e964225fec6f50e01393f4384dc64c0252f7aaed9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX2.html",
+      "bytes": 3037,
+      "sha256": "9fa2b59f0734e162fe156ff71b72f073048e4f8cd6e0906e41ca4aa623d520c9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX2.svg",
+      "bytes": 10436,
+      "sha256": "f6dba12efde2885b27fa3a27c6b721bb5832a4f92a316ca0128ea8a1f291d2df"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX3.html",
+      "bytes": 3039,
+      "sha256": "b69729eb398f23f165d7da959a2500a5f8257091553957375094a330b7c70c1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX3.svg",
+      "bytes": 10448,
+      "sha256": "98ce69bb784235396ea53b508aec949f9d84c46956acee5ffc26dee58c6d09c4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX4.html",
+      "bytes": 3054,
+      "sha256": "45470bbe00a9a64572688e8e95de56677ba51d314c819e5888769c251fc80f00"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX4.svg",
+      "bytes": 10330,
+      "sha256": "b2eaa04a7720db614c49607c530b255e6f917a5051211929fe91bf29361ea287"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX5.html",
+      "bytes": 3071,
+      "sha256": "1b77ab4edaec6ae9d5371c3ff228d21b8623b19d39f09ac43586deb2be3230d6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX5.svg",
+      "bytes": 10483,
+      "sha256": "ae542edcf7f46101de944e9a043a2322c9235fb2b07428c50e45f174cef47094"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX6.html",
+      "bytes": 3065,
+      "sha256": "0db48c9c65e1f93727b18d7a9dbcb172461d6373ebe6325e4312fee787874d85"
+    },
+    {
+      "path": "solar-car/docs/零件图册/AX6.svg",
+      "bytes": 10527,
+      "sha256": "dccdab93cfcb7e00483eb44ccf71631af4aca314776d5a1f784f21095e694163"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B01.html",
+      "bytes": 3198,
+      "sha256": "77788bbdc8eb6ba13a7e2f5f4fa57345cf934fbf124d1b7d8c2a7cf7f5ade8ae"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B01.svg",
+      "bytes": 10469,
+      "sha256": "a45a4e179d1af04065f5452cd46fad92aea7bacd18dc82170a58a9f74d51996c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B02.html",
+      "bytes": 3068,
+      "sha256": "0d0bbba273218d74d481024a8b9bd03a8f8d8ae4e71026bacde2b9d51dbda1b3"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B02.svg",
+      "bytes": 10331,
+      "sha256": "a1320f720c016830c0601e5419043d8f6772d369da4964cb0232e9300f68826e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B04.html",
+      "bytes": 6750,
+      "sha256": "1414d41c646f76f3cd16cab33bc4c94be1b9a3676c4352baabc3d7a07c25b5da"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B04.svg",
+      "bytes": 19054,
+      "sha256": "04949fd1dfbbdf30dbcd8a74da5493db068a8b9a5f31107a2b25f119aceae8ec"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B04N.html",
+      "bytes": 6763,
+      "sha256": "6a3b3dd9a3e7e13997100d72ad80b908203f7202758f8906b109c5ce8ab69382"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B04N.svg",
+      "bytes": 19059,
+      "sha256": "1332da0e46635e74cb6d2403d0103de223f2cfe419b39b512cce840c478f0ed9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B05.html",
+      "bytes": 5566,
+      "sha256": "aa22146eaa32e6e58c8b3ad20d0719ba6dad46cd44ec60cb9a24c33f4ebe41f8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/B05.svg",
+      "bytes": 8968,
+      "sha256": "4509795b306adf89ad2a28797a8b0a64f7e4a366ccf601785b7cfd80e8895756"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BC1.html",
+      "bytes": 3567,
+      "sha256": "e58862032f31e41b514080edc4331af79eb67130e78ef82bd59edf931dc01735"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BC1.svg",
+      "bytes": 14271,
+      "sha256": "819885b50d55e649577e89f880cb2256478b3f43d0cff4fdf732e31650152e42"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BC2.html",
+      "bytes": 3579,
+      "sha256": "211bf225216eba4f3e33bd2fc420563b29a4d8e63940edaaa5b94eb6cd12893a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BC2.svg",
+      "bytes": 14271,
+      "sha256": "819885b50d55e649577e89f880cb2256478b3f43d0cff4fdf732e31650152e42"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BC4.html",
+      "bytes": 5604,
+      "sha256": "0eaf4637ccc4eef449223887a2f94b1b106aa15e7c9d9169361d119a3e2460e6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BC4.svg",
+      "bytes": 17264,
+      "sha256": "654e304b6c58da8b38c40a72afef4965d0f80182a4f6486e481e74cabff5740a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BCS1.html",
+      "bytes": 3329,
+      "sha256": "46e0421d5cf24cc6d368348ebab3e5a4884545c616a753199c890cd536315236"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BCS1.svg",
+      "bytes": 8246,
+      "sha256": "daf9d3e52799b7da979a0c08da30274b40d549ba0ec848182941dfc39f89bb86"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BD1.html",
+      "bytes": 3384,
+      "sha256": "1392c5d355534d280aa005657b3236f9efc82d7ed65d6457e4e6d09fc9f9982e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BD1.svg",
+      "bytes": 10483,
+      "sha256": "0c91fc8e6de3ac9a67840b68c65300400418b4064aee78af3f9bcce3c3c37876"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BD2.html",
+      "bytes": 3366,
+      "sha256": "984f0b981267f2217fbcf191af1689605b203703f1a0eac83c1eeed1dca07e58"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BD2.svg",
+      "bytes": 10448,
+      "sha256": "98ce69bb784235396ea53b508aec949f9d84c46956acee5ffc26dee58c6d09c4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BD3.html",
+      "bytes": 3371,
+      "sha256": "fb0ae842758f2a02b684b308cbc5abcdcacfb4fe8d0060ce2132e2d504ef5a27"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BD3.svg",
+      "bytes": 10500,
+      "sha256": "817f2bd4e74009598d6006787296504c66ad8c1edf1a525388d359f7f0855dad"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BR1.html",
+      "bytes": 3486,
+      "sha256": "422562e7552391e568f54c1e4926b51a3d2a7e2244539a78046efe368ccf114a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BR1.svg",
+      "bytes": 9922,
+      "sha256": "c339462c488a40e300c82ac68658695385195f9a89e4af27cf417ef7ea917ef0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BR2.html",
+      "bytes": 3660,
+      "sha256": "dd3910b0f2bad5a171da50a6619b86ca3dda2e1a6922b1a87a965b1b3a2e53d3"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BR2.svg",
+      "bytes": 12222,
+      "sha256": "ed46c76a8c80575b2c862ffbe7b786f322cdb83c47f959cbf39a1c82fff26f06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BS1.html",
+      "bytes": 3340,
+      "sha256": "891bb95b02e52b5e137918aab1896a390da8af5244de029ca20ba6a557f2d873"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BS1.svg",
+      "bytes": 8246,
+      "sha256": "daf9d3e52799b7da979a0c08da30274b40d549ba0ec848182941dfc39f89bb86"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BS2.html",
+      "bytes": 3340,
+      "sha256": "f48a30b3b1c2d793f70efc9fd4e25760dfe342d0fc65997f2479cce5cc4f4a92"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BS2.svg",
+      "bytes": 8246,
+      "sha256": "daf9d3e52799b7da979a0c08da30274b40d549ba0ec848182941dfc39f89bb86"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BT1.html",
+      "bytes": 4461,
+      "sha256": "3dc6674e0528a5a1a2c24a99aa8e7d2ec2b04fcbca76632b24e8b7a51ce25b20"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BT1.svg",
+      "bytes": 10408,
+      "sha256": "5a7eb9832e30bc0412efc3c8f3722f7c8472f56cb5a4c1d181c5eafb99ca0f8c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BT2.html",
+      "bytes": 4179,
+      "sha256": "02414133a80a5541f48a588f85dd7a8e04142855b543bdf117a1a086f158e915"
+    },
+    {
+      "path": "solar-car/docs/零件图册/BT2.svg",
+      "bytes": 35400,
+      "sha256": "a36882aff088254af9eb78f51bfef879ea428a6c438730e78317318e85d3525c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/C01.html",
+      "bytes": 3773,
+      "sha256": "6c9070c18a65357c2ceeb4479bb614f03d4625788e23b27e3e1c0c1d89d83e67"
+    },
+    {
+      "path": "solar-car/docs/零件图册/C01.svg",
+      "bytes": 15523,
+      "sha256": "2504768e16eae9e58a4ae69146d54903be66be1013ccec735f5d76fbe444363c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/C02.html",
+      "bytes": 3113,
+      "sha256": "b2ae7359f8e0750741391b4ac4f5a6eb3ba68c6514cdddf85531e3dd8ded3174"
+    },
+    {
+      "path": "solar-car/docs/零件图册/C02.svg",
+      "bytes": 10304,
+      "sha256": "26ec41304b4b68128ca86d048b2e0444767a452265c65a09bd81ceee5e2b2b53"
+    },
+    {
+      "path": "solar-car/docs/零件图册/CS1.html",
+      "bytes": 2961,
+      "sha256": "c9b2739213d9f75742633abdc07f8dc264bb571b017eee164384f5d977041c89"
+    },
+    {
+      "path": "solar-car/docs/零件图册/CS1.svg",
+      "bytes": 7308,
+      "sha256": "24fba199ad27550012a9e8364a778b55de58fd6846e6471b610322e5c1e59e10"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D01.html",
+      "bytes": 3042,
+      "sha256": "775b74448c0948c586a5525a52777f0a24dbb2741fa1f38d976dba637f0c42a3"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D01.svg",
+      "bytes": 10473,
+      "sha256": "e1f3f20ad5f8955557f38a8e76cf5b13ef0dd6a8afb4006ea62ef55f89ba6bbf"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D02.html",
+      "bytes": 3054,
+      "sha256": "c0bc3e5a25d834f3eb53d33525e09385b168e38a878bb95d18755be6ec42623d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D02.svg",
+      "bytes": 10514,
+      "sha256": "9495fcb83391abac6a8d6cb2b84557068d1f01961c5f9710250934ef4c8ef5d3"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D03.html",
+      "bytes": 3069,
+      "sha256": "a88f519863d27694c7f6781c6893c739918c7f21e44be8e30295658345fed82a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D03.svg",
+      "bytes": 10596,
+      "sha256": "0c4ea362383da5961e38fa6131d63d8cf8bcb968d28c10563b481d21f6c5804a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D04.html",
+      "bytes": 3065,
+      "sha256": "71806462b36cdb81bb3ea55ce1487f8d6f8473ac2e11d9e30305c138107e776c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D04.svg",
+      "bytes": 10598,
+      "sha256": "c2305b82318747c7ca70a192198f5a62fca99291c5ddf8a02312c1c6748786bc"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D05.html",
+      "bytes": 3056,
+      "sha256": "2c53a988d33b60652a770220e4d4dc2690d4037d3671b29d6d5b2ca08bf07a4f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D05.svg",
+      "bytes": 10351,
+      "sha256": "477ec62217987d696c62cc97f1447a1b2588b9e09a872b9dcc9f31086d9dd48d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D06.html",
+      "bytes": 3051,
+      "sha256": "2acf30843cce8651b53c929ff3e611b45c4e35336ad9fc6f382148ee841b704d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D06.svg",
+      "bytes": 10371,
+      "sha256": "87736d5c0d2575ef8ec07d8cd51badfde286789fcdbc5e2c90868a074e5573db"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D07.html",
+      "bytes": 3060,
+      "sha256": "cb5f35a35803951f2d5d799a1b0c1ddac42cc28f32c9cb2121c61e9e06ab1458"
+    },
+    {
+      "path": "solar-car/docs/零件图册/D07.svg",
+      "bytes": 10247,
+      "sha256": "d28521a7d63bc4aa93608d87a57210c7f92c8fe0c4b0c741cbc737ad53c6d16e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DCA.html",
+      "bytes": 3074,
+      "sha256": "c5f2232189d9e7f3f3a0820426711f8f277583e9201773870654b87d55c196a6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DCA.svg",
+      "bytes": 10228,
+      "sha256": "1dbc53270a14e9d34230c87e6839540d2af7c6c92843f5a29de7ae610788df91"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DCB.html",
+      "bytes": 3074,
+      "sha256": "9563f45365d365b3e55a424b94bbed6013113b1d9291f25d7c88b68ce73f0a40"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DCB.svg",
+      "bytes": 10328,
+      "sha256": "249c3573a01f8afe5d66c4ac82dcbe51568cc072581ed7c9000975525c9292cd"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DGC.html",
+      "bytes": 3504,
+      "sha256": "444a948b8b7316f3ffbd811aa780712fa6b966a99f2b05ab1fd92e75b45d1ac0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DGC.svg",
+      "bytes": 12402,
+      "sha256": "7e97013948e39337c40ad137b542f1ec55b2cc3ed7083b3ec42565a4f4895941"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DRB.html",
+      "bytes": 3610,
+      "sha256": "d6455c2c568ae00455ca62269f5b130dda08751cea132d5ea47efcae3bcc85a5"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DRB.svg",
+      "bytes": 10352,
+      "sha256": "14a9b39cdaf7f969a373ab4a9b3c44163553f2e53b811fdf2f332a834e9631f8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DRF.html",
+      "bytes": 4953,
+      "sha256": "183e0eb87a3064a16b52f73857c588717b85102faa96fad1f0d4844b2a504d51"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DRF.svg",
+      "bytes": 11983,
+      "sha256": "c84f6af6bbb004e52d67f14bda70ba5d12e37be8ff793ea037852edae436a801"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DRP.html",
+      "bytes": 3938,
+      "sha256": "69c9b2eaa25dac3b2e3c672e5b368f41754a78b8fc9bc22fbdb6c9d2e272b402"
+    },
+    {
+      "path": "solar-car/docs/零件图册/DRP.svg",
+      "bytes": 8354,
+      "sha256": "b8bffaf11a78dcf165803fd12de1a58d22b5dd77601b677cd1e063b680a1f1f1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E01.html",
+      "bytes": 4131,
+      "sha256": "d512df3483e18d593a774a70567cd4b6d52373ffc38c47ddfd74391c2830f1ae"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E01.svg",
+      "bytes": 6602,
+      "sha256": "5b1dc2dfb36e0952927861e69e1baf881cc2b3665eed462a568f0854cbe5dd0c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E02.html",
+      "bytes": 4125,
+      "sha256": "4b83f5949725fa966dcac9e78b631cfa12673c3971189d99c403b72f31ef8e5d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E02.svg",
+      "bytes": 6503,
+      "sha256": "877d0bea7072088af7fe31c9f0b0fbed5ca29ff52827fc8badae511128cb087b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E03.html",
+      "bytes": 3099,
+      "sha256": "f499de2ad64ed0a88e407c7b7ca880a81056d0ddd61bb8efb4474618f8e9f135"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E03.svg",
+      "bytes": 6233,
+      "sha256": "e63a5ea89bac16bd36dda3419660c81b4f5ad84a168d86a6baa3d40455829d55"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E04.html",
+      "bytes": 4257,
+      "sha256": "51cbd4a50e8f6bd9c59315fe747aa76e7fe3ce769f14987fff64a25b68e12025"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E04.svg",
+      "bytes": 16850,
+      "sha256": "f36fefecd9a6f2a6dd9786b13d91729c5c8064e2c45bc229b9cbdccd52d511e4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E05.html",
+      "bytes": 3200,
+      "sha256": "698b80c9cb9c7f87b10b0f94d33695fab57ad87b37cc65f42f6e8a692109d93d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E05.svg",
+      "bytes": 6345,
+      "sha256": "b13f3213dfed6c266742dbf1f69a1ed549ba7da733b04a6644a3443efe5729bd"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E06.html",
+      "bytes": 2921,
+      "sha256": "06183c16e5ba80d1cdeed6165b644e8148c180b55c6604ef527d677a5de65bc2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E06.svg",
+      "bytes": 6361,
+      "sha256": "7006944c82761fe351834cf5db6715bd7963180735846f3d1470c667c52f23dc"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E07.html",
+      "bytes": 3212,
+      "sha256": "b3869f1ae345bb4bfd333111ec982ab6b84a996195237f9b42fc4511745d73f9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E07.svg",
+      "bytes": 6368,
+      "sha256": "97f797965dfa42e5f87e3d323921faee2e8371e7c762124ec7f0adf95fd6c187"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E08.html",
+      "bytes": 2957,
+      "sha256": "1382370b71c61704be4378b3054286536f910a382ff7206fba8ccc14ad9c9acf"
+    },
+    {
+      "path": "solar-car/docs/零件图册/E08.svg",
+      "bytes": 6439,
+      "sha256": "ea30aa889bd7b6061a655e242a783540de135d7e5cdae6a6c56fc770933ed620"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC1.html",
+      "bytes": 5802,
+      "sha256": "ce233313c00f24e080d73026a81bae18d75ab69418e4711390f2fd4b95b3b12d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC1.svg",
+      "bytes": 7569,
+      "sha256": "453f490df936edbed7c9add330a0857ce536ca43008dcef5f1b7799e0d25b934"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC2.html",
+      "bytes": 3063,
+      "sha256": "aa451ab05a037b4f07661b86b4df122eb6bbb208a23a4c24d7f1e89814da87c1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC2.svg",
+      "bytes": 10355,
+      "sha256": "74780f215abf6582ef672dfadb3ced70a84ad419a820722e02f66bc5f5f14ba6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC3.html",
+      "bytes": 3406,
+      "sha256": "11a5a36a6803c80d92cbfd0a16a84d4fb0abb349d752a7f267ad990cfc2f5df8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC3.svg",
+      "bytes": 8814,
+      "sha256": "b0cda9b2e31d4a6a05410aa91c90f5f9d9b4383ceccacc36d4513d9f5698dde1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC4.html",
+      "bytes": 6102,
+      "sha256": "5d854e0f4b4bc4f372f84cc00ca3de47a6b7e1cde2350533843294f24385f772"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC4.svg",
+      "bytes": 12184,
+      "sha256": "4f774f20ae8b879f63ed39a68cc0476680bd128b45caf3453af933e314b7bf64"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC5.html",
+      "bytes": 3322,
+      "sha256": "a0d133467a48e2ec2de6f4066597abdb70eed0c1b4eb278a423cedbb62151b4a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC5.svg",
+      "bytes": 11218,
+      "sha256": "34c41348591c3b9d62ce5cd7aa7aa9b9e06a4f4738f66cb1121dae23b028452f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC6.html",
+      "bytes": 3320,
+      "sha256": "58a009d545ebc06bc14d40dbfd50f234579af2fe2b23905cd5b912c328c29b1f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC6.svg",
+      "bytes": 11235,
+      "sha256": "5fedb6e30cd3e1d9d790a2f8a9629888d66b5258c7088279dadd8687a5b4696e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC7.html",
+      "bytes": 3272,
+      "sha256": "1f02b476d3666374293d0f1c7b5b0ae1e267dab23ec35f5fda33ee0e84795308"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC7.svg",
+      "bytes": 8999,
+      "sha256": "ac9779a783de977f054a9c6f3ea6f15a424a09e3730f501292f257d19e64a5df"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC8.html",
+      "bytes": 2863,
+      "sha256": "58bbb8862a8a70ee3d0a7ba0c8fea6eeb22f6c9264740eed5c50b8fda1999e3f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC8.svg",
+      "bytes": 6451,
+      "sha256": "d5e0c6c2a84aed1dfdbe584d5737908f13147ff243884dd3ff08f3065482813c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC9.html",
+      "bytes": 2869,
+      "sha256": "5dbdc452443e9fa20ce4d2914d20777f8202cfed226d6449777f2833152ce52e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/EC9.svg",
+      "bytes": 6415,
+      "sha256": "fb9abf9ca725c3e20c811151ca8c4cbb976f32c22e8c06f7ce9078941e69d473"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES5.html",
+      "bytes": 3355,
+      "sha256": "13f7d0fc8a41d648647b788f47a63c06e09adcc0786113529080f6d5699836a1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES5.svg",
+      "bytes": 8175,
+      "sha256": "f4deaf2706c120b8059dd68bb03716dc3c21f95ab201dfdcb13508c77987fa1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES6.html",
+      "bytes": 3337,
+      "sha256": "515b2f5f4f14870ea7976f1fc53b81adaae3088044178819492693beeb9f5be0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES6.svg",
+      "bytes": 8245,
+      "sha256": "0c1102bc3ec38e8e414c5030ec15b0d12e2bd373553c3b7df56a8ebce5bc0abe"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES7.html",
+      "bytes": 3337,
+      "sha256": "da90f419fda622b352423fdcc850f3213f444d83e0725bac206ac421d5720692"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES7.svg",
+      "bytes": 8245,
+      "sha256": "0c1102bc3ec38e8e414c5030ec15b0d12e2bd373553c3b7df56a8ebce5bc0abe"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES8.html",
+      "bytes": 3341,
+      "sha256": "1ac3f5a97757414bf181a4c01246e185bf7855a80c6216a78ca70395ccd50112"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES8.svg",
+      "bytes": 8072,
+      "sha256": "e9b4e7961408b107ff3bf47af6ab9e0a56f3423c5138423375a15631bb7be1fa"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES9.html",
+      "bytes": 3341,
+      "sha256": "dd097144fc06fa967ca083a0a12f5a2bea7e14e389e515131a79efd28950e0d0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/ES9.svg",
+      "bytes": 8072,
+      "sha256": "e9b4e7961408b107ff3bf47af6ab9e0a56f3423c5138423375a15631bb7be1fa"
+    },
+    {
+      "path": "solar-car/docs/零件图册/FK1.html",
+      "bytes": 3900,
+      "sha256": "1c741f6ccc593f530c595f5266dade1bc9c1b5802f5069b975d722ebee57f581"
+    },
+    {
+      "path": "solar-car/docs/零件图册/FK1.svg",
+      "bytes": 13940,
+      "sha256": "28d0ffae3b6efc69683d00dc6a7f090a5cf3ee1f03da0e1b27ff7a06b770d7d1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/FN1.html",
+      "bytes": 3366,
+      "sha256": "8a2a29013643c978c245d46a7859f0c8965f4a9c292cbd7180fb6fa36ff7c0e1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/FN1.svg",
+      "bytes": 8999,
+      "sha256": "ac9779a783de977f054a9c6f3ea6f15a424a09e3730f501292f257d19e64a5df"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G01.html",
+      "bytes": 4605,
+      "sha256": "a5a251c5a9e2541b71eb97267b41acfe7080d62a6baf3fc3a446bde4684871a3"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G01.svg",
+      "bytes": 50972,
+      "sha256": "765f0d0b0a2481f98a3702b31bdfa5270c49abbfe6d422d73661eb13f87d2b89"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G02.html",
+      "bytes": 3016,
+      "sha256": "5500c5ce885a16d4da946406d0011d0f7cf0c499ef2e7cb886b0d08e4f6cfc87"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G02.svg",
+      "bytes": 15392,
+      "sha256": "74ed314e7cdcf6efb3d3723b46ee139a5eeaf23e7e1580b58e469dc69355191c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G03.html",
+      "bytes": 3015,
+      "sha256": "20572d82497ff54397d4e86974d9657d115989e667127f1aafdcc51f4f5a474e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G03.svg",
+      "bytes": 34058,
+      "sha256": "efa46f533f5fafb3b216e2cfa200e63a461d09130b41d7daa8f60ceb8d81055a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G04.html",
+      "bytes": 4196,
+      "sha256": "9f47f4f0be36933eb28bc9d140dc6c807ec7fdacd6b0e713131085d9a3ed5904"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G04.svg",
+      "bytes": 12651,
+      "sha256": "a01aa26138ee93d918928bb5001bb19103fcd33ea5d0148e7f21fc9d4a35c5b2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G05.html",
+      "bytes": 4617,
+      "sha256": "5433404a31eb209d22307c0789f1536241faa67a7149a8853c67e58757685e4a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/G05.svg",
+      "bytes": 12615,
+      "sha256": "ad12603d1cdc15b920dc83f7be9357c85caba953246a8609587d61213db55597"
+    },
+    {
+      "path": "solar-car/docs/零件图册/index.html",
+      "bytes": 31798,
+      "sha256": "e64225f7dacc9827a7f0b1ca8fd135ed07a08e1f8dcb9c3200e1fd0285948e6f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/K01.html",
+      "bytes": 6423,
+      "sha256": "6cf5e5985e3c9ad71e1b8db60cd360d11a61bda84bebf0c990b1ba46d2768170"
+    },
+    {
+      "path": "solar-car/docs/零件图册/K01.svg",
+      "bytes": 20417,
+      "sha256": "8da314b956df29870db82a4f8eb95cf71686db96de2bd01ed7a60a6eea386953"
+    },
+    {
+      "path": "solar-car/docs/零件图册/K02.html",
+      "bytes": 5001,
+      "sha256": "9a67e03ec1a51ac15968cf0a1c520b1967276d556f4e5c441cb0d49c67557014"
+    },
+    {
+      "path": "solar-car/docs/零件图册/K02.svg",
+      "bytes": 10425,
+      "sha256": "5ae43644933c9b85e62dc40497f34cac5bd8655cf36cecba0fa2f440590eeda7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/K03.html",
+      "bytes": 5325,
+      "sha256": "0c4c66d10434187ac60971f275669fbde48583a5f9524c927ec1da8b8ff19ea9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/K03.svg",
+      "bytes": 8712,
+      "sha256": "323b3aa198ce2a0c0648d9890fb28100afce042f4d7f14964643f89a12ce3458"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KC1.html",
+      "bytes": 3895,
+      "sha256": "262b43f7c8daf6fe1bf5d0cb817bac64729ba409c227acc87a96d98f3ee72eb6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KC1.svg",
+      "bytes": 13907,
+      "sha256": "da806b1a2e514f8ae8a079700a0d72ac593770ca61a8b3decda88260f81f8940"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KD1.html",
+      "bytes": 3029,
+      "sha256": "32fd9872b39b4cfca5aa32565b2f60a6235988c61f8d48c50fc9faae2610f345"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KD1.svg",
+      "bytes": 10405,
+      "sha256": "7cf4ab3b56f701336666bfee35d8d5dcc43540bcd3966cccca38a61a720ca962"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KD2.html",
+      "bytes": 3052,
+      "sha256": "007e079560694ed80eedc9578437e4f72c9ea3af6e5e3ddd0f1a171dfa9f230f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KD2.svg",
+      "bytes": 10526,
+      "sha256": "9e711af23656fff7db7444bbb144dad18aa10e118fdd03ef75cd056efe0187f2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KR1.html",
+      "bytes": 3355,
+      "sha256": "eb378d992eaad12d7650db8014835fb97156624233a5c4425c41ef85de46751d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KR1.svg",
+      "bytes": 12222,
+      "sha256": "ed46c76a8c80575b2c862ffbe7b786f322cdb83c47f959cbf39a1c82fff26f06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS2.html",
+      "bytes": 3252,
+      "sha256": "53efb68316223472ccba6681f744d5b1314757b9fba5a82a0def6b3838cb560e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS2.svg",
+      "bytes": 8175,
+      "sha256": "f4deaf2706c120b8059dd68bb03716dc3c21f95ab201dfdcb13508c77987fa1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS3.html",
+      "bytes": 3355,
+      "sha256": "8c6349d2e0f2bf456c39bc3bb5e3995e19c7d2b66600bdb9fb54efd7617661ac"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS3.svg",
+      "bytes": 8175,
+      "sha256": "f4deaf2706c120b8059dd68bb03716dc3c21f95ab201dfdcb13508c77987fa1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS4.html",
+      "bytes": 3340,
+      "sha256": "a41c479c566b711f094fc8372666a247b42187739046dcc6a7349e1667917ae0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS4.svg",
+      "bytes": 8246,
+      "sha256": "daf9d3e52799b7da979a0c08da30274b40d549ba0ec848182941dfc39f89bb86"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS5.html",
+      "bytes": 2976,
+      "sha256": "6756600b7668a5fcac4199f872e1e6b0e58e5a9eb2bd4fba72f35814a2cc7034"
+    },
+    {
+      "path": "solar-car/docs/零件图册/KS5.svg",
+      "bytes": 7317,
+      "sha256": "96dbe02444a830f146e5f082cb4c4cbd3611874067e5ac83660add630415ce1d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/L01.html",
+      "bytes": 4588,
+      "sha256": "eb3d0c3ef26c8109cb9aec9ff9c2fbf7b9796362dd416899273c40abe8b4450c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/L01.svg",
+      "bytes": 18958,
+      "sha256": "d48a4334d9c1d1d4368dc344ba20d28ca927364d1d3949cdc9096e621ed34d83"
+    },
+    {
+      "path": "solar-car/docs/零件图册/L02.html",
+      "bytes": 4579,
+      "sha256": "0a6ec9bad108f739880377bd12c72f440345c5b3d0675acaefc5614af7dc4af7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/L02.svg",
+      "bytes": 19166,
+      "sha256": "84830d8d3a242bdb7c40ca0d3bf197ba17c698b9224d9e7be5b9957938d1f76f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/M01.html",
+      "bytes": 6068,
+      "sha256": "4a29d0c31c14c721a7cf9947a51f88536bf16cb17004d8d61add16a6ede21b3c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/M01.svg",
+      "bytes": 6550,
+      "sha256": "cfaaa6dd32efbde875c0c34f56a6dbe708f9a9525d06ffd72bc0400fb2f74686"
+    },
+    {
+      "path": "solar-car/docs/零件图册/MS1.html",
+      "bytes": 3688,
+      "sha256": "4d88bde631c775458814cfc81daf566a2312448d10be3c1d32bd2e6b5a04eb76"
+    },
+    {
+      "path": "solar-car/docs/零件图册/MS1.svg",
+      "bytes": 8099,
+      "sha256": "0aecb2eea9a28f3dc3258fdadc1c7eff6d436b49bff12174525746e3f7e6c604"
+    },
+    {
+      "path": "solar-car/docs/零件图册/N01.html",
+      "bytes": 3259,
+      "sha256": "a94418d210e142f09a017b7f05407053c83fdc842543829ab5a7f6ed4b363359"
+    },
+    {
+      "path": "solar-car/docs/零件图册/N01.svg",
+      "bytes": 8999,
+      "sha256": "ac9779a783de977f054a9c6f3ea6f15a424a09e3730f501292f257d19e64a5df"
+    },
+    {
+      "path": "solar-car/docs/零件图册/N02.html",
+      "bytes": 3257,
+      "sha256": "f3f4049eea0abd0fe7d8246643224a97fa5e91bfc207a9b494a0145bc5bef6c7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/N02.svg",
+      "bytes": 8999,
+      "sha256": "ac9779a783de977f054a9c6f3ea6f15a424a09e3730f501292f257d19e64a5df"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P01.html",
+      "bytes": 36525,
+      "sha256": "7d94bde2ee90a1ff4c47ada2e230b39602dc60873cd663afcf985942a05a4f76"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P01.svg",
+      "bytes": 160972,
+      "sha256": "6f8e36b9ef08800f6acff0f84a2140088a5bbea3a37704da12fb264014762008"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P02.html",
+      "bytes": 5950,
+      "sha256": "0ab7af48d4695b97753f2783cf8ae0a14a4027834c4b522a17c89e14f202bc7c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P02.svg",
+      "bytes": 17820,
+      "sha256": "154f35c7ff1223e70c6040c8727316ab9e25f2f01761350b734c97c5c1e5fde1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P02B.html",
+      "bytes": 5964,
+      "sha256": "2a988a0082da1a3e1939cadd6b31702ccffdb0042837094c02890c9e1b71e590"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P02B.svg",
+      "bytes": 17977,
+      "sha256": "b3f44a128a2afd9742e3fc1dc0a7570eb36d3a5d6a56e7f976820b1be435e858"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P03.html",
+      "bytes": 3874,
+      "sha256": "7dedc4d30161ab4d82025403394875108432da140192d3f9d05d3bcdd9a7d989"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P03.svg",
+      "bytes": 14212,
+      "sha256": "8710b5dd1b7cd56a46419f325e2420b29b868dd77291b851d09da6a44c362fd6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P04.html",
+      "bytes": 5358,
+      "sha256": "9a2c9768b9a8dd369d996b80444654c2399ec13d4d79ac2e295eea4652cae895"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P04.svg",
+      "bytes": 9250,
+      "sha256": "f4e680acd03539b4a2b46f5af0fd7c8f9530b045d3eee592126e53835f6c056d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P05.html",
+      "bytes": 9917,
+      "sha256": "2b69784147e36c78365103325843be1a39b4670506e4ff7fa389d6fe58e1ea94"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P05.svg",
+      "bytes": 14481,
+      "sha256": "b485e6815f66a4452138dfc0d08f506cbd9f0dfc8b707d77a41b5de24367dc47"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P06.html",
+      "bytes": 10426,
+      "sha256": "3dad0426699f76c36127bbd60fb8d258b4f58d18acfaef4344005fe7ab0443c4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P06.svg",
+      "bytes": 15782,
+      "sha256": "721c473f3c4f13a06fdba944f637e0eb8f6a9eb2d38543d5b2bffc31bb5f4358"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P07.html",
+      "bytes": 3350,
+      "sha256": "81f41abd8f0def737be8bee94d5e6c4c6194de98b40a59dd9aeb7f7d2515100f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P07.svg",
+      "bytes": 6956,
+      "sha256": "537ae73227f316ddd5e0cfab8d780e4c0ca016245f92b65b36a152ea78a12ba8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P08.html",
+      "bytes": 4833,
+      "sha256": "76a2cce472293ca178dcef48f9943662bddd352dd268d8ac289f856f97552201"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P08.svg",
+      "bytes": 8391,
+      "sha256": "a0b0d6a79893ffe89dfdf1b426d6ad1b7464690762b79e9c7f11ffdf581c5248"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P09.html",
+      "bytes": 3321,
+      "sha256": "40915ac34ede3ca480b4d36ea4dd18c9cbfca7e12cbc0353693fe44f2ad0bd0e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P09.svg",
+      "bytes": 7388,
+      "sha256": "bd77398460ef7e387529009a47656c96f47d7d5d7747f86089f1c840b3f04c4f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P10.html",
+      "bytes": 6151,
+      "sha256": "4700f57bcdc1be6df209c42f4082fa2b8ca005851f00db597ffbed1976f8cd0c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P10.svg",
+      "bytes": 15288,
+      "sha256": "9483786bda4d07cf551eb46559f78c82124e78f25017d76f0bcd675a971847ea"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P10B.html",
+      "bytes": 6128,
+      "sha256": "4d94b15693728236f29be193dc077b5fe09a634bd9c7136ecba1cc425fc7c648"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P10B.svg",
+      "bytes": 15288,
+      "sha256": "3b2ed71f79378dba21a80a0406f33581e269695e36e59cc475b63471d88d0d5e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P11.html",
+      "bytes": 4188,
+      "sha256": "a8de381936fc425c303814c48294d41d9b944884dd8fd018ab47d2c955d32c26"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P11.svg",
+      "bytes": 8593,
+      "sha256": "f4eed19ef0255ec3f625f112a802a7f798e090c344469590c7268753c220f3ca"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P12.html",
+      "bytes": 11177,
+      "sha256": "3422a49ac91cbc6bed1176491d5c8daabb2a214386152688d5da2ca9dc845076"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P12.svg",
+      "bytes": 22584,
+      "sha256": "e0f44cb8c270c57d64c7e583c3539702f81a9057ff4ce82756c9a9e8dcc9f7ed"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P13.html",
+      "bytes": 4950,
+      "sha256": "0be6071f05344cc1352f434a0f0447a2a29b188bc61407b6692b6d860913bd7a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P13.svg",
+      "bytes": 7834,
+      "sha256": "858b1e1f85151e79a8584c5a11d9acbb1a7fc4a18c51b0659f40e73f1d895588"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P14.html",
+      "bytes": 3753,
+      "sha256": "097de16c4f149e455344b78aa98c2b3cc2f98420bdc052d46221f9a184272d58"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P14.svg",
+      "bytes": 11826,
+      "sha256": "0700100e82787e05cc1186e8753898258a760a9e4fb9312130d7c7c46d756b56"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P15.html",
+      "bytes": 6530,
+      "sha256": "8d307ca1974dcfa03d119d1a8a9c4ac49be3850cb6d66b6423c4a5657918f701"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P15.svg",
+      "bytes": 19484,
+      "sha256": "419b7f2fdadd1d98804342c2e71477b20e58ed61018888a0e875da81876de54a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P16.html",
+      "bytes": 5206,
+      "sha256": "a371d936f91227241d3285805cf99816ffd4da55c85584d42fa5047e60318cd7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P16.svg",
+      "bytes": 7991,
+      "sha256": "9e0376df0e1412d88051f03ca7f8b5ab0123a75ba9b5d176880ea20adbf9b210"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P17.html",
+      "bytes": 4630,
+      "sha256": "3492d094470e7b8b60708ee63c978657ed74671993980db32e0ec162afee295c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P17.svg",
+      "bytes": 9141,
+      "sha256": "4d7e975941aeaaaec5dc67084fb37da3fca332e12250c4ab125a1928f6b82b26"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P18.html",
+      "bytes": 4250,
+      "sha256": "271aad83046a690bfe67ebe3c0db2efffe232d0ce32f58785e6b4e41e5f6c760"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P18.svg",
+      "bytes": 8935,
+      "sha256": "0c0f9c18b169c51951972497efba5f458f33808c991c656910f6ebcfc5772452"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P19.html",
+      "bytes": 5914,
+      "sha256": "5e391e40700857f5f586fd77ca0106a0ec708c216b02fe5451b7757ad9f59bf4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P19.svg",
+      "bytes": 14044,
+      "sha256": "5241dfdd3cb065b5bf7fe72e5667c672c4ad09b3687aa31ccd1bc0994e03365b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P20.html",
+      "bytes": 5919,
+      "sha256": "5260b70490c9cc91b61c23202d233fdc66440bc66239aa0a75b8f3bd66bd782e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P20.svg",
+      "bytes": 13508,
+      "sha256": "d2edb39bc47199561968801bfd7ca1f449af3cb253829b1b823b23969b074bbb"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P21.html",
+      "bytes": 5170,
+      "sha256": "0e1d5c67bdf6cd2d38bf4b9c747d16c96f6d7c77ce74983f240001a59794150c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P21.svg",
+      "bytes": 11955,
+      "sha256": "fb5b009140a54f8d38b66bfc3da1d4f9c401e6d4d79ca57afab6b53b421947bd"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P22.html",
+      "bytes": 4357,
+      "sha256": "494731bc0fa97a52dcd6c834e5a1de29f193e979f3db757b4cd444d44be465f0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P22.svg",
+      "bytes": 8712,
+      "sha256": "2ec9a718e3f3077092d0bb485ed29b3ed919cc5f9ea9d5be6fe34c37e5d190d9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P23.html",
+      "bytes": 11185,
+      "sha256": "88917f86ff71cb98800fd2123dc1b3781a24606e5281f4e972e5bceae689b243"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P23.svg",
+      "bytes": 14294,
+      "sha256": "737d6293ece1fb631af30b9411d4a1daea642f4ed12ee0d7f6ffeef6a425a3a9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P24.html",
+      "bytes": 4912,
+      "sha256": "342e7b0bd112058eee3a4d8dbf9c1d56b5ecb054d17c552e0b48d047122cdcb4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P24.svg",
+      "bytes": 12258,
+      "sha256": "bc52df79752ecd5746cae9c259c94c796d686443e512474091c2c2bf4357c019"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P25.html",
+      "bytes": 9930,
+      "sha256": "c4063e235cbea6c62993bcbb112830aeb1c72e4cd0cf50a33e36ebe89248dc87"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P25.svg",
+      "bytes": 28649,
+      "sha256": "a97455325703400d3afd217dc3f96d5d905eb1107c8e5028f272c2067b2254f6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P26.html",
+      "bytes": 7984,
+      "sha256": "ff4a7df64f5d844402e0b00ffc37e2618abed035f634aaf31d4feeab461b1d0e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P26.svg",
+      "bytes": 9297,
+      "sha256": "5c562a76449906e99053c2440756ae9ddeb8480efa46dcfc965ad1e37d06e4fd"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P27.html",
+      "bytes": 6815,
+      "sha256": "768efdde36c2c19b3b8997eb7047d5c00915d009cc3f9f5790749fb749671da6"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P27.svg",
+      "bytes": 13973,
+      "sha256": "aade6040150a0d2b59645578b1ea928e2a267418184aabe2359859bc193513f0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P28.html",
+      "bytes": 8108,
+      "sha256": "6104ef57ceb6f849edc579687ac71968348f0feeffec0fac2c6d7896d183f549"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P28.svg",
+      "bytes": 20686,
+      "sha256": "89f81a30037f4bd5f6c969c575cff396470e65c601f83d6eceee2e85ab17fa3a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P29.html",
+      "bytes": 5813,
+      "sha256": "f43b799c9ddf2c102362dc24ccac0022252cff563d4da45ee9acc15d0c7542fc"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P29.svg",
+      "bytes": 21789,
+      "sha256": "ba16abf390d739bf94ffaa718d78334e0d04ff4ff8396108b5546957ec081147"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P30.html",
+      "bytes": 5841,
+      "sha256": "2eeb0a068d414a7275d3d4712f8eae7ed4d79986dc65553654ea2e4c53bed22e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P30.svg",
+      "bytes": 19989,
+      "sha256": "2537148b924544de7ecbb872d3ebd5b4c4a399bf9a0f9ebf6864740f17b64950"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P32.html",
+      "bytes": 4232,
+      "sha256": "2eb94132e74ac21ddc8045bccab1966377d2debf5cf5efabb038c507e45c89b4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P32.svg",
+      "bytes": 12828,
+      "sha256": "a55086bc8d98b370d3c91b1c1838076de769245a4fd845cbf592542424dbb82e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P33.html",
+      "bytes": 4215,
+      "sha256": "8ec7a89e65d3dd18f66c1c829fbfdf5ed5a799a19da4334eec1bc9b5f7d927ed"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P33.svg",
+      "bytes": 13928,
+      "sha256": "2956838ec2e62c7eae723ada75206acf80a3f0932143744cbd8ba6570b003f87"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P34.html",
+      "bytes": 3082,
+      "sha256": "756ef7a330acab924688323a2353d886dd9c7ecf228acfc6f8eb02cc8a75ce6b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P34.svg",
+      "bytes": 10376,
+      "sha256": "c68393de720e5cf79fb73380bb640015a68a189d88b819540170e9a608b6ecf8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P35.html",
+      "bytes": 3672,
+      "sha256": "65ff94f0796c2a8303249dc2067d59755d26793adc85bcce0faf76ff5c86c015"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P35.svg",
+      "bytes": 11231,
+      "sha256": "ef99b75bdd5c5a1f93f3a63b2d57dcaa6d187c67a9fca9271b1665abbdfe5ec9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P36.html",
+      "bytes": 3572,
+      "sha256": "3c91da2f75efe671589dab843f8cc7698d7c2f529b5455c087e7cc315e60ccf5"
+    },
+    {
+      "path": "solar-car/docs/零件图册/P36.svg",
+      "bytes": 14281,
+      "sha256": "41ca96f2e5184b2e99a54a41993fe43d16cea6fd9676f153fd1f85b256dff6e9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVB1.html",
+      "bytes": 3343,
+      "sha256": "9163a68c091eb562f1ba329c423d94a2cb7ed7523529f4fe5bbfdb162683b4f5"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVB1.svg",
+      "bytes": 8308,
+      "sha256": "86d4540671807eb3aeb2221710b184a16dd34d29f4b0935ac096d79b22536331"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVH1.html",
+      "bytes": 8659,
+      "sha256": "9d1b168e59b8e058de3d91d37cfb259e5a80481dab3d91c3d91f24e5c7df2d4f"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVH1.svg",
+      "bytes": 23070,
+      "sha256": "aec06c17e56caf9e1aa96942cd845ccd69218cff74ed9c7456b1c1a15fbbeca5"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVL1.html",
+      "bytes": 4047,
+      "sha256": "06b5a2482d44a57b148f00d635bc969a853108c58ecec2d1f0223da259eb7f9e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVL1.svg",
+      "bytes": 11993,
+      "sha256": "aa1617a750f5c862f65f03ef95a35cf901baa20ce78ce2cbde6a39996c865217"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVN1.html",
+      "bytes": 3571,
+      "sha256": "e753b750114262188620497b91075bf54b128ff967eb13a8d983177d7a59a34b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVN1.svg",
+      "bytes": 8936,
+      "sha256": "45dec59b18ca2a2c09f78e191ae15d3f97e7b2d4217698c826da977b5a6f0bd8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVW1.html",
+      "bytes": 4152,
+      "sha256": "54a0af53827ed63cb329aa85f7aaccfc18abe5a738fd00cd4fac5f9ca7574495"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVW1.svg",
+      "bytes": 10507,
+      "sha256": "c85e8f5507fead051fd0219990ee3ae970ef89dd511f2ed6f498b186a4e76a22"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVW2.html",
+      "bytes": 4173,
+      "sha256": "65e2d2ae12335382b4fd5d5b2661359854e0d93eeedd281765de4e7735cc4901"
+    },
+    {
+      "path": "solar-car/docs/零件图册/PVW2.svg",
+      "bytes": 9670,
+      "sha256": "b67fffa3dcb0309cab8b739c0c18c45e0a46f98bd7f0c9ff62c53bed68edb51b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R01.html",
+      "bytes": 3377,
+      "sha256": "4e35a9023ad35d526aa3a6b89ffb5a1e4962b3dd451da39d875d4c1bfe9ba92b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R01.svg",
+      "bytes": 12222,
+      "sha256": "ed46c76a8c80575b2c862ffbe7b786f322cdb83c47f959cbf39a1c82fff26f06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R02.html",
+      "bytes": 3377,
+      "sha256": "e85604bff5fe52297f0d17284a7c9c647d3b117a036c5c3adb1c889ee08ea6bf"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R02.svg",
+      "bytes": 12222,
+      "sha256": "ed46c76a8c80575b2c862ffbe7b786f322cdb83c47f959cbf39a1c82fff26f06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R03.html",
+      "bytes": 3377,
+      "sha256": "209e00369e3caae9971cdc6053bbd4fb4900e1a6e5d6266ff4f87b1b4b94243a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R03.svg",
+      "bytes": 12222,
+      "sha256": "ed46c76a8c80575b2c862ffbe7b786f322cdb83c47f959cbf39a1c82fff26f06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R04.html",
+      "bytes": 3535,
+      "sha256": "4c7e987e92f7b06f46e35d646aba6b63917f1cc09648400b4fee91cd09fbbf47"
+    },
+    {
+      "path": "solar-car/docs/零件图册/R04.svg",
+      "bytes": 9953,
+      "sha256": "6b9573bd0068c7f8e24eb725ec8e677ba35e7a31abb5664e47358b1d62ccf6c2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/RN1.html",
+      "bytes": 3391,
+      "sha256": "69ceefda2d528eda884f34c39d7002b7ef288b5c16660273f9c2c5ad31cdaec9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/RN1.svg",
+      "bytes": 8999,
+      "sha256": "ac9779a783de977f054a9c6f3ea6f15a424a09e3730f501292f257d19e64a5df"
+    },
+    {
+      "path": "solar-car/docs/零件图册/RS1.html",
+      "bytes": 2945,
+      "sha256": "663cd685934ffe3d13d515f31b5a677ff4977bb46f49ee761650a34a18b08f90"
+    },
+    {
+      "path": "solar-car/docs/零件图册/RS1.svg",
+      "bytes": 7317,
+      "sha256": "96dbe02444a830f146e5f082cb4c4cbd3611874067e5ac83660add630415ce1d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S01.html",
+      "bytes": 3418,
+      "sha256": "75d57e6d4737347dc99f9aba3118e27cdf8cd9b66695fa7a955fb27d346a488a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S01.svg",
+      "bytes": 8351,
+      "sha256": "8e261b619bd4cfb4b868fefff29659096afdd81efdc19e548025094b099d2273"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S02.html",
+      "bytes": 3418,
+      "sha256": "bc50b6d78433d5c70672d5b8d9b7eb21ce226ba3816123bc8be8a8120d6aec4a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S02.svg",
+      "bytes": 8351,
+      "sha256": "8e261b619bd4cfb4b868fefff29659096afdd81efdc19e548025094b099d2273"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S03.html",
+      "bytes": 3699,
+      "sha256": "47bf3846076b21c9e1fc5065df1b7432dea85d39b06a4df12e5812f0cd8b85fd"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S03.svg",
+      "bytes": 8064,
+      "sha256": "d576f79b351804ef9c0564b32b416001d3de140916ca4c8db4ff7bbd9d620112"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S04.html",
+      "bytes": 3425,
+      "sha256": "a10a17418e04e00a563376b41701ed943b5bca82e3e85883ef6eac135f9a74ac"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S04.svg",
+      "bytes": 8064,
+      "sha256": "d576f79b351804ef9c0564b32b416001d3de140916ca4c8db4ff7bbd9d620112"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S05.html",
+      "bytes": 3343,
+      "sha256": "84b32d52495e3cdf30877209377933b8fe5546be4cf30daa243f0eeaff75462d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S05.svg",
+      "bytes": 8299,
+      "sha256": "83fadadc8d230c94799a872d53caef4403e6308769c293a68ad9d782321d2e07"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S06.html",
+      "bytes": 3347,
+      "sha256": "ddb697f7d25b1a6df74c8e7450d1e8bbc7cd017bb00c519c93ab1560b4c47330"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S06.svg",
+      "bytes": 8221,
+      "sha256": "ef22367c42bd53f25a790a09e559cb3b09614246b5c90bc05094bbc522d3cbce"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S07.html",
+      "bytes": 3693,
+      "sha256": "54b87a82f682677a4bae23b1769c2a9f2f05308d6f2cdbe881c5882d40283551"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S07.svg",
+      "bytes": 8152,
+      "sha256": "bd10221425a76997cf68664eaeb9b8b14b2224c94a810dfc238282b1446502b9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S08.html",
+      "bytes": 3360,
+      "sha256": "40a17e26d1a5a18d1eb258f9a5d8ae43fe532fe06faeffdfa033cf4a1aecb0c8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S08.svg",
+      "bytes": 8093,
+      "sha256": "04b6abcbc3bb63cd6632439f6f9413ac10d7aedff2a9ccedcfa84dda13199d06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S09.html",
+      "bytes": 3225,
+      "sha256": "fbb76381bccc35557a4e04e4169b00f293da10f25f7ed1d095605cb60cc8087d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S09.svg",
+      "bytes": 8175,
+      "sha256": "f4deaf2706c120b8059dd68bb03716dc3c21f95ab201dfdcb13508c77987fa1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S10.html",
+      "bytes": 3421,
+      "sha256": "803a4f3ed5a793812e56e89227a0b9a6902bebfcb4c56588c1aa9f23245ea106"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S10.svg",
+      "bytes": 8059,
+      "sha256": "23aa5baa0a7594271e64127e6054f958138c13f3cb25b6c008d692ef18e735ef"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S11.html",
+      "bytes": 3421,
+      "sha256": "d29b0d26406d0ff5f95fa45af1fa6b323cd96fa5c652086ee8699b34989d6bdb"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S11.svg",
+      "bytes": 8059,
+      "sha256": "23aa5baa0a7594271e64127e6054f958138c13f3cb25b6c008d692ef18e735ef"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S12.html",
+      "bytes": 3349,
+      "sha256": "9027ce6a1f50c18864d4e925695142efc13dccbc290ab416b20a41b9f5c004f0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S12.svg",
+      "bytes": 8111,
+      "sha256": "9714a7c5fa88e016189adb17424153ee35403a18e5f4d90f2bbcec7fbe70d460"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S13.html",
+      "bytes": 3341,
+      "sha256": "7c48fdf5cac48bc6a1579e04ffa6060876fc8f0a123885f634b02f8680a8527c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S13.svg",
+      "bytes": 8033,
+      "sha256": "675a99a4cf877e3630f332ffdedbdb2da64a9f9861be3c08e4c7bbfa08a84332"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S14.html",
+      "bytes": 3341,
+      "sha256": "c7a138448a05f2967dc551086f7e600ca1cf3f51798cbebd4b32319668dd7c16"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S14.svg",
+      "bytes": 8033,
+      "sha256": "675a99a4cf877e3630f332ffdedbdb2da64a9f9861be3c08e4c7bbfa08a84332"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S15.html",
+      "bytes": 3421,
+      "sha256": "5f849918b94281ec97d76c9226c649bcdc6576b7165caec285991ad76532801d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S15.svg",
+      "bytes": 8059,
+      "sha256": "23aa5baa0a7594271e64127e6054f958138c13f3cb25b6c008d692ef18e735ef"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S16.html",
+      "bytes": 3702,
+      "sha256": "e4ab6ec61196d4cc441152bec79fe0d18d9f56d2197cbd74777b6a970f64db9b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S16.svg",
+      "bytes": 8107,
+      "sha256": "d2834d79808b748ba0a1be771bf99e345aa8765911c7efed118cc0a102fdd48d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S17.html",
+      "bytes": 3360,
+      "sha256": "d36c2842e0d7819844dcf4d145995859f52682f8232f414b57571d81c61102cb"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S17.svg",
+      "bytes": 8093,
+      "sha256": "04b6abcbc3bb63cd6632439f6f9413ac10d7aedff2a9ccedcfa84dda13199d06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S18.html",
+      "bytes": 3421,
+      "sha256": "7f03553426f1b8d084f0adaf5f115f9f6be377b24affbfc311cca45b3a07b24a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S18.svg",
+      "bytes": 8152,
+      "sha256": "bd10221425a76997cf68664eaeb9b8b14b2224c94a810dfc238282b1446502b9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S19.html",
+      "bytes": 3421,
+      "sha256": "21a48bb38fede282da28b923d8c8b66d0e9370dc0d92eec87645bbe50526c1ad"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S19.svg",
+      "bytes": 8152,
+      "sha256": "bd10221425a76997cf68664eaeb9b8b14b2224c94a810dfc238282b1446502b9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S20.html",
+      "bytes": 3421,
+      "sha256": "1c86c4aa0bd8049f2dc6e512e99e07ba26a85ba8744a16f981e7b235c79e548d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S20.svg",
+      "bytes": 8152,
+      "sha256": "bd10221425a76997cf68664eaeb9b8b14b2224c94a810dfc238282b1446502b9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S21.html",
+      "bytes": 3355,
+      "sha256": "da5f020f3d5b57b7078c264b2293f5e47c5270acc091ba360c5a3b29ee121d81"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S21.svg",
+      "bytes": 8377,
+      "sha256": "3828c3ecf1a01ba36f5edf55d48a35d12757173b7f1b9a73f0eca4cb48e01d01"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S22.html",
+      "bytes": 3355,
+      "sha256": "3893dc3f332141f54abd03b3dd7f0f429e435f7f3b7de9cd1096f6027badf5f1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S22.svg",
+      "bytes": 8175,
+      "sha256": "f4deaf2706c120b8059dd68bb03716dc3c21f95ab201dfdcb13508c77987fa1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S23.html",
+      "bytes": 3520,
+      "sha256": "dbc7ce29855a8674448c2f27ac394e8c1a6b2ccc67ca1902d01f8e9f41ae788d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S23.svg",
+      "bytes": 8253,
+      "sha256": "e1c7e5e47a9ede299c0f0578a82da8bf2400610732e420d2dec73ab95d1c2723"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S24.html",
+      "bytes": 3340,
+      "sha256": "6f9c8362e5d2996580f6d912b47b13c476908d4ee7fe072dfd26050333071664"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S24.svg",
+      "bytes": 8246,
+      "sha256": "a79bf392bbfa00de02a2cabf6cfa8211a3e1d96fc568e0f74e156977e906ef90"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S25.html",
+      "bytes": 3340,
+      "sha256": "9cb384e0eeb024df4e4dbb5153bb66b25c32d1a126ba6aacc45b09675a1ccc6d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/S25.svg",
+      "bytes": 8246,
+      "sha256": "a79bf392bbfa00de02a2cabf6cfa8211a3e1d96fc568e0f74e156977e906ef90"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD1.html",
+      "bytes": 3421,
+      "sha256": "b4759f29620e8d5b06c7fd0ea7d80f03cac46c6ce3df767bb021a564d0b44ad1"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD1.svg",
+      "bytes": 8152,
+      "sha256": "bd10221425a76997cf68664eaeb9b8b14b2224c94a810dfc238282b1446502b9"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD2.html",
+      "bytes": 3337,
+      "sha256": "ab2075d63670599da7882ca051502f53c6bce8a50f213977f0880f4cbea812d0"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD2.svg",
+      "bytes": 8245,
+      "sha256": "0c1102bc3ec38e8e414c5030ec15b0d12e2bd373553c3b7df56a8ebce5bc0abe"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD3.html",
+      "bytes": 3062,
+      "sha256": "e365c40d0443dadbd622104c9dbcdc05e79fa038dd74f1df98971d4f46b429fb"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD3.svg",
+      "bytes": 6799,
+      "sha256": "46b8fcb9fc4268c38ef209cb6738473a923ab2ba2e0fea3a720a442bbce4bb8e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD4.html",
+      "bytes": 3139,
+      "sha256": "1d4fbe6fa34fb88851752954ad19a5c9f65eec94c03e36b49be2a9c3b3fa8a1b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD4.svg",
+      "bytes": 6904,
+      "sha256": "f2a3bc3bb5554f2fc15b7f682f47da052a0e45a0b021c8210c906638ad083529"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD5.html",
+      "bytes": 3139,
+      "sha256": "715af7322177ca80d5cdc429ca7bfa4e255f4ff3e93e43f7af92e382ef81e53b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD5.svg",
+      "bytes": 6904,
+      "sha256": "f2a3bc3bb5554f2fc15b7f682f47da052a0e45a0b021c8210c906638ad083529"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD6.html",
+      "bytes": 3094,
+      "sha256": "6b51e3105e2eef77fc339edfd453c58f2c1fb099e8875168932900bbf786d032"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD6.svg",
+      "bytes": 6913,
+      "sha256": "ddfa777f88a94e6af0cf78f34eb31c8d41344b899386318baca3b0c30b718781"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD7.html",
+      "bytes": 3086,
+      "sha256": "15770a1b1770cb3e28d396e32e6d764d030470cf70f723296cfd0f4e8dfdaaca"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SD7.svg",
+      "bytes": 6707,
+      "sha256": "fe6cc6f51d1d7aba5eef3431135c610cd85d3ca365b531a72a96770f37975b65"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SDN.html",
+      "bytes": 3527,
+      "sha256": "71ff9b744433739535755e4e216961b0fe6761b1978166217a556d48c5d855b8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SDN.svg",
+      "bytes": 8933,
+      "sha256": "9f4392c18ab024613f4770b7bcdcf93f0758ddf8da4e0e671ede4e2395e3bded"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SP1.html",
+      "bytes": 3366,
+      "sha256": "b975326cb14a3fb09ca0139a853126778aa17210ddf5791f33cba1df82e1c87b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SP1.svg",
+      "bytes": 10544,
+      "sha256": "acfe4b023ffe5daf9b96ce466957135a89a496d5533ea00a85db67518bd0f640"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SS1.html",
+      "bytes": 2952,
+      "sha256": "e0cf3e4eea7a0b760962670fc112083b9fe0adb1e8812dbc5574a24349ed8367"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SS1.svg",
+      "bytes": 7337,
+      "sha256": "d37fdf44002e6f95825edf60ede1988aad38d6936c811727983aa8f3690d1db4"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SS2.html",
+      "bytes": 2978,
+      "sha256": "a133d09c23707b7b71db0a6da3dfab17a5e312266ad84470089ccd92bd67ea71"
+    },
+    {
+      "path": "solar-car/docs/零件图册/SS2.svg",
+      "bytes": 7317,
+      "sha256": "7598d94476f79b9db5196ecf1fdfd1feffa0f68d263616e1104ce024a6b4b16e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/T01.html",
+      "bytes": 4461,
+      "sha256": "500ae3a46134e49a36b57e66d96dcd04a482175801d3639615f993becbd0b897"
+    },
+    {
+      "path": "solar-car/docs/零件图册/T01.svg",
+      "bytes": 10408,
+      "sha256": "5a7eb9832e30bc0412efc3c8f3722f7c8472f56cb5a4c1d181c5eafb99ca0f8c"
+    },
+    {
+      "path": "solar-car/docs/零件图册/T02.html",
+      "bytes": 4193,
+      "sha256": "f79e3492c8d306d2ecdf741e0795921a743659ee6c5626b1af31954655094919"
+    },
+    {
+      "path": "solar-car/docs/零件图册/T02.svg",
+      "bytes": 34664,
+      "sha256": "0080bb86bc7bda73acb1ba8afe8184cfc763ff8a23bd497007f53a8f3b208cc7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TB1.html",
+      "bytes": 4543,
+      "sha256": "c3aa28e3d08de2b6f1c8b15c484c85b30c41a0698de49f2c547dafbcd1ef4587"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TB1.svg",
+      "bytes": 9641,
+      "sha256": "e6a4e50a6aaf08e19a533e107c202a5a66f588777fa691c19b22c17f79f9b24b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TB2.html",
+      "bytes": 4560,
+      "sha256": "23d22287aea9fd792acb6564bd2cc408e5a987814b790b67102fc26e0016c8aa"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TB2.svg",
+      "bytes": 9503,
+      "sha256": "2ab8e20b6b006710921672f83025488ef489aa338cdec04c1aa8a130cd7dad14"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI1.html",
+      "bytes": 4297,
+      "sha256": "46033ba8097f85f71658fd3eeaa681700c86280b8beda06ad9f14ef012a15bd7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI1.svg",
+      "bytes": 10767,
+      "sha256": "0bb692dd0c93eed79e41bb0e04a0e3abee0a4f8f9beae8e32a6446368ba598ca"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI2.html",
+      "bytes": 3057,
+      "sha256": "8513cc5f9633c8cb5d709ac73b50d8aef6082cf72b9ccc3f6f4d3b862e6fe1ee"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI2.svg",
+      "bytes": 10494,
+      "sha256": "c05551bdab827f68bc17b06d2d0956c4213e52ce8e4aeaf781a80ffbc9c89a5e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI3.html",
+      "bytes": 3048,
+      "sha256": "ba8448c2b95dbee4caa592604b733e8d73a66ecdd224f713fd0711ac768483fc"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI3.svg",
+      "bytes": 10405,
+      "sha256": "b5aa291bcf695a50b7910566da4ed052786bb5181b500ef5f949499a3dfc1e9a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI4.html",
+      "bytes": 3381,
+      "sha256": "aadade460ee933d497a479a7c03f1898a7acd1308887532597b7e96c575193ef"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI4.svg",
+      "bytes": 8978,
+      "sha256": "a851365f3ff7360f27a7336853f06b08922c2f29f4a87eb6e05fabc20c7ed7c8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI5.html",
+      "bytes": 3355,
+      "sha256": "b6cd60733994965ef22ea5368c56d69efa3d20d25dbad2a5543244e886b88e54"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TI5.svg",
+      "bytes": 8240,
+      "sha256": "1e3eda40095338c7e1be012a012364eb41595327146b9a845b8367a6e31509c2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TS1.html",
+      "bytes": 3348,
+      "sha256": "651cc671e189919ebebc5af6d2e7a5e5875389a577be7f220611dff47f0168d5"
+    },
+    {
+      "path": "solar-car/docs/零件图册/TS1.svg",
+      "bytes": 8253,
+      "sha256": "e1c7e5e47a9ede299c0f0578a82da8bf2400610732e420d2dec73ab95d1c2723"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U01.html",
+      "bytes": 5208,
+      "sha256": "a60b97d565a5c06b584fcbb35ff23092ad4be9ba9b8e89ef0a111993633d1179"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U01.svg",
+      "bytes": 15838,
+      "sha256": "db177e78e3f23b506055515dfbaa22b1fa0dccaa7f145433f6d218c44f5578c8"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U02.html",
+      "bytes": 5001,
+      "sha256": "f659c4238293494702a1ad2172a9fbee4f0471cdcd7b3273e1ba506794d1bd0a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U02.svg",
+      "bytes": 10425,
+      "sha256": "5ae43644933c9b85e62dc40497f34cac5bd8655cf36cecba0fa2f440590eeda7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U03.html",
+      "bytes": 5323,
+      "sha256": "482c9dbd983bed4cd4c08061165380b2d3d1885f14d34925241dca21a311efb7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U03.svg",
+      "bytes": 8751,
+      "sha256": "d0d5bfc8bb090989c9120b0cbd9160c50d3102286faa6109a5c86724dd1c5e40"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U04.html",
+      "bytes": 3649,
+      "sha256": "28caa81022e96304f65cf38c2ecdc88dedbd90d93fe6a7ebcd74597407b50b40"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U04.svg",
+      "bytes": 12422,
+      "sha256": "d310e64400c88d6372356f3083b223ae12206f85d97cdd682d37b43bcb46e028"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U05.html",
+      "bytes": 4447,
+      "sha256": "03d4898ecc39d21aa67efd1d7ace03e227bf2d1882074da804149057d5329220"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U05.svg",
+      "bytes": 18421,
+      "sha256": "68fe19903956a68857460c14b67acf0958941ea56143580b36a47bfbb5e27dac"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U06.html",
+      "bytes": 4388,
+      "sha256": "e19bdf754935c6e1581c443630e28f99dc3f5020497799f3d1408b6b917cdd5a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U06.svg",
+      "bytes": 7851,
+      "sha256": "6d60da927289991edadee2f10e681f160bb5f7c41fc95b99f67670b484243886"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U07.html",
+      "bytes": 5448,
+      "sha256": "1b00b0043cccc30fea2428167b7d1f072a12819f500cf30fa6d0126749b5b282"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U07.svg",
+      "bytes": 7823,
+      "sha256": "af06926a3f4110ee633bc5aa27384d92be6daf39b6988ea5eb95a2b6eb2b7928"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U08.html",
+      "bytes": 3065,
+      "sha256": "ec5022297b5422c2b1778e7fa17c5a30d1438b6e8e3efab930d929c534b4db31"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U08.svg",
+      "bytes": 10502,
+      "sha256": "12a3a6432d683f8d845fe7b0133b09449f95e54bb37b9f30b478126fa9fc8406"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U09.html",
+      "bytes": 3062,
+      "sha256": "8aa156c7fe305adbd15724f22772e316c7cbfe84e0226e0cff2d856cb74e2017"
+    },
+    {
+      "path": "solar-car/docs/零件图册/U09.svg",
+      "bytes": 10435,
+      "sha256": "77ab22fdeb582f35ea973b9d8f65cbdb2de00c7f5ccd813e70ea5f8f30d1ffd2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UC1.html",
+      "bytes": 3895,
+      "sha256": "9c56a4ef4bd0369182c2c799f57bcaa4bc2e87b10ae9044339719763c66afc44"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UC1.svg",
+      "bytes": 13907,
+      "sha256": "da806b1a2e514f8ae8a079700a0d72ac593770ca61a8b3decda88260f81f8940"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UD1.html",
+      "bytes": 3029,
+      "sha256": "9e29b93e0c6215ef8d049d4399116841e9ede366da02137f79c13b35d03776f7"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UD1.svg",
+      "bytes": 10405,
+      "sha256": "7cf4ab3b56f701336666bfee35d8d5dcc43540bcd3966cccca38a61a720ca962"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UD2.html",
+      "bytes": 3052,
+      "sha256": "603f4646b7256393fd35fc000b931bfab814c42845234bf5c388a17abf8cb22a"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UD2.svg",
+      "bytes": 10526,
+      "sha256": "9e711af23656fff7db7444bbb144dad18aa10e118fdd03ef75cd056efe0187f2"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UN1.html",
+      "bytes": 3242,
+      "sha256": "addecb9e213188d9955a02c10a1d36453b42b4e63a353377bd7d1fb41d45d871"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UN1.svg",
+      "bytes": 8999,
+      "sha256": "ac9779a783de977f054a9c6f3ea6f15a424a09e3730f501292f257d19e64a5df"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UP1.html",
+      "bytes": 3593,
+      "sha256": "8cb47e9be1ca368c9e87ed432e70dc96feaebfbe1a2109d5f5fe2b2d63ba83f5"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UP1.svg",
+      "bytes": 8427,
+      "sha256": "47f92586de45f51439214a444e10d1c83fa17df7429c37e4505ede03d88ef06b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UP2.html",
+      "bytes": 3588,
+      "sha256": "b8ce06dace984e862d5ec0ea55802a2fc8afbd65213d6fcfb6f430b83ab72df5"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UP2.svg",
+      "bytes": 8440,
+      "sha256": "8435489b19f5064fffbc0cc60c8651f85a95a1a328d1d05c8a0a6cfe15416046"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UR1.html",
+      "bytes": 3355,
+      "sha256": "8f65e7f628ce4ce6d309ddca708ced0279675ada3d031731c95deaf0b9c7bc94"
+    },
+    {
+      "path": "solar-car/docs/零件图册/UR1.svg",
+      "bytes": 12222,
+      "sha256": "ed46c76a8c80575b2c862ffbe7b786f322cdb83c47f959cbf39a1c82fff26f06"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US2.html",
+      "bytes": 3355,
+      "sha256": "a1bfdd73e0b3fab5ee489fac1c376472cdde244def85aa9f40a3d14d54681f55"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US2.svg",
+      "bytes": 8175,
+      "sha256": "f4deaf2706c120b8059dd68bb03716dc3c21f95ab201dfdcb13508c77987fa1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US3.html",
+      "bytes": 3355,
+      "sha256": "431ae99550005263361c3ade8f20b0b66689d9ab8ddfa980078876af52542449"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US3.svg",
+      "bytes": 8175,
+      "sha256": "f4deaf2706c120b8059dd68bb03716dc3c21f95ab201dfdcb13508c77987fa1e"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US4.html",
+      "bytes": 3340,
+      "sha256": "bdb24eeba39563ff57268c29e33c858b61c1d13e7eddad1ffd2b30e373560664"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US4.svg",
+      "bytes": 8246,
+      "sha256": "daf9d3e52799b7da979a0c08da30274b40d549ba0ec848182941dfc39f89bb86"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US5.html",
+      "bytes": 2976,
+      "sha256": "7ca112abd7700b8980886beaab45f51927ae27d0aa1bd9087713a525e9a75b0d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/US5.svg",
+      "bytes": 7317,
+      "sha256": "96dbe02444a830f146e5f082cb4c4cbd3611874067e5ac83660add630415ce1d"
+    },
+    {
+      "path": "solar-car/docs/零件图册/W01.html",
+      "bytes": 4325,
+      "sha256": "5b67455714867f49017eb9ce55a2e269059d36c097c5d8d6788c8afdebd4fa2b"
+    },
+    {
+      "path": "solar-car/docs/零件图册/W01.svg",
+      "bytes": 12696,
+      "sha256": "4183c4fd7b9b1f1af8f5e810552f5d94c5c6efac278532f9d6584b61349c4055"
+    },
+    {
+      "path": "solar-car/docs/零件图册/W02.html",
+      "bytes": 4472,
+      "sha256": "281c54ee3379a1e2d24cd40e67846ce2e3ade87b11ea34a04a73fe0f0abb2383"
+    },
+    {
+      "path": "solar-car/docs/零件图册/W02.svg",
+      "bytes": 10444,
+      "sha256": "acaa7909ebe64c8759f34b03dfc91a12ec8b13c119cff74fd006b30948fbc139"
+    },
+    {
+      "path": "solar-car/docs/零件图册/W03.html",
+      "bytes": 4473,
+      "sha256": "9fdb1e1bacffbbaa830884725962b7b8364a0e89600ac19070b7d51abb7e7dec"
+    },
+    {
+      "path": "solar-car/docs/零件图册/W03.svg",
+      "bytes": 10444,
+      "sha256": "acaa7909ebe64c8759f34b03dfc91a12ec8b13c119cff74fd006b30948fbc139"
+    },
+    {
+      "path": "solar-car/docs/零件尺寸表.csv",
+      "bytes": 292749,
+      "sha256": "e4e201592666cb9103362b532a8b1d10c0354265db7ab6ddf6e1a066b1c5ce8a"
+    },
+    {
+      "path": "solar-car/docs/驱动实物选型.json",
+      "bytes": 7886,
+      "sha256": "6ffb30c0bacf2f9ef4e4302a47a145fbb81d006f3e744e6829295df73dc6d078"
+    },
+    {
+      "path": "solar-car/docs/齿轮包络相位检查.json",
+      "bytes": 226,
+      "sha256": "e3cda1de6e3f85f25c70081af1ae4a38a3ae5bb1a3438b675e3ea236ed2c7fa5"
+    },
+    {
+      "path": "solar-car/index.html",
+      "bytes": 7311,
+      "sha256": "5ce64644266f94dc401b23f49d9998a71fee5f26dd7e2a20318c33a66b4cf3e2"
+    },
+    {
+      "path": "solar-car/model-data.js",
+      "bytes": 2951735,
+      "sha256": "ec39b0478691047ff733775d4eb03cb685ce2240f87dfea435c3cc9ab2295737"
+    },
+    {
+      "path": "solar-car/model-meshes.js",
+      "bytes": 28971884,
+      "sha256": "08f0e0fb8f2e0718123149fb44ddb23748fdd31c7d562f182722be421bdd89c5"
+    },
+    {
+      "path": "solar-car/style.css",
+      "bytes": 16355,
+      "sha256": "9466d20d3e3fa7d8f0dab5240fdc3b96c014aa25c8e8257ce8cb079f27014ac5"
+    },
+    {
+      "path": "solar-car/vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d"
+    },
+    {
+      "path": "solar-car/vendor/three.min.js",
+      "bytes": 669884,
+      "sha256": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa"
+    },
+    {
+      "path": "solar-car/viewer-r4.js",
+      "bytes": 41994,
+      "sha256": "8146cea470f73b71b40d1985a0d81b17a9ce98ceb813490908260fddfa920075"
+    },
+    {
+      "path": "solar-car/使用说明.md",
+      "bytes": 9453,
+      "sha256": "4ac5a943d3a254bf595908f02e1a8c34000f54d08887710d3aed6a93341a51bc"
+    },
+    {
+      "path": "交付说明.md",
+      "bytes": 9453,
+      "sha256": "4ac5a943d3a254bf595908f02e1a8c34000f54d08887710d3aed6a93341a51bc"
+    },
+    {
+      "path": "启动预览.ps1",
+      "bytes": 317,
+      "sha256": "b58644dabe874eea5af624f5f5fe2cd32c123512c3565445bbebc2bd71c39241"
+    },
+    {
+      "path": "打开太阳能小车.html",
+      "bytes": 432,
+      "sha256": "1e439b056f9a93051f11ace565ef0f0873535a3294a2a2ddbf00f110ca46e694"
+    }
+  ]
+}

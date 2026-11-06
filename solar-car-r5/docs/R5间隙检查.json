@@ -1,0 +1,8 @@
+{
+  "scope": "R5 changed geometry vs all rigid parts and fastener heads",
+  "poses": 590,
+  "elapsedSeconds": 66.23,
+  "thresholdMm3": 0.05,
+  "hits": [],
+  "limitations": "离散名义几何；螺纹配合体积、柔性线束和弹簧不作刚体干涉判据；不替代实物负载、温升、抓地与赛道试验。"
+}
