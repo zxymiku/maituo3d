@@ -59,7 +59,7 @@
   spec.placements.forEach((pl) => {
     const part = partById[pl.partId];
     const geom = geoCache[pl.partId];
-    const isShell = pl.partId === "P30";
+    const isShell = pl.partId === "P55";
     const mat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(pl.color || "#38bdf8"),
       metalness: part.category.includes("电子") ? 0.15 : 0.38,
@@ -196,17 +196,17 @@
     const primaryShaftRad = camAngleRad * 30.0; // 1:30 worm ratio
     const motorPinionRad = -primaryShaftRad * 4.0; // 1:4 primary gear ratio
 
-    const upperDeckIds = new Set(["P01", "E01", "P25", "P26", "E02", "P27", "E03", "E04", "P28", "E05", "P30"]);
+    const upperDeckIds = new Set(["P01", "P18", "E01", "P50", "P51", "E02", "P52", "E03", "E04", "P53", "E05", "P55"]);
 
     instanceObjects.forEach((obj) => {
       const { pl, part, holder, mesh, mat, basePos, expDir } = obj;
       let vis = activeStep === 0 || pl.step <= activeStep;
-      if (pl.partId === "P30" && hideShell) vis = false;
+      if (pl.partId === "P55" && hideShell) vis = false;
       holder.visible = vis;
 
-      if (pl.partId === "P30") {
+      if (pl.partId === "P55") {
         mat.transparent = true;
-        mat.opacity = selectedPartId === "P30" ? 0.65 : 0.24;
+        mat.opacity = selectedPartId === "P55" ? 0.65 : 0.24;
       } else if (cutawayUpper && upperDeckIds.has(pl.partId) && selectedPartId !== pl.partId) {
         mat.transparent = true;
         mat.opacity = 0.16;

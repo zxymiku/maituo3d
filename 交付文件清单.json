@@ -13,10 +13,10 @@
     },
     "driveRatio": "1 : 4 主减速 (18齿主动小齿轮 : 72齿主减速大齿轮) + 正交锥齿轮四轮同轴分动",
     "steeringMechanism": "四轮独立同轴全向舵轮(非麦轮) + 1:30单头蜗杆蜗轮 + 上下双凸轮(主航向凸轮C01 + 差动副凸轮C02) + 前/后桥平行四边形转向横拉杆",
-    "partTypeCount": 52,
-    "totalInstanceCount": 136,
-    "placementCount": 106,
-    "featureCount": 53,
+    "partTypeCount": 84,
+    "totalInstanceCount": 250,
+    "placementCount": 230,
+    "featureCount": 85,
     "namingRule": "网页显示零件名与 SolidWorks 零件文件名 (<零件名>.SLDPRT) 1:1 严格对应"
   },
   "entryHtml": "打开太阳能小车.html",
@@ -33,34 +33,74 @@
     },
     {
       "id": "P02",
-      "webPartName": "底部传动副底板",
-      "solidworksPartName": "底部传动副底板",
-      "solidworksFile": "solidworks/底部传动副底板.SLDPRT",
+      "webPartName": "底部中置传动副底板",
+      "solidworksPartName": "底部中置传动副底板",
+      "solidworksFile": "solidworks/底部中置传动副底板.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/P02.html",
       "quantity": 1
     },
     {
       "id": "P03",
-      "webPartName": "底盘层间支撑柱",
-      "solidworksPartName": "底盘层间支撑柱",
-      "solidworksFile": "solidworks/底盘层间支撑柱.SLDPRT",
+      "webPartName": "四角舵轮高架悬臂梁",
+      "solidworksPartName": "四角舵轮高架悬臂梁",
+      "solidworksFile": "solidworks/四角舵轮高架悬臂梁.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/P03.html",
-      "quantity": 6
-    },
-    {
-      "id": "P04",
-      "webPartName": "主传动轴立式轴承座",
-      "solidworksPartName": "主传动轴立式轴承座",
-      "solidworksFile": "solidworks/主传动轴立式轴承座.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P04.html",
       "quantity": 4
     },
     {
+      "id": "P04",
+      "webPartName": "中置齿轮箱左侧立板",
+      "solidworksPartName": "中置齿轮箱左侧立板",
+      "solidworksFile": "solidworks/中置齿轮箱左侧立板.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P04.html",
+      "quantity": 1
+    },
+    {
       "id": "P05",
-      "webPartName": "全向舵轮主销轴承座",
-      "solidworksPartName": "全向舵轮主销轴承座",
-      "solidworksFile": "solidworks/全向舵轮主销轴承座.SLDPRT",
+      "webPartName": "中置齿轮箱右侧立板",
+      "solidworksPartName": "中置齿轮箱右侧立板",
+      "solidworksFile": "solidworks/中置齿轮箱右侧立板.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/P05.html",
+      "quantity": 1
+    },
+    {
+      "id": "P06",
+      "webPartName": "底盘层间六角支撑柱",
+      "solidworksPartName": "底盘层间六角支撑柱",
+      "solidworksFile": "solidworks/底盘层间六角支撑柱.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P06.html",
+      "quantity": 8
+    },
+    {
+      "id": "P07",
+      "webPartName": "车头防撞缓冲前杠",
+      "solidworksPartName": "车头防撞缓冲前杠",
+      "solidworksFile": "solidworks/车头防撞缓冲前杠.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P07.html",
+      "quantity": 1
+    },
+    {
+      "id": "P08",
+      "webPartName": "车尾铝合金定位后杠",
+      "solidworksPartName": "车尾铝合金定位后杠",
+      "solidworksFile": "solidworks/车尾铝合金定位后杠.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P08.html",
+      "quantity": 1
+    },
+    {
+      "id": "P09",
+      "webPartName": "横轴法兰轴承座",
+      "solidworksPartName": "横轴法兰轴承座",
+      "solidworksFile": "solidworks/横轴法兰轴承座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P09.html",
+      "quantity": 6
+    },
+    {
+      "id": "P10",
+      "webPartName": "纵轴立式双轴承座",
+      "solidworksPartName": "纵轴立式双轴承座",
+      "solidworksFile": "solidworks/纵轴立式双轴承座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P10.html",
       "quantity": 4
     },
     {
@@ -69,22 +109,30 @@
       "solidworksPartName": "625ZZ深沟球轴承",
       "solidworksFile": "solidworks/625ZZ深沟球轴承.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/B01.html",
-      "quantity": 16
+      "quantity": 24
     },
     {
-      "id": "B03",
-      "webPartName": "6700ZZ薄壁转向轴承",
-      "solidworksPartName": "6700ZZ薄壁转向轴承",
-      "solidworksFile": "solidworks/6700ZZ薄壁转向轴承.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/B03.html",
-      "quantity": 8
+      "id": "B04",
+      "webPartName": "MF85ZZ法兰微型轴承",
+      "solidworksPartName": "MF85ZZ法兰微型轴承",
+      "solidworksFile": "solidworks/MF85ZZ法兰微型轴承.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/B04.html",
+      "quantity": 12
     },
     {
-      "id": "P06",
+      "id": "P11",
       "webPartName": "N20电机固定座",
       "solidworksPartName": "N20电机固定座",
       "solidworksFile": "solidworks/N20电机固定座.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P06.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P11.html",
+      "quantity": 1
+    },
+    {
+      "id": "P12",
+      "webPartName": "N20电机抱箍压盖",
+      "solidworksPartName": "N20电机抱箍压盖",
+      "solidworksFile": "solidworks/N20电机抱箍压盖.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P12.html",
       "quantity": 1
     },
     {
@@ -112,106 +160,258 @@
       "quantity": 1
     },
     {
-      "id": "P07",
+      "id": "P13",
+      "webPartName": "过载保护摩擦离合器盘",
+      "solidworksPartName": "过载保护摩擦离合器盘",
+      "solidworksFile": "solidworks/过载保护摩擦离合器盘.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P13.html",
+      "quantity": 1
+    },
+    {
+      "id": "SP2",
+      "webPartName": "离合器碟形压紧弹簧",
+      "solidworksPartName": "离合器碟形压紧弹簧",
+      "solidworksFile": "solidworks/离合器碟形压紧弹簧.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/SP2.html",
+      "quantity": 1
+    },
+    {
+      "id": "P14",
       "webPartName": "底部横向主传动轴",
       "solidworksPartName": "底部横向主传动轴",
       "solidworksFile": "solidworks/底部横向主传动轴.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P07.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P14.html",
       "quantity": 1
     },
     {
-      "id": "G05",
-      "webPartName": "20齿分动直齿轮",
-      "solidworksPartName": "20齿分动直齿轮",
-      "solidworksFile": "solidworks/20齿分动直齿轮.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/G05.html",
-      "quantity": 2
-    },
-    {
-      "id": "P08",
-      "webPartName": "底部纵向分动长轴",
-      "solidworksPartName": "底部纵向分动长轴",
-      "solidworksFile": "solidworks/底部纵向分动长轴.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P08.html",
+      "id": "G08",
+      "webPartName": "24齿中央分动主动齿轮",
+      "solidworksPartName": "24齿中央分动主动齿轮",
+      "solidworksFile": "solidworks/24齿中央分动主动齿轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G08.html",
       "quantity": 1
     },
     {
-      "id": "P10",
-      "webPartName": "分动箱十字轴承座",
-      "solidworksPartName": "分动箱十字轴承座",
-      "solidworksFile": "solidworks/分动箱十字轴承座.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P10.html",
+      "id": "G09",
+      "webPartName": "24齿中央分动从动齿轮",
+      "solidworksPartName": "24齿中央分动从动齿轮",
+      "solidworksFile": "solidworks/24齿中央分动从动齿轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G09.html",
+      "quantity": 1
+    },
+    {
+      "id": "P15",
+      "webPartName": "底部纵向贯通传动主轴",
+      "solidworksPartName": "底部纵向贯通传动主轴",
+      "solidworksFile": "solidworks/底部纵向贯通传动主轴.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P15.html",
+      "quantity": 1
+    },
+    {
+      "id": "P16",
+      "webPartName": "万向十字联轴器节",
+      "solidworksPartName": "万向十字联轴器节",
+      "solidworksFile": "solidworks/万向十字联轴器节.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P16.html",
       "quantity": 2
+    },
+    {
+      "id": "P17",
+      "webPartName": "传动轴轴向限位锁紧环",
+      "solidworksPartName": "传动轴轴向限位锁紧环",
+      "solidworksFile": "solidworks/传动轴轴向限位锁紧环.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P17.html",
+      "quantity": 8
+    },
+    {
+      "id": "P18",
+      "webPartName": "齿轮箱透明防尘上盖",
+      "solidworksPartName": "齿轮箱透明防尘上盖",
+      "solidworksFile": "solidworks/齿轮箱透明防尘上盖.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P18.html",
+      "quantity": 1
+    },
+    {
+      "id": "P19",
+      "webPartName": "前桥十字正交分动箱壳",
+      "solidworksPartName": "前桥十字正交分动箱壳",
+      "solidworksFile": "solidworks/前桥十字正交分动箱壳.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P19.html",
+      "quantity": 1
+    },
+    {
+      "id": "P20",
+      "webPartName": "后桥十字正交分动箱壳",
+      "solidworksPartName": "后桥十字正交分动箱壳",
+      "solidworksFile": "solidworks/后桥十字正交分动箱壳.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P20.html",
+      "quantity": 1
+    },
+    {
+      "id": "P21",
+      "webPartName": "分动箱法兰端盖",
+      "solidworksPartName": "分动箱法兰端盖",
+      "solidworksFile": "solidworks/分动箱法兰端盖.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P21.html",
+      "quantity": 4
     },
     {
       "id": "G06",
-      "webPartName": "16齿正交传力锥齿轮",
-      "solidworksPartName": "16齿正交传力锥齿轮",
-      "solidworksFile": "solidworks/16齿正交传力锥齿轮.SLDPRT",
+      "webPartName": "16齿正交主动锥齿轮",
+      "solidworksPartName": "16齿正交主动锥齿轮",
+      "solidworksFile": "solidworks/16齿正交主动锥齿轮.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/G06.html",
-      "quantity": 12
+      "quantity": 6
     },
     {
-      "id": "P09",
-      "webPartName": "横向分动短轴",
-      "solidworksPartName": "横向分动短轴",
-      "solidworksFile": "solidworks/横向分动短轴.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P09.html",
+      "id": "G10",
+      "webPartName": "16齿正交从动锥齿轮",
+      "solidworksPartName": "16齿正交从动锥齿轮",
+      "solidworksFile": "solidworks/16齿正交从动锥齿轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G10.html",
+      "quantity": 6
+    },
+    {
+      "id": "P22",
+      "webPartName": "横向分动传动半轴",
+      "solidworksPartName": "横向分动传动半轴",
+      "solidworksFile": "solidworks/横向分动传动半轴.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P22.html",
       "quantity": 4
     },
     {
-      "id": "P11",
+      "id": "P23",
+      "webPartName": "半轴高架转角齿轮箱座",
+      "solidworksPartName": "半轴高架转角齿轮箱座",
+      "solidworksFile": "solidworks/半轴高架转角齿轮箱座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P23.html",
+      "quantity": 4
+    },
+    {
+      "id": "G11",
+      "webPartName": "20齿同步带轮",
+      "solidworksPartName": "20齿同步带轮",
+      "solidworksFile": "solidworks/20齿同步带轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/G11.html",
+      "quantity": 8
+    },
+    {
+      "id": "P24",
+      "webPartName": "闭环橡胶同步齿形带",
+      "solidworksPartName": "闭环橡胶同步齿形带",
+      "solidworksFile": "solidworks/闭环橡胶同步齿形带.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P24.html",
+      "quantity": 4
+    },
+    {
+      "id": "P25",
+      "webPartName": "同步带偏心张紧轮",
+      "solidworksPartName": "同步带偏心张紧轮",
+      "solidworksFile": "solidworks/同步带偏心张紧轮.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P25.html",
+      "quantity": 4
+    },
+    {
+      "id": "P26",
+      "webPartName": "全向舵轮主销轴承座",
+      "solidworksPartName": "全向舵轮主销轴承座",
+      "solidworksFile": "solidworks/全向舵轮主销轴承座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P26.html",
+      "quantity": 4
+    },
+    {
+      "id": "B03",
+      "webPartName": "6700ZZ薄壁转向轴承",
+      "solidworksPartName": "6700ZZ薄壁转向轴承",
+      "solidworksFile": "solidworks/6700ZZ薄壁转向轴承.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/B03.html",
+      "quantity": 8
+    },
+    {
+      "id": "P27",
       "webPartName": "全向转向空心主销套筒",
       "solidworksPartName": "全向转向空心主销套筒",
       "solidworksFile": "solidworks/全向转向空心主销套筒.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P11.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P27.html",
       "quantity": 4
     },
     {
-      "id": "P12",
-      "webPartName": "全向舵轮转向叉架",
-      "solidworksPartName": "全向舵轮转向叉架",
-      "solidworksFile": "solidworks/全向舵轮转向叉架.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P12.html",
+      "id": "P28",
+      "webPartName": "舵轮同轴中心传力竖轴",
+      "solidworksPartName": "舵轮同轴中心传力竖轴",
+      "solidworksFile": "solidworks/舵轮同轴中心传力竖轴.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P28.html",
       "quantity": 4
     },
     {
-      "id": "P13",
-      "webPartName": "舵轮同轴传力竖销",
-      "solidworksPartName": "舵轮同轴传力竖销",
-      "solidworksFile": "solidworks/舵轮同轴传力竖销.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P13.html",
+      "id": "B05",
+      "webPartName": "主销内孔推力球轴承",
+      "solidworksPartName": "主销内孔推力球轴承",
+      "solidworksFile": "solidworks/主销内孔推力球轴承.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/B05.html",
+      "quantity": 4
+    },
+    {
+      "id": "P29",
+      "webPartName": "全向舵轮U型转向叉架",
+      "solidworksPartName": "全向舵轮U型转向叉架",
+      "solidworksFile": "solidworks/全向舵轮U型转向叉架.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P29.html",
+      "quantity": 4
+    },
+    {
+      "id": "P30",
+      "webPartName": "舵轮侧置锥齿轮减速盒",
+      "solidworksPartName": "舵轮侧置锥齿轮减速盒",
+      "solidworksFile": "solidworks/舵轮侧置锥齿轮减速盒.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P30.html",
       "quantity": 4
     },
     {
       "id": "G07",
-      "webPartName": "舵轮轮边锥齿圈",
-      "solidworksPartName": "舵轮轮边锥齿圈",
-      "solidworksFile": "solidworks/舵轮轮边锥齿圈.SLDPRT",
+      "webPartName": "20齿舵轮轮边锥齿圈",
+      "solidworksPartName": "20齿舵轮轮边锥齿圈",
+      "solidworksFile": "solidworks/20齿舵轮轮边锥齿圈.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/G07.html",
       "quantity": 4
     },
     {
-      "id": "P14",
-      "webPartName": "舵轮固定横轴",
-      "solidworksPartName": "舵轮固定横轴",
-      "solidworksFile": "solidworks/舵轮固定横轴.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P14.html",
+      "id": "P31",
+      "webPartName": "舵轮精密固定横轴",
+      "solidworksPartName": "舵轮精密固定横轴",
+      "solidworksFile": "solidworks/舵轮精密固定横轴.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P31.html",
+      "quantity": 4
+    },
+    {
+      "id": "P32",
+      "webPartName": "高抓地全向舵轮铝合金轮毂",
+      "solidworksPartName": "高抓地全向舵轮铝合金轮毂",
+      "solidworksFile": "solidworks/高抓地全向舵轮铝合金轮毂.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P32.html",
       "quantity": 4
     },
     {
       "id": "W01",
-      "webPartName": "高抓地全向舵轮",
-      "solidworksPartName": "高抓地全向舵轮",
-      "solidworksFile": "solidworks/高抓地全向舵轮.SLDPRT",
+      "webPartName": "高抓地全向舵轮防滑橡胶胎",
+      "solidworksPartName": "高抓地全向舵轮防滑橡胶胎",
+      "solidworksFile": "solidworks/高抓地全向舵轮防滑橡胶胎.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/W01.html",
       "quantity": 4
     },
     {
+      "id": "P33",
+      "webPartName": "舵轮端面锁紧法兰盖",
+      "solidworksPartName": "舵轮端面锁紧法兰盖",
+      "solidworksFile": "solidworks/舵轮端面锁紧法兰盖.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P33.html",
+      "quantity": 4
+    },
+    {
       "id": "G03",
-      "webPartName": "0.5模单头蜗杆",
-      "solidworksPartName": "0.5模单头蜗杆",
-      "solidworksFile": "solidworks/0.5模单头蜗杆.SLDPRT",
+      "webPartName": "0.5模单头自锁蜗杆",
+      "solidworksPartName": "0.5模单头自锁蜗杆",
+      "solidworksFile": "solidworks/0.5模单头自锁蜗杆.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/G03.html",
       "quantity": 1
     },
@@ -224,35 +424,51 @@
       "quantity": 1
     },
     {
-      "id": "P15",
-      "webPartName": "凸轮传力竖轴",
-      "solidworksPartName": "凸轮传力竖轴",
-      "solidworksFile": "solidworks/凸轮传力竖轴.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P15.html",
+      "id": "P34",
+      "webPartName": "双凸轮同轴传力竖轴",
+      "solidworksPartName": "双凸轮同轴传力竖轴",
+      "solidworksFile": "solidworks/双凸轮同轴传力竖轴.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P34.html",
       "quantity": 1
     },
     {
-      "id": "P16",
-      "webPartName": "凸轮轴立式轴承座",
-      "solidworksPartName": "凸轮轴立式轴承座",
-      "solidworksFile": "solidworks/凸轮轴立式轴承座.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P16.html",
+      "id": "P35",
+      "webPartName": "凸轮轴立式双轴承座",
+      "solidworksPartName": "凸轮轴立式双轴承座",
+      "solidworksFile": "solidworks/凸轮轴立式双轴承座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P35.html",
       "quantity": 1
     },
     {
       "id": "C01",
-      "webPartName": "主航向盘形转向凸轮",
-      "solidworksPartName": "主航向盘形转向凸轮",
-      "solidworksFile": "solidworks/主航向盘形转向凸轮.SLDPRT",
+      "webPartName": "主航向五次多项式转向凸轮",
+      "solidworksPartName": "主航向五次多项式转向凸轮",
+      "solidworksFile": "solidworks/主航向五次多项式转向凸轮.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/C01.html",
       "quantity": 1
     },
     {
       "id": "C02",
-      "webPartName": "差动转向副凸轮盘",
-      "solidworksPartName": "差动转向副凸轮盘",
-      "solidworksFile": "solidworks/差动转向副凸轮盘.SLDPRT",
+      "webPartName": "差动相位共轭副凸轮盘",
+      "solidworksPartName": "差动相位共轭副凸轮盘",
+      "solidworksFile": "solidworks/差动相位共轭副凸轮盘.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/C02.html",
+      "quantity": 1
+    },
+    {
+      "id": "C03",
+      "webPartName": "横向蟹行偏置凸轮盘",
+      "solidworksPartName": "横向蟹行偏置凸轮盘",
+      "solidworksFile": "solidworks/横向蟹行偏置凸轮盘.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/C03.html",
+      "quantity": 1
+    },
+    {
+      "id": "P36",
+      "webPartName": "凸轮相位微调分度盘",
+      "solidworksPartName": "凸轮相位微调分度盘",
+      "solidworksFile": "solidworks/凸轮相位微调分度盘.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P36.html",
       "quantity": 1
     },
     {
@@ -261,23 +477,23 @@
       "solidworksPartName": "MR84ZZ凸轮滚子轴承",
       "solidworksFile": "solidworks/MR84ZZ凸轮滚子轴承.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/B02.html",
-      "quantity": 2
+      "quantity": 4
     },
     {
-      "id": "P17",
-      "webPartName": "纵向同步转向主推杆",
-      "solidworksPartName": "纵向同步转向主推杆",
-      "solidworksFile": "solidworks/纵向同步转向主推杆.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P17.html",
+      "id": "P37",
+      "webPartName": "主航向滚子推杆滑架",
+      "solidworksPartName": "主航向滚子推杆滑架",
+      "solidworksFile": "solidworks/主航向滚子推杆滑架.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P37.html",
       "quantity": 1
     },
     {
-      "id": "P18",
-      "webPartName": "转向推杆直线导向座",
-      "solidworksPartName": "转向推杆直线导向座",
-      "solidworksFile": "solidworks/转向推杆直线导向座.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P18.html",
-      "quantity": 2
+      "id": "P38",
+      "webPartName": "差动副凸轮滚子推杆滑架",
+      "solidworksPartName": "差动副凸轮滚子推杆滑架",
+      "solidworksFile": "solidworks/差动副凸轮滚子推杆滑架.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P38.html",
+      "quantity": 1
     },
     {
       "id": "SP1",
@@ -285,55 +501,95 @@
       "solidworksPartName": "推杆复位圆柱弹簧",
       "solidworksFile": "solidworks/推杆复位圆柱弹簧.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/SP1.html",
-      "quantity": 2
-    },
-    {
-      "id": "P19",
-      "webPartName": "后桥差动相位推杆",
-      "solidworksPartName": "后桥差动相位推杆",
-      "solidworksFile": "solidworks/后桥差动相位推杆.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P19.html",
-      "quantity": 1
-    },
-    {
-      "id": "P20",
-      "webPartName": "前桥平行四边形转向横拉杆",
-      "solidworksPartName": "前桥平行四边形转向横拉杆",
-      "solidworksFile": "solidworks/前桥平行四边形转向横拉杆.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P20.html",
-      "quantity": 1
-    },
-    {
-      "id": "P21",
-      "webPartName": "后桥平行四边形转向横拉杆",
-      "solidworksPartName": "后桥平行四边形转向横拉杆",
-      "solidworksFile": "solidworks/后桥平行四边形转向横拉杆.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P21.html",
-      "quantity": 1
-    },
-    {
-      "id": "P22",
-      "webPartName": "舵轮同步转向摇臂",
-      "solidworksPartName": "舵轮同步转向摇臂",
-      "solidworksFile": "solidworks/舵轮同步转向摇臂.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P22.html",
       "quantity": 4
     },
     {
-      "id": "P23",
-      "webPartName": "全向模式切换滑块",
-      "solidworksPartName": "全向模式切换滑块",
-      "solidworksFile": "solidworks/全向模式切换滑块.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P23.html",
+      "id": "P39",
+      "webPartName": "纵向同步转向主推杆",
+      "solidworksPartName": "纵向同步转向主推杆",
+      "solidworksFile": "solidworks/纵向同步转向主推杆.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P39.html",
       "quantity": 1
     },
     {
-      "id": "P24",
-      "webPartName": "模式切换定位销",
-      "solidworksPartName": "模式切换定位销",
-      "solidworksFile": "solidworks/模式切换定位销.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P24.html",
+      "id": "P40",
+      "webPartName": "后桥差动转向副推杆",
+      "solidworksPartName": "后桥差动转向副推杆",
+      "solidworksFile": "solidworks/后桥差动转向副推杆.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P40.html",
+      "quantity": 1
+    },
+    {
+      "id": "P41",
+      "webPartName": "转向推杆直线导轨座",
+      "solidworksPartName": "转向推杆直线导轨座",
+      "solidworksFile": "solidworks/转向推杆直线导轨座.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P41.html",
+      "quantity": 4
+    },
+    {
+      "id": "P42",
+      "webPartName": "前桥转向钟形转换摇臂",
+      "solidworksPartName": "前桥转向钟形转换摇臂",
+      "solidworksFile": "solidworks/前桥转向钟形转换摇臂.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P42.html",
+      "quantity": 1
+    },
+    {
+      "id": "P43",
+      "webPartName": "后桥转向钟形转换摇臂",
+      "solidworksPartName": "后桥转向钟形转换摇臂",
+      "solidworksFile": "solidworks/后桥转向钟形转换摇臂.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P43.html",
+      "quantity": 1
+    },
+    {
+      "id": "P44",
+      "webPartName": "前桥平行四边形转向横拉杆",
+      "solidworksPartName": "前桥平行四边形转向横拉杆",
+      "solidworksFile": "solidworks/前桥平行四边形转向横拉杆.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P44.html",
+      "quantity": 1
+    },
+    {
+      "id": "P45",
+      "webPartName": "后桥平行四边形转向横拉杆",
+      "solidworksPartName": "后桥平行四边形转向横拉杆",
+      "solidworksFile": "solidworks/后桥平行四边形转向横拉杆.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P45.html",
+      "quantity": 1
+    },
+    {
+      "id": "P46",
+      "webPartName": "舵轮同步转向扇形齿轮摇臂",
+      "solidworksPartName": "舵轮同步转向扇形齿轮摇臂",
+      "solidworksFile": "solidworks/舵轮同步转向扇形齿轮摇臂.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P46.html",
+      "quantity": 4
+    },
+    {
+      "id": "P47",
+      "webPartName": "全向运动模式三挡切换器",
+      "solidworksPartName": "全向运动模式三挡切换器",
+      "solidworksFile": "solidworks/全向运动模式三挡切换器.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P47.html",
+      "quantity": 1
+    },
+    {
+      "id": "P48",
+      "webPartName": "模式切换滚花定位插销",
+      "solidworksPartName": "模式切换滚花定位插销",
+      "solidworksFile": "solidworks/模式切换滚花定位插销.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P48.html",
       "quantity": 2
+    },
+    {
+      "id": "P49",
+      "webPartName": "连杆关节鱼眼轴承接头",
+      "solidworksPartName": "连杆关节鱼眼轴承接头",
+      "solidworksFile": "solidworks/连杆关节鱼眼轴承接头.SLDPRT",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P49.html",
+      "quantity": 8
     },
     {
       "id": "E01",
@@ -344,19 +600,19 @@
       "quantity": 1
     },
     {
-      "id": "P25",
+      "id": "P50",
       "webPartName": "太阳能板承载框",
       "solidworksPartName": "太阳能板承载框",
       "solidworksFile": "solidworks/太阳能板承载框.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P25.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P50.html",
       "quantity": 1
     },
     {
-      "id": "P26",
+      "id": "P51",
       "webPartName": "太阳能板支撑立柱",
       "solidworksPartName": "太阳能板支撑立柱",
       "solidworksFile": "solidworks/太阳能板支撑立柱.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P26.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P51.html",
       "quantity": 4
     },
     {
@@ -368,11 +624,11 @@
       "quantity": 1
     },
     {
-      "id": "P27",
+      "id": "P52",
       "webPartName": "超级电容固定座",
       "solidworksPartName": "超级电容固定座",
       "solidworksFile": "solidworks/超级电容固定座.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P27.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P52.html",
       "quantity": 1
     },
     {
@@ -392,11 +648,11 @@
       "quantity": 1
     },
     {
-      "id": "P28",
+      "id": "P53",
       "webPartName": "电能检测模块支架",
       "solidworksPartName": "电能检测模块支架",
       "solidworksFile": "solidworks/电能检测模块支架.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P28.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P53.html",
       "quantity": 1
     },
     {
@@ -416,19 +672,19 @@
       "quantity": 1
     },
     {
-      "id": "P29",
+      "id": "P54",
       "webPartName": "底部读卡器防护盒",
       "solidworksPartName": "底部读卡器防护盒",
       "solidworksFile": "solidworks/底部读卡器防护盒.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P29.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P54.html",
       "quantity": 1
     },
     {
-      "id": "P30",
+      "id": "P55",
       "webPartName": "轻量化快拆外壳",
       "solidworksPartName": "轻量化快拆外壳",
       "solidworksFile": "solidworks/轻量化快拆外壳.SLDPRT",
-      "drawingHtml": "solar-car-r5/docs/零件图册/P30.html",
+      "drawingHtml": "solar-car-r5/docs/零件图册/P55.html",
       "quantity": 1
     },
     {
@@ -437,7 +693,7 @@
       "solidworksPartName": "M3铜柱与紧固件套件",
       "solidworksFile": "solidworks/M3铜柱与紧固件套件.SLDPRT",
       "drawingHtml": "solar-car-r5/docs/零件图册/F01.html",
-      "quantity": 8
+      "quantity": 12
     }
   ]
 }

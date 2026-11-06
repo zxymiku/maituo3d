@@ -21,11 +21,11 @@
   <p><a href="index.html">← 返回零件图册总览</a> | <a href="../../index.html">返回 3D 交互工作台</a></p>
   <div class="card">
     <span class="badge">M01</span>
-    <span class="badge">02 单电机1:4主减速与四轮锥齿分动系统</span>
+    <span class="badge">02 单电机1:4主减速与过载离合中央分动箱</span>
     <span class="badge">外购标准件</span>
     <h1 style="margin:10px 0 6px 0;">N20直流减速电机</h1>
     <p style="color:#38bdf8;font-family:monospace;margin:4px 0;">对应 SolidWorks 零件文件：<code>solidworks/N20直流减速电机.SLDPRT</code>（网页零件名与 SolidWorks 零件名 1:1 严格对应）</p>
-    <p style="color:#94a3b8;">全车唯一动力源(单电机驱动)，输出轴直联18齿电机主动齿轮，驱动全车四轮分动箱与双凸轮转向时基</p>
+    <p style="color:#94a3b8;">整车唯一动力源(单电机驱动)，输出轴直联18齿电机主动齿轮，驱动四轮全向分动链与三层凸轮转向发生器</p>
     <svg viewBox="0 0 640 440" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a;border:1px solid #334155;border-radius:8px;">
   <defs>
     <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -67,14 +67,14 @@
     <h2>关键设计尺寸</h2>
     <table>
       <thead><tr><th>尺寸项目</th><th>名义值 / 公差</th><th>设计说明与装配配合</th></tr></thead>
-      <tbody><tr><td>机身尺寸</td><td><code>12.0 × 10.0 × 26.0 mm (轴长10mm)</code></td><td>输出轴径Φ3.0mm D字轴</td></tr></tbody>
+      <tbody><tr><td>机身包络</td><td><code>12.0 × 10.0 × 26.0 mm (轴长10mm)</code></td><td>额定6V高扭矩金属减速箱</td></tr></tbody>
     </table>
   </div>
   <div class="card">
     <h2>SolidWorks 自动化建模特征序列 (sw_build_all.py)</h2>
     <table>
       <thead><tr><th>特征编号</th><th>特征名称</th><th>操作类型</th><th>基准面</th><th>拉伸范围</th></tr></thead>
-      <tbody><tr><td><code>M01-F01</code></td><td>N20电机机身与减速箱</td><td>拉伸凸台</td><td>XZ</td><td><code>[-13.0, 13.0] mm</code></td></tr><tr><td><code>M01-F02</code></td><td>电机D型输出轴</td><td>拉伸凸台</td><td>XZ</td><td><code>[13.0, 23.0] mm</code></td></tr></tbody>
+      <tbody><tr><td><code>M01-F01</code></td><td>N20电机主体</td><td>拉伸凸台</td><td>XZ</td><td><code>[-13.0, 13.0] mm</code></td></tr><tr><td><code>M01-F02</code></td><td>N20输出轴</td><td>拉伸凸台</td><td>XZ</td><td><code>[13.0, 23.0] mm</code></td></tr></tbody>
     </table>
   </div>
 </div>

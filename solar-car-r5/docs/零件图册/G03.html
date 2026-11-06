@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8"/>
-<title>0.5模单头蜗杆 (0.5模单头蜗杆.SLDPRT) - 零件工程图册</title>
+<title>0.5模单头自锁蜗杆 (0.5模单头自锁蜗杆.SLDPRT) - 零件工程图册</title>
 <style>
     body { margin:0; padding:24px; background:#0b1120; color:#e2e8f0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
     .container { max-width:1100px; margin:0 auto; }
@@ -21,11 +21,11 @@
   <p><a href="index.html">← 返回零件图册总览</a> | <a href="../../index.html">返回 3D 交互工作台</a></p>
   <div class="card">
     <span class="badge">G03</span>
-    <span class="badge">04 双凸轮正交连杆与四轮同步全向转向机构</span>
+    <span class="badge">05 1:30蜗轮蜗杆与三层共轭凸轮转向发生器</span>
     <span class="badge">外购/定制传动件</span>
-    <h1 style="margin:10px 0 6px 0;">0.5模单头蜗杆</h1>
-    <p style="color:#38bdf8;font-family:monospace;margin:4px 0;">对应 SolidWorks 零件文件：<code>solidworks/0.5模单头蜗杆.SLDPRT</code>（网页零件名与 SolidWorks 零件名 1:1 严格对应）</p>
-    <p style="color:#94a3b8;">锁紧在底部横向主传动轴中段(X=-42,Y=0,Z=28mm)，驱动30齿青铜蜗轮构成1:30转向时基减速并具备反向自锁能力</p>
+    <h1 style="margin:10px 0 6px 0;">0.5模单头自锁蜗杆</h1>
+    <p style="color:#38bdf8;font-family:monospace;margin:4px 0;">对应 SolidWorks 零件文件：<code>solidworks/0.5模单头自锁蜗杆.SLDPRT</code>（网页零件名与 SolidWorks 零件名 1:1 严格对应）</p>
+    <p style="color:#94a3b8;">锁紧在底部横向主传动轴中段(X=-48, Y=0, Z=30mm)，驱动30齿青铜蜗轮实现1:30转向时基减速与反向自锁</p>
     <svg viewBox="0 0 640 440" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a;border:1px solid #334155;border-radius:8px;">
   <defs>
     <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -36,8 +36,8 @@
   <!-- Title Block -->
   <rect x="12" y="12" width="616" height="416" fill="none" stroke="#475569" stroke-width="1.5"/>
   <rect x="360" y="340" width="268" height="88" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
-  <text x="372" y="362" fill="#f8fafc" font-size="13" font-family="sans-serif" font-weight="bold">零件名称：0.5模单头蜗杆</text>
-  <text x="372" y="382" fill="#38bdf8" font-size="12" font-family="monospace">SolidWorks：0.5模单头蜗杆.SLDPRT</text>
+  <text x="372" y="362" fill="#f8fafc" font-size="13" font-family="sans-serif" font-weight="bold">零件名称：0.5模单头自锁蜗杆</text>
+  <text x="372" y="382" fill="#38bdf8" font-size="12" font-family="monospace">SolidWorks：0.5模单头自锁蜗杆.SLDPRT</text>
   <text x="372" y="400" fill="#cbd5e1" font-size="11" font-family="sans-serif">包络尺寸：11.0 × 18.0 × 11.0 mm</text>
   <text x="372" y="418" fill="#94a3b8" font-size="11" font-family="sans-serif">材料：H59黄铜 | 数量：1件</text>
 
@@ -67,14 +67,14 @@
     <h2>关键设计尺寸</h2>
     <table>
       <thead><tr><th>尺寸项目</th><th>名义值 / 公差</th><th>设计说明与装配配合</th></tr></thead>
-      <tbody><tr><td>模数 / 头数 / 分度圆</td><td><code>m = 0.5 mm, z1 = 1, d1 = 11.0 mm</code></td><td>自锁防地面冲击反驱</td></tr></tbody>
+      <tbody><tr><td>模数 / 头数 / 分度圆</td><td><code>m = 0.5 mm, z1 = 1, d1 = 11.0 mm</code></td><td>螺旋升角2.6°，具备可靠反向自锁能力</td></tr></tbody>
     </table>
   </div>
   <div class="card">
     <h2>SolidWorks 自动化建模特征序列 (sw_build_all.py)</h2>
     <table>
       <thead><tr><th>特征编号</th><th>特征名称</th><th>操作类型</th><th>基准面</th><th>拉伸范围</th></tr></thead>
-      <tbody><tr><td><code>G03-F01</code></td><td>0.5模单头蜗杆体</td><td>拉伸凸台</td><td>XZ</td><td><code>[-9.0, 9.0] mm</code></td></tr></tbody>
+      <tbody><tr><td><code>G03-F01</code></td><td>0.5模单头自锁蜗杆回转体拉伸</td><td>拉伸凸台</td><td>XZ</td><td><code>[-9.0, 9.0] mm</code></td></tr></tbody>
     </table>
   </div>
 </div>

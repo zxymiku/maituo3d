@@ -21,11 +21,11 @@
   <p><a href="index.html">← 返回零件图册总览</a> | <a href="../../index.html">返回 3D 交互工作台</a></p>
   <div class="card">
     <span class="badge">G02</span>
-    <span class="badge">02 单电机1:4主减速与四轮锥齿分动系统</span>
+    <span class="badge">02 单电机1:4主减速与过载离合中央分动箱</span>
     <span class="badge">外购/定制传动件</span>
     <h1 style="margin:10px 0 6px 0;">18齿电机主动齿轮</h1>
     <p style="color:#38bdf8;font-family:monospace;margin:4px 0;">对应 SolidWorks 零件文件：<code>solidworks/18齿电机主动齿轮.SLDPRT</code>（网页零件名与 SolidWorks 零件名 1:1 严格对应）</p>
-    <p style="color:#94a3b8;">模数m=0.5，齿数z1=18，分度圆d1=9.0mm，安装在N20电机输出轴上，与72齿主减速大齿轮构成精确1:4减速</p>
+    <p style="color:#94a3b8;">模数m=0.5，齿数z1=18，分度圆直径d1=9.0mm，直联N20电机输出轴</p>
     <svg viewBox="0 0 640 440" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a;border:1px solid #334155;border-radius:8px;">
   <defs>
     <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -67,14 +67,14 @@
     <h2>关键设计尺寸</h2>
     <table>
       <thead><tr><th>尺寸项目</th><th>名义值 / 公差</th><th>设计说明与装配配合</th></tr></thead>
-      <tbody><tr><td>模数 / 齿数</td><td><code>m = 0.5 mm, z1 = 18</code></td><td>分度圆d1=9.0mm，齿顶圆da1=10.0mm</td></tr></tbody>
+      <tbody><tr><td>齿数 / 模数</td><td><code>z1 = 18, m = 0.5 mm</code></td><td>与72齿主减速大齿轮构成精确1:4减速</td></tr></tbody>
     </table>
   </div>
   <div class="card">
     <h2>SolidWorks 自动化建模特征序列 (sw_build_all.py)</h2>
     <table>
       <thead><tr><th>特征编号</th><th>特征名称</th><th>操作类型</th><th>基准面</th><th>拉伸范围</th></tr></thead>
-      <tbody><tr><td><code>G02-F01</code></td><td>18齿渐开线直齿轮</td><td>齿轮轮廓拉伸</td><td>XZ</td><td><code>[-3.0, 3.0] mm</code></td></tr></tbody>
+      <tbody><tr><td><code>G02-F01</code></td><td>18齿电机主动齿轮渐开线齿廓拉伸</td><td>齿轮轮廓拉伸</td><td>XZ</td><td><code>[-3.0, 3.0] mm</code></td></tr></tbody>
     </table>
   </div>
 </div>
