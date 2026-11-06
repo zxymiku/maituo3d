@@ -1,1 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380"><style>text{font-family:Microsoft Yahei,sans-serif;fill:#234e45;font-size:18px}.d{stroke:#448c74;stroke-width:2;fill:none}.l{stroke:#869a91;stroke-dasharray:5 4}</style><text x="40" y="35" font-size="24">R5 侧向布局示意 / 标注单位 mm</text><rect x="55" y="285" width="850" height="15" fill="#94aaa4"/><text x="60" y="330">底板上表面 Z55</text><rect x="460" y="248" width="340" height="8" fill="#36805e"/><text x="470" y="280">主PCB顶面 Z64.6</text><rect x="420" y="135" width="405" height="112" fill="#a8c8b7" opacity=".3"/><text x="460" y="200">元件预留区至 Z91</text><rect x="382" y="100" width="470" height="16" fill="#869f99"/><rect x="392" y="85" width="450" height="12" fill="#1c4864"/><text x="435" y="70">唯一P124：113 × 66 × 2.8</text><rect x="390" y="116" width="13" height="169" fill="#d6cdb3"/><rect x="835" y="116" width="13" height="169" fill="#d6cdb3"/><rect x="96" y="111" width="260" height="174" fill="#cdb18b"/><text x="135" y="192">后部储能模组</text><text x="115" y="222">上方开放，取消旧光伏盖</text><path class="d" d="M865 116h45m-20 0v19m-25 0h45"/><text x="910" y="134">20</text><text x="865" y="169">框底Z111</text><text x="866" y="199">面板底Z116.1</text><text x="60" y="367">示意不按比例量取；承载框121×104×4，四根Φ7×56支柱固定到底板，PCB不承重。</text></svg>
+<svg viewBox="0 0 800 500" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a">
+  <rect width="800" height="500" fill="#0f172a"/>
+  <text x="400" y="36" fill="#f8fafc" font-size="18" text-anchor="middle" font-family="sans-serif" font-weight="bold">简化版太阳能小车总布置图 (210 × 152 × 104 mm)</text>
+  <!-- Chassis P01 -->
+  <rect x="210" y="120" width="380" height="260" rx="20" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+  <text x="400" y="145" fill="#94a3b8" font-size="13" text-anchor="middle">铝合金主底板 (190 × 130 × 4 mm)</text>
+  <!-- Rear Wheels W01 & W02 -->
+  <rect x="222" y="92" width="96" height="22" rx="4" fill="#334155" stroke="#f8fafc" stroke-width="1.5"/>
+  <text x="270" y="84" fill="#38bdf8" font-size="12" text-anchor="middle">后左驱动轮 (Φ48)</text>
+  <rect x="222" y="386" width="96" height="22" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="270" y="425" fill="#94a3b8" font-size="12" text-anchor="middle">轴承随动轮-后右 (Φ48)</text>
+  <!-- Front Wheel W02 -->
+  <rect x="502" y="239" width="96" height="22" rx="4" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+  <text x="550" y="230" fill="#38bdf8" font-size="12" text-anchor="middle">前轮转向叉架 + 轴承随动轮</text>
+  <!-- Rear Axle + 1:4 Gear + Worm -->
+  <line x1="270" y1="114" x2="270" y2="386" stroke="#cbd5e1" stroke-width="5"/>
+  <rect x="258" y="170" width="24" height="20" fill="#eab308"/>
+  <text x="328" y="184" fill="#eab308" font-size="12">72齿后轴从动大齿轮 : 18齿电机主动齿轮 (1:4)</text>
+  <!-- Cam C01 & Pushrod P07 -->
+  <circle cx="296" cy="250" r="34" fill="#ef4444" fill-opacity="0.35" stroke="#ef4444" stroke-width="2"/>
+  <text x="296" y="254" fill="#f8fafc" font-size="12" text-anchor="middle">盘形转向凸轮</text>
+  <rect x="330" y="244" width="210" height="12" rx="3" fill="#10b981"/>
+  <text x="435" y="238" fill="#10b981" font-size="12" text-anchor="middle">转向直线推杆 + 推杆复位圆柱弹簧</text>
+</svg>

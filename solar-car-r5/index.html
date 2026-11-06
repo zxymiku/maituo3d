@@ -1,11 +1,395 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>R5 开放车架 · 模块化机械太阳能小车 · 结构与装配工作台</title><link rel="stylesheet" href="style.css?v=r5"></head><body>
-<header><a class="brand" href="#"><span class="brand-mark">S<span>↗</span></span><div>太阳能小车<small>MECHANICAL PLATFORM / R5</small></div></a><nav><button class="nav active" data-page="viewer">三维工作台</button><button class="nav" data-page="requirements">设计依据</button><a href="docs/零件图册/index.html" target="_blank">逐件图册 ↗</a><a href="docs/可筛选尺寸表.html" target="_blank">尺寸查询 ↗</a></nav><span class="offline"><i></i> 本地离线 · mm</span></header>
-<main id="viewer" class="page active"><aside class="catalog"><div class="section-head"><div><span class="eyebrow">COMPONENTS</span><h2>零部件目录 <span id="partCount"></span></h2></div><button id="resetFilter" title="重置筛选">↺</button></div><input id="search" type="search" placeholder="搜索名称、编号或规格…" aria-label="搜索零件"><div class="filters"><button class="active" data-filter="all">全部</button><button data-filter="struct">结构件</button><button data-filter="drive">传动件</button><button data-filter="electric">电控</button><button data-filter="standard">标准件</button></div><div id="parts"></div><div class="catalog-foot">点击零件查询每一处孔槽、厚度和角度。<br>螺钉按规格分项，每个实例有独立编号。</div></aside>
-<section class="workspace"><div class="workspace-title"><div><span class="eyebrow">ONE MOTOR / MECHANICAL CAM / PTO</span><h1 id="viewTitle">单动力 · 模块化机械小车</h1><p id="viewSubtitle">单块光伏位于PCB上方 / 元件区上方留20 mm / 3 mm薄轮面</p></div><span class="version">R5 开放车架<small>2026.11</small></span></div><div class="metrics"><div><small>名义底座包络</small><strong id="metricSize">读取模型…</strong></div><div><small>行进减速</small><strong id="metricDrive">单电机 <em>1:4</em></strong></div><div><small>机械接口</small><strong>开放导轨 <em>侧锁钉 / PTO</em></strong></div></div>
-<div class="module-strip"><span>前置模块</span><div><button data-module="base" class="active">通用底座</button><button data-module="brush">旋转刷模块</button><button data-module="pusher">往复推送平台</button></div><div class="cam-choices"><button data-cam="sine" class="active">示教 S 线凸轮</button><button data-cam="straight">直行圆盘</button></div><small id="moduleStatus">U形开放导轨 · 侧向锁钉 · 独立联轴套</small></div><div id="viewport"><canvas id="scene" aria-label="模块化机械太阳能小车可旋转三维模型"></canvas><div id="labels"></div><div class="view-tools"><button data-view="iso" class="active">等轴</button><button data-view="top">俯视</button><button data-view="front">正视</button><button data-view="side">侧视</button><button id="fit">适应</button><button id="shot">图片 ↗</button></div><div class="axis-note">X 车头 →　Y 车左　Z 向上</div><div id="toast" role="status"></div><div class="viewport-help">左键旋转 · 滚轮缩放 · 右键平移 · 点击选件</div><div class="view-mode"><button id="assemblyBtn" class="active">整车</button><button id="isolateBtn">单件</button></div><div id="buildBadge" hidden></div><div id="fallback" hidden>当前浏览器无法启用三维显示。请用支持 WebGL 的 Edge / Chrome 打开。尺寸图册、完整文档仍可离线使用。</div></div>
-<div class="assembly-control"><div><span class="eyebrow">BUILD ONE PART AT A TIME</span><h3>逐件装配教程</h3></div><button id="startAssembly" class="primary">开始装配 →</button><div id="stepControls" hidden><div class="step-nav"><button id="stepZero">归零</button><button id="stepPrev">← 上一步</button><button id="stepNext" class="primary">下一步 →</button><button id="stepFinish">完成</button><button id="exitAssembly">退出教程</button></div><div class="step-position"><output id="stepCount">0 / 0</output><input type="range" id="stepRange" min="0" max="0" value="0" aria-label="装配进度"><select id="stepJump" aria-label="跳转到装配步骤"></select></div></div></div>
-<div class="controls"><div class="control-top"><button id="play" class="primary">▶ 运动演示</button><button id="home">恢复总装</button><label class="check"><input type="checkbox" id="shell" checked> 光伏支架</label><label class="check"><input type="checkbox" id="solar" checked> 太阳能板</label><label class="check"><input type="checkbox" id="cutaway"> 底板透视</label><label class="check"><input type="checkbox" id="labelToggle" checked> 标注</label></div><div class="gear-row"><span>机械换挡 <small>演示会先停机</small></span><div><button data-mode="drive" class="active">行进 / 凸轮转向</button><button data-mode="neutral">空挡 N</button><button data-mode="pto">PTO 工作</button></div><output id="modeStatus">行进挡</output></div><div class="sliders"><label><span>单电机转速 <output id="speedValue">120 rpm</output></span><input type="range" id="speed" min="0" max="240" step="10" value="120"></label><label><span>凸轮相位 <output id="phaseValue">0°</output></span><input type="range" id="phase" min="0" max="360" value="0"></label><label><span>爆炸分解 <output id="explodeValue">0%</output></span><input type="range" id="explode" min="0" max="100" value="0"></label><label><span>后抽储能舱 <output id="drawerValue">0%</output></span><input type="range" id="drawer" min="0" max="100" value="0"></label><label><span>前抽控制舱 <output id="controlValue">0%</output></span><input type="range" id="control" min="0" max="100" value="0"></label></div><p class="motion-note" id="motionNote">一台电机通过机械滑台切换行进、空挡与 PTO；换挡必须停机。行进时凸轮按车轮行程驱动转向，工作挡驱动已安装模块。演示表达机械关系，实际装拆须断电。</p></div></section>
-<aside class="inspector"><div class="section-head"><div><span class="eyebrow" id="inspectorEyebrow">PARTS / DIMENSIONS</span><h2 id="inspectorTitle">结构与建模</h2></div><span id="partTag" class="tag">R4</span></div><div id="stepDetail" hidden></div><div id="detail"></div></aside></main>
-<main id="requirements" class="page"><div class="requirement-wrap"><span class="eyebrow">DESIGN BASIS / REFERENCES</span><h1>以考核题二为准</h1><p class="lead">一个动力电机，驱动车轮、机械凸轮转向与可切换工作模块。控制舱与储能舱独立抽取。</p><div id="requirementsContent"></div></div></main>
-<footer><span>R5 / 单电机机械转向与可拼装功能模块</span><a href="docs/建模技术文档.html" target="_blank">完整技术文档 ↗</a><a href="docs/R5零件表.csv" download>下载R5零件表 CSV ↓</a><a href="docs/R5特征表.csv" download>R5完整特征 CSV ↓</a></footer>
-<script src="vendor/three.min.js"></script><script src="model-data.js?v=r5"></script><script src="model-meshes.js?v=r5"></script><script src="viewer-r4.js?v=r5"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>工创赛太阳能小车 — 极简机械设计 3D 工作台 (1:1 SolidWorks 零件对应)</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111827;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #10b981;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    header {
+      height: 58px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      flex-shrink: 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand h1 {
+      font-size: 17px;
+      margin: 0;
+      font-weight: 700;
+    }
+    .tag {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .nav-links a {
+      color: var(--text);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .nav-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .main-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr 410px;
+      flex: 1;
+      min-height: 0;
+    }
+    .sidebar-left, .sidebar-right {
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 14px;
+      gap: 14px;
+    }
+    .sidebar-right {
+      border-right: none;
+      border-left: 1px solid var(--border);
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .card h2 {
+      font-size: 14px;
+      margin: 0 0 10px 0;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .kpi {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .kpi .label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .kpi .val {
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 2px;
+      color: var(--text);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    button {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    button:hover, button.active {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .slider-row {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .slider-row label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .viewport-wrap {
+      position: relative;
+      background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #canvas-container {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .hud-overlay {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      pointer-events: none;
+      max-width: 440px;
+      backdrop-filter: blur(6px);
+    }
+    .hud-overlay .title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .kinematics-bar {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-family: monospace;
+    }
+    .search-box {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: var(--text);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .part-table-wrap {
+      max-height: 320px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    table.part-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    table.part-table th, table.part-table td {
+      padding: 7px 8px;
+      border-bottom: 1px solid #1e293b;
+      text-align: left;
+    }
+    table.part-table th {
+      background: #0f172a;
+      color: var(--muted);
+      position: sticky;
+      top: 0;
+    }
+    table.part-table tr {
+      cursor: pointer;
+    }
+    table.part-table tr:hover, table.part-table tr.selected {
+      background: rgba(56, 189, 248, 0.18);
+    }
+    .sw-code {
+      font-family: monospace;
+      color: var(--accent);
+      font-size: 11px;
+    }
+    .step-item {
+      border: 1px solid var(--border);
+      background: #0f172a;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .step-item.active {
+      border-color: var(--green);
+      background: rgba(16, 185, 129, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>工创赛太阳能小车 — 极简机械设计 3D 工作台</h1>
+      <span class="tag">38种零件 · 1:1 SolidWorks零件名对应</span>
+      <span class="tag" style="color:#10b981;border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.12);">单电机 1:4 齿轮 + 1:30 蜗轮凸轮转向</span>
+    </div>
+    <div class="nav-links">
+      <a href="docs/零件图册/index.html" target="_blank">📐 零件工程图册 (38件)</a>
+      <a href="docs/可筛选尺寸表.html" target="_blank">📏 可筛选尺寸与SW对照表</a>
+      <a href="docs/建模技术文档.html" target="_blank">🧮 凸轮公式与建模文档</a>
+      <a href="docs/装配步骤.html" target="_blank">🔧 6步标准装配规程</a>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <!-- Left Sidebar: Overview, Controls, Assembly Steps -->
+    <div class="sidebar-left">
+      <div class="card">
+        <h2>整车核心技术指标 <span>✅ 全部合规</span></h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="label">整车尺寸 (要求≤250×200)</div>
+            <div class="val">210 × 152 × 104 mm</div>
+          </div>
+          <div class="kpi">
+            <div class="label">零件种类 / 装配总数</div>
+            <div class="val" id="kpi-part-count">38 种 / 47 件</div>
+          </div>
+          <div class="kpi">
+            <div class="label">单电机主减速比</div>
+            <div class="val">1 : 4 (18齿:72齿)</div>
+          </div>
+          <div class="kpi">
+            <div class="label">凸轮转向时基减速比</div>
+            <div class="val">1 : 30 (单头蜗杆:30齿)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3D 视图与机构运动控制</h2>
+        <div class="btn-row">
+          <button id="btn-play" class="active" onclick="window.toggleAnimation()">⏸ 暂停机构运动</button>
+          <button onclick="window.setCameraPreset('iso')">等轴测</button>
+          <button onclick="window.setCameraPreset('top')">俯视图</button>
+          <button onclick="window.setCameraPreset('side')">侧视图</button>
+          <button onclick="window.setCameraPreset('front')">前视图</button>
+          <button onclick="window.setCameraPreset('bottom')">仰视底盘(读卡器/电机座)</button>
+        </div>
+        <div class="btn-row">
+          <button id="btn-shell" onclick="window.toggleShell()">隐藏/显示快拆外壳</button>
+          <button id="btn-solar" onclick="window.toggleSolar()">透视顶部太阳能板</button>
+          <button onclick="window.resetSelection()">显示全部零件</button>
+        </div>
+        <div class="slider-row">
+          <label><span>爆炸拆解视图 (Explode)</span><span id="explode-val">0%</span></label>
+          <input id="explode-slider" type="range" min="0" max="100" value="0" oninput="window.setExplode(this.value)" />
+        </div>
+        <div class="slider-row">
+          <label><span>凸轮相位角 θ (手动观察推杆与前叉转角)</span><span id="cam-angle-val">0°</span></label>
+          <input id="cam-slider" type="range" min="0" max="360" value="0" oninput="window.setManualCamAngle(this.value)" />
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>6 步渐进式装配教学 <span style="font-size:11px;color:var(--muted);">点击切换步骤</span></h2>
+        <div class="btn-row" style="margin-bottom:8px;">
+          <button class="active" id="step-btn-all" onclick="window.setAssemblyStep(0)">展示整车 (全6步)</button>
+        </div>
+        <div id="steps-container"></div>
+      </div>
+    </div>
+
+    <!-- Center 3D Viewport -->
+    <div class="viewport-wrap">
+      <div id="canvas-container"></div>
+      <div class="hud-overlay">
+        <div class="title">纯机械凸轮转向与 1:4 齿轮传动实时仿真</div>
+        <div>• <strong>后桥驱动</strong>：<code>N20直流减速电机</code> → <code>18齿电机主动齿轮</code> : <code>72齿后轴从动大齿轮</code> (i=1:4) → <code>后左驱动轮</code></div>
+        <div>• <strong>凸轮转向</strong>：<code>0.5模单头蜗杆</code> : <code>30齿青铜蜗轮</code> (i=1:30) → <code>盘形转向凸轮</code> → <code>转向直线推杆</code> → <code>前轮转向叉架</code></div>
+        <div style="margin-top:4px;color:#38bdf8;">💡 鼠标左键旋转 · 右键平移 · 滚轮缩放 · 点击任意零件高亮查看其 1:1 SolidWorks 文件名</div>
+      </div>
+      <div class="kinematics-bar">
+        <span id="kin-motor">电机转速: 120 rpm | 后轴: 30 rpm (1:4)</span>
+        <span id="kin-cam">凸轮相位 θ = 0.0° | 推杆位移 s = +0.00 mm</span>
+        <span id="kin-steer">前叉转向角 δ = +0.0°</span>
+      </div>
+    </div>
+
+    <!-- Right Sidebar:Selected Part Detail + 1:1 Part Table -->
+    <div class="sidebar-right">
+      <div class="card" id="part-detail-card">
+        <h2>选中零件详情 (网页名 1:1 对应 SolidWorks)</h2>
+        <div id="part-detail-body" style="font-size:12.5px;line-height:1.55;">
+          点击 3D 模型或下方零件表中的任意零件，即可查看其精确三维尺寸、建模特征以及一一对应的 SolidWorks 零件文件名 (<code>.SLDPRT</code>)。
+        </div>
+      </div>
+
+      <div class="card" style="flex:1;display:flex;flex-direction:column;min-height:0;">
+        <h2>全车零件清单 (1:1 对应 SolidWorks 零件名)</h2>
+        <input id="part-search" class="search-box" type="text" placeholder="过滤零件名、SolidWorks文件名或子系统..." oninput="window.filterPartTable()" />
+        <div class="part-table-wrap" style="flex:1;">
+          <table class="part-table">
+            <thead>
+              <tr>
+                <th>代号</th>
+                <th>网页零件名 (点击定位)</th>
+                <th>SolidWorks 零件文件名</th>
+                <th>数量</th>
+              </tr>
+            </thead>
+            <tbody id="part-table-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/three.min.js"></script>
+  <script src="model-data.js"></script>
+  <script src="model-meshes.js"></script>
+  <script src="viewer-r4.js"></script>
+</body>
+</html>

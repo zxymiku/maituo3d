@@ -1,1 +1,82 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>E05</title><style>body{font:16px/1.7 "Microsoft Yahei",sans-serif;background:#f2f5f4;color:#213c38;margin:30px auto;max-width:1180px;padding:20px}a{color:#176657}table{border-collapse:collapse;width:100%;background:white;font-size:14px}th,td{border:1px solid #cbd8d4;padding:8px;text-align:left;vertical-align:top}th{background:#e0eae6}h1{font-size:30px}h2{margin-top:36px}input{padding:12px;width:90%;margin:20px 0}svg{max-width:100%;background:white} .tag{padding:10px 18px;background:#dcebe3} .views{display:flex;gap:10px}.views svg{width:32%;height:240px} .muted{color:#60756d}</style><body><a href="index.html">← 零件目录</a><h1>E05 综合电源控制PCB（充电/稳压/驱动/语音接口占位）</h1><p>50 × 1.6 × 30 mm / FR4设计基板</p><div class="views"><svg viewBox="-32.0 -7.8 64.0 15.6"><path d="M25.00000,-0.80000 L-25.00000,-0.80000 L-25.00000,0.80000 L25.00000,0.80000Z" fill="#dae7e0" fill-rule="evenodd" stroke="#396859" stroke-width=".25"/><text x="-25.0" y="-3.25" font-size="4.2">XY</text></svg><svg viewBox="-32.0 -22.0 64.0 44.0"><path d="M25.00000,-15.00000 L-25.00000,-15.00000 L-25.00000,15.00000 L25.00000,15.00000Z" fill="#dae7e0" fill-rule="evenodd" stroke="#396859" stroke-width=".25"/><text x="-25.0" y="-17.45" font-size="4.2">XZ</text></svg><svg viewBox="-5.3999999999999995 -19.6 10.799999999999999 39.2"><path d="M0.80000,-15.00000 L-0.80000,-15.00000 L-0.80000,15.00000 L0.80000,15.00000Z" fill="#dae7e0" fill-rule="evenodd" stroke="#396859" stroke-width=".25"/><text x="-0.8" y="-16.61" font-size="2.76">YZ</text></svg></div><p class="muted">三向投影来自R5实体，形状可参考；不得按浏览器比例量取尺寸。尺寸以逐特征表为准。</p><p>由E05与E07功能合并为一块50×30×1.6机械占位板；不是已完成布线的电路板。</p><p>储能充电保护、主控稳压和电机驱动需保留电气功能；合板不等于删去其中一项。</p><table><tr><th>特征号</th><th>操作/形状</th><th>位置</th><th>厚度/深度</th><th>补充</th></tr><tr><td>E05-F01</td><td>拉伸凸台 / 中心矩形50×30；四角90°</td><td>本件局部中面中心(0,0,0)；轴Y；u/v=X/Z</td><td>中面两侧各0.8，总厚/切深1.6；轴向端-0.8～0.8</td><td></td></tr><tr><td>E05-F02</td><td>控制组接口 / 50×30×1.6立板，不要求未知PCB孔</td><td>按J槽和上压条支承；元件方向见本件预留数据</td><td>板厚1.6</td><td>实际电路尚由电控组设计；外形及夹持边为提供给电控组的机械边界。</td></tr></table></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<title>顶部红色LED指示灯 (顶部红色LED指示灯.SLDPRT) - 零件工程图册</title>
+<style>
+    body { margin:0; padding:24px; background:#0b1120; color:#e2e8f0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+    .container { max-width:1100px; margin:0 auto; }
+    a { color:#38bdf8; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .card { background:#111827; border:1px solid #1e293b; border-radius:10px; padding:20px; margin-bottom:20px; }
+    .badge { display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; background:#1e293b; color:#38bdf8; margin-right:8px; }
+    table { width:100%; border-collapse:collapse; margin-top:12px; font-size:14px; }
+    th, td { border:1px solid #1e293b; padding:10px 12px; text-align:left; }
+    th { background:#1e293b; color:#f8fafc; }
+    code { background:#1e293b; padding:2px 6px; border-radius:4px; color:#38bdf8; }
+    </style>
+</head>
+<body>
+<div class="container">
+  <p><a href="index.html">← 返回零件图册总览</a> | <a href="../../index.html">返回 3D 交互工作台</a></p>
+  <div class="card">
+    <span class="badge">E05</span>
+    <span class="badge">04 太阳能供电与电控检测系统</span>
+    <span class="badge">赛会指定电子件</span>
+    <h1 style="margin:10px 0 6px 0;">顶部红色LED指示灯</h1>
+    <p style="color:#38bdf8;font-family:monospace;margin:4px 0;">对应 SolidWorks 零件文件：<code>solidworks/顶部红色LED指示灯.SLDPRT</code>（网页零件名与 SolidWorks 零件名 1:1 严格对应）</p>
+    <p style="color:#94a3b8;">满足开会记录与三期考核『车顶部放置一个不小于8mm的红色LED指示灯』要求，采用Φ10mm高亮红光LED置于车头顶部右侧(Z=84mm)</p>
+    <svg viewBox="0 0 640 440" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a;border:1px solid #334155;border-radius:8px;">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="440" fill="url(#grid)"/>
+  <!-- Title Block -->
+  <rect x="12" y="12" width="616" height="416" fill="none" stroke="#475569" stroke-width="1.5"/>
+  <rect x="360" y="340" width="268" height="88" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
+  <text x="372" y="362" fill="#f8fafc" font-size="13" font-family="sans-serif" font-weight="bold">零件名称：顶部红色LED指示灯</text>
+  <text x="372" y="382" fill="#38bdf8" font-size="12" font-family="monospace">SolidWorks：顶部红色LED指示灯.SLDPRT</text>
+  <text x="372" y="400" fill="#cbd5e1" font-size="11" font-family="sans-serif">包络尺寸：12.0 × 12.0 × 14.0 mm</text>
+  <text x="372" y="418" fill="#94a3b8" font-size="11" font-family="sans-serif">材料：高透红光环氧透镜+金属座 | 数量：1件</text>
+
+  <!-- Front View (X-Z) -->
+  <text x="150" y="38" fill="#94a3b8" font-size="12" text-anchor="middle" font-family="sans-serif">主视图 (X-Z) — 宽 12.0 × 高 14.0 mm</text>
+  <rect x="130.8" y="97.6" width="38.4" height="44.8" fill="#dc2626" fill-opacity="0.28" stroke="#38bdf8" stroke-width="2"/>
+  <line x1="118.8" y1="120" x2="181.2" y2="120" stroke="#64748b" stroke-dasharray="6,3"/>
+  <line x1="150" y1="85.6" x2="150" y2="154.4" stroke="#64748b" stroke-dasharray="6,3"/>
+  <text x="150" y="166.4" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="monospace">L = 12.0 mm</text>
+
+  <!-- Top View (X-Y) -->
+  <text x="150" y="226" fill="#94a3b8" font-size="12" text-anchor="middle" font-family="sans-serif">俯视图 (X-Y) — 宽 12.0 × 深 12.0 mm</text>
+  <rect x="130.8" y="290.8" width="38.4" height="38.4" fill="#dc2626" fill-opacity="0.28" stroke="#10b981" stroke-width="2"/>
+  <line x1="118.8" y1="310" x2="181.2" y2="310" stroke="#64748b" stroke-dasharray="6,3"/>
+  <line x1="150" y1="278.8" x2="150" y2="341.2" stroke="#64748b" stroke-dasharray="6,3"/>
+  <text x="150" y="351.2" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="monospace">W = 12.0 mm</text>
+
+  <!-- Left View (Y-Z) -->
+  <text x="430" y="38" fill="#94a3b8" font-size="12" text-anchor="middle" font-family="sans-serif">左视图 (Y-Z) — 深 12.0 × 高 14.0 mm</text>
+  <rect x="410.8" y="97.6" width="38.4" height="44.8" fill="#dc2626" fill-opacity="0.28" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="398.8" y1="120" x2="461.2" y2="120" stroke="#64748b" stroke-dasharray="6,3"/>
+  <line x1="430" y1="85.6" x2="430" y2="154.4" stroke="#64748b" stroke-dasharray="6,3"/>
+  <text x="430" y="166.4" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="monospace">H = 14.0 mm</text>
+</svg>
+  </div>
+  <div class="card">
+    <h2>关键设计尺寸</h2>
+    <table>
+      <thead><tr><th>尺寸项目</th><th>名义值 / 公差</th><th>设计说明与装配配合</th></tr></thead>
+      <tbody><tr><td>发光灯头直径</td><td><code>Φ10.0 mm (≥ Φ8.0 mm要求)</code></td><td>底座法兰Φ12.0mm，顶部无遮挡</td></tr></tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>SolidWorks 自动化建模特征序列 (sw_build_all.py)</h2>
+    <table>
+      <thead><tr><th>特征编号</th><th>特征名称</th><th>操作类型</th><th>基准面</th><th>拉伸范围</th></tr></thead>
+      <tbody><tr><td><code>E05-F01</code></td><td>Φ10mm红色LED灯体</td><td>拉伸凸台</td><td>XY</td><td><code>[-7.0, 7.0] mm</code></td></tr></tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

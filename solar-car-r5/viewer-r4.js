@@ -1,120 +1,418 @@
-/* R4 modular mechanical workbench. Units mm; +X forward, +Y left, +Z up. */
-(()=>{'use strict';
-const spec=window.CAR_SPEC,$=id=>document.getElementById(id),parts=spec.parts,byId=Object.fromEntries(parts.map(p=>[p.id,p])),allSteps=spec.assemblySteps||[],insById=Object.fromEntries(spec.instances.map(i=>[i.iid,i]));
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const state={selected:null,selectedInstance:null,filter:'all',query:'',isolated:false,explode:0,drawer:0,control:0,playing:false,speed:120,phase:0,mode:'drive',module:'base',camVariant:'sine',cutaway:false,shell:true,solar:true,labels:true,innovation:null,feature:null,assembly:false,step:0,toolService:0,clearance:false};
-let steps=allSteps.filter(s=>(insById[s.primary]?.module||'base')==='base'&&insById[s.primary]?.id!=='C02');
-const shellAttached=new Set(allSteps.filter(s=>insById[s.primary]?.shell).flatMap(s=>s.hardware));
-const moduleNames={base:'通用底座',brush:'旋转刷模块',pusher:'往复推送平台'};
-const fmt=n=>Number.isFinite(Number(n))?Number(Number(n).toFixed(3)).toString():'—';
-function sizeText(){const p=spec.parameters||{},a=spec.spaceMetrics?.bboxSize||[];return[p.length??p.baseLength??a[0],p.width??p.baseWidth??a[1],p.height??p.baseHeight??a[2]].map(fmt).join(' × ');}
-function moduleAllowed(i){const mod=!i.module||i.module==='base'||i.module===state.module;const variant=i.variant||(i.id==='C01'?'sineCam':i.id==='C02'?'straightCam':null);return mod&&(!variant||variant===(state.camVariant==='straight'?'straightCam':'sineCam'));}
-function refreshSteps(){steps=allSteps.filter(s=>moduleAllowed(insById[s.primary]||{}));$('stepRange').max=steps.length;$('stepJump').innerHTML='<option value="0">0 · 从零开始</option>'+steps.map((s,n)=>`<option value="${n+1}">${n+1} · ${esc(s.title)}</option>`).join('');$('stepCount').textContent=`${state.step} / ${steps.length}`;}
-const icons={struct:'▱',drive:'◎',electric:'▣',standard:'◉'};let currentSet=new Set(),assembled=new Set();
-function list(){$('partCount').textContent=parts.length;$('parts').innerHTML=parts.filter(p=>(state.filter==='all'||state.filter===p.cat)&&`${p.id} ${p.name} ${p.dims}`.toLowerCase().includes(state.query)).map(p=>`<div role="button" tabindex="0" class="part-row ${p.id===state.selected?'selected':''}" data-id="${p.id}"><span class="part-icon ${p.cat}">${icons[p.cat]}</span><div class="part-name">${esc(p.name)}<small>${p.id} · ${esc(p.dims)}</small></div><span class="qty">×${p.qty}</span></div>`).join('')||'<p class="detail-text">没有匹配的零件</p>';}
-function detail(){const p=byId[state.selected];$('partTag').textContent=p?p.id:'R5';
- if(!p){$('detail').innerHTML=`<div class="detail-hero"><small>ONE INPUT / THREE MECHANICAL PATHS</small><h3>单板光伏<br>开放车架。</h3><strong>${sizeText()}</strong><p>mm · 名义底座包络，以模型参数为准</p></div><div class="selected-module">当前：${moduleNames[state.module]} / ${state.mode==='drive'?'行进挡':state.mode==='neutral'?'空挡':'PTO 工作挡'}</div><h4>模块化结构</h4>${(spec.innovation||[]).map(i=>`<button class="innovation-card" data-idea="${i.id}"><i>${i.id.slice(1)}</i><span>${esc(i.name)}<small>${esc(i.text)}</small></span></button>`).join('')}<h4>动力如何分配</h4><p class="module-note">行进挡：电机经 1:4 齿轮驱动后轮，车轮经蜗杆减速带动凸轮，拉杆机构控制前轮转向。</p><p class="module-note">PTO 挡：停车后切换机械滑台，同一电机通过前置动力接口驱动旋转刷或往复推送平台。模块靠导轨、硬止挡与两颗侧向定位锁销固定；模块输入轴承座另有两颗M3固定钉。</p><h4>控制与维护</h4><p class="detail-text">树莓派 / PCB 控制舱从前方抽出，储能舱从后方抽出。控制舱只管理供电与电控接口，机械转向由凸轮完成。</p><a class="doc-button" href="docs/建模技术文档.html" target="_blank">R5设计与验证 ↗</a><a class="doc-button" href="docs/可筛选尺寸表.html" target="_blank">筛选全部孔槽尺寸 ↗</a><p class="micro">${parts.length} 类零件 · ${spec.instances.length} 个实例<br>${parts.reduce((a,p)=>a+p.features.length,0)} 条尺寸特征 · 当前配置 ${steps.length} 步装配</p>`;return;}
- const options=spec.instances.filter(i=>i.id===p.id);if(!options.some(i=>i.iid===state.selectedInstance))state.selectedInstance=options[0]?.iid;
- $('detail').innerHTML=`<div class="detail-hero"><small>${p.kind==='envelope'?'MODULE ENVELOPE':p.kind==='purchased'?'PURCHASED COMPONENT':'PARAMETRIC COMPONENT'}</small><h3>${esc(p.name)}</h3><strong>${esc(p.dims)}</strong><p>局部 XYZ 名义包络 · 数量 ${p.qty}</p></div><div class="detail-buttons"><button id="inspectOne">单件查看</button><a href="docs/零件图册/${p.id}.html" target="_blank">完整尺寸图 ↗</a></div><select class="instance-select" id="instanceSelect" aria-label="选择装配实例">${options.map(i=>`<option value="${i.iid}" ${i.iid===state.selectedInstance?'selected':''}>${i.iid} · 总装原点 (${i.pos.map(v=>Number(v.toFixed(3))).join(', ')})</option>`).join('')}</select><div class="kv"><span>材料</span><div>${esc(p.material)}</div><span>加工</span><div>${esc(p.process)}</div><span>基准</span><div>${esc(p.datum)}</div></div>${p.notes.length?`<div class="note-box">${p.notes.map(esc).join('<br>')}</div>`:''}<h4>逐特征尺寸 <small>${p.features.length} 项 / mm</small></h4><p class="micro">展开条目高亮对应实体或孔槽。尺寸表包含位置、切深、厚度和角度；微倒角与螺纹牙按表补全。</p>${p.features.map(f=>`<details class="feature-item" data-fid="${f.fid}"><summary><b>${f.fid}</b> ${esc(f.op)}</summary><p><strong>草图：</strong>${esc(f.plane)} / ${esc(f.profile)}</p><p><strong>位置：</strong>${esc(f.loc)}</p><p><strong>厚度/深度：</strong>${esc(f.depth)}</p><p><strong>角度：</strong>${esc(f.angle)}</p>${f.extra?`<p>${esc(f.extra)}</p>`:''}</details>`).join('')}`;
- $('inspectOne').onclick=()=>isolate(true);$('instanceSelect').onchange=e=>{state.selectedInstance=e.target.value;state.feature=null;clearFeature();if(state.isolated)isolate(true);else updateVisibility();};
- document.querySelectorAll('.feature-item').forEach(e=>e.ontoggle=()=>{if(e.open){state.feature=e.dataset.fid;showFeature();}});
-}
-function requirements(){const holds=spec.interfaceHolds||[];$('requirementsContent').innerHTML=`<div class="req-grid"><div class="req-card"><h3>一个动力电机</h3><p>按本次选定方案保留一个行进动力电机，行进齿轮传动比 1:4。转向由车轮取力、蜗杆减速、凸轮、从动件与连杆组成，未使用转向舵机。</p><p>行进与 PTO 采用机械滑台选择，空挡分离两条负载路线；换挡与更换模块均应先停机、断电。各挡位位置由尺寸数据定义。</p></div><div class="req-card"><h3>可拼装的功能模块</h3><p>通用底座以开放导轨定位，两颗侧向锁钉进入闭孔固定，再由独立滑套接通机械动力。旋转刷与往复推送平台选择其一接入，同一动力源分别实现行进和工作。</p><p>推送平台为曲柄连杆驱动的水平往复机构，网页展示行程和传动关系，不将其称为独立升降机构。</p></div></div><table class="req-table"><tr><th>考核项</th><th>要求</th><th>方案落实</th></tr>${(spec.requirements||[]).map(r=>`<tr>${r.map(x=>`<td>${esc(x)}</td>`).join('')}</tr>`).join('')}</table><h2>模块与空间布置</h2><img class="layout-diagram" src="docs/R5布局.svg" alt="R5单板光伏与PCB间隙"><table class="req-table"><tr><th>项目</th><th>模型参数</th></tr><tr><td>底座名义包络 / mm</td><td>${sizeText()}</td></tr><tr><td>行进动力</td><td>单电机，1:4 齿轮减速</td></tr><tr><td>储能</td><td>70×70×60 电容模组，后抽维护</td></tr><tr><td>控制舱</td><td>树莓派 / PCB 安装区，前抽维护</td></tr><tr><td>前置模块</td><td>通用底座 / 旋转刷 / 往复推送平台</td></tr></table><div class="req-grid">${(spec.innovation||[]).map(i=>`<div class="req-card"><h3>${esc(i.name)}</h3><p>${esc(i.text)}</p></div>`).join('')}</div><h2>运动与装配边界</h2><div class="req-card"><p>网页为几何与运动学展示。凸轮相位滑块用于检查机构位置；实际凸轮随车轮行程旋转。两前轮的转向角从同一组机构数据插值得到，没有独立角度电机。</p><p>逐件装配会依据当前所选模块筛选步骤。每步新增一个主体，紧固与辅助件可随同装入；新件金色高亮，已装件半透明，便于观察配合。画面显示各件配合终位，不模拟插入路径。轴、隔套与内侧紧固件先在台面预组，再安装子总成；实物顺序见技术文档。</p></div><h2>外购接口确认</h2><table class="req-table hold-list"><tr><th>接口</th><th>已选规格与边界</th><th>处理方式</th></tr>${holds.map(r=>`<tr>${r.map(x=>`<td>${esc(x)}</td>`).join('')}</tr>`).join('')}</table><h2>参考机构与来源</h2>${(spec.sources||[]).map(s=>`<p class="source"><a href="${esc(s.url)}" target="_blank" rel="noreferrer">${esc(s.title)} ↗</a><small>${esc(s.use)}</small></p>`).join('')}<div class="note-box">尺寸图、可筛选表与三维模型来自统一数据。网页动画不替代实际凸轮接触、载荷、线束、联轴与安全停机试验。</div>`;}
-
-const scene=new THREE.Scene();scene.background=new THREE.Color(0xedf1f2);const camera=new THREE.PerspectiveCamera(36,1,.1,5000);camera.up.set(0,0,1);let renderer;
-try{renderer=new THREE.WebGLRenderer({canvas:$('scene'),antialias:true,preserveDrawingBuffer:true});}catch(e){$('fallback').hidden=false;list();detail();requirements();return;}
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-scene.add(new THREE.HemisphereLight(0xffffff,0x728a86,2.5));const sun=new THREE.DirectionalLight(0xfffbef,3);sun.position.set(-120,-250,480);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-300,right:300,top:300,bottom:-300,near:1,far:1100});sun.shadow.normalBias=.15;scene.add(sun);const fill=new THREE.DirectionalLight(0xe2f1fa,1.4);fill.position.set(250,300,200);scene.add(fill);
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(2000,2000),new THREE.ShadowMaterial({opacity:.13}));floor.position.z=-.15;floor.receiveShadow=true;scene.add(floor);const grid=new THREE.GridHelper(650,26,0xcddbd4,0xe0e8e3);grid.rotation.x=Math.PI/2;grid.position.z=-.2;scene.add(grid);
-const root=new THREE.Group(),featureGroup=new THREE.Group(),dimGroup=new THREE.Group(),groups={};
-for(const name of['fixed','drawer','control','selector','steerL','steerR','camFollower','pusherSlider','brake']){groups[name]=new THREE.Group();root.add(groups[name]);}
-const pivots={steerL:spec.kinematics?.leftKingpin||[75,58,0],steerR:spec.kinematics?.rightKingpin||[75,-58,0]};groups.steerL.position.set(...pivots.steerL);groups.steerR.position.set(...pivots.steerR);
-const drawer=groups.drawer,control=groups.control;scene.add(root,featureGroup,dimGroup);const instances=[],labelNodes=[],dimLabels=[],clearanceNodes=[],geoCache={},accentCache={};
-function buffer(d){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(d.position,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(d.normal,3));g.setIndex(d.index);g.computeBoundingBox();g.computeBoundingSphere();return g;}
-for(const p of parts){geoCache[p.id]=buffer(window.CAR_MESHES[p.id]);accentCache[p.id]=(window.CAR_MESHES[p.id].accents||[]).map(buffer);}
-const palette={struct:0x7b9699,drive:0xa5afb0,electric:0xcaa46d,standard:0xaab6b8};
-for(const ins of spec.instances){const p=byId[ins.id],g=new THREE.Group(),r=new THREE.Group();let color=palette[p.cat];if(p.id.startsWith('W')||/轮胎|橡胶轮|普通轮/.test(p.name))color=0x263c38;if(/凸轮/.test(p.name))color=0xba9b62;if(['E01','E02'].includes(ins.id))color=0x163b56;if(ins.shell)color=0x95a9a6;if(Number.isFinite(p.visualColor))color=p.visualColor;
- const mesh=new THREE.Mesh(geoCache[p.id],new THREE.MeshStandardMaterial({color,metalness:ins.id.startsWith('W')?.05:p.cat==='standard'?.66:.25,roughness:ins.id.startsWith('W')?.76:.46}));mesh.castShadow=mesh.receiveShadow=true;mesh.userData={partId:p.id,iid:ins.iid};r.add(mesh);
- for(const geom of accentCache[p.id]){const a=new THREE.Mesh(geom,new THREE.MeshStandardMaterial({color:0x233b39,metalness:.05,roughness:.8,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));a.castShadow=a.receiveShadow=true;a.userData={partId:p.id,iid:ins.iid};r.add(a);}
- r.rotation.set(...ins.rotate);r.scale.set(...(ins.mirror||[1,1,1]));g.add(r);const pos=new THREE.Vector3(...ins.pos);if(pivots[ins.group])pos.sub(new THREE.Vector3(...pivots[ins.group]));g.position.copy(pos);g.userData={...ins,base:pos.clone(),explode:new THREE.Vector3(...ins.explode),rotor:r,baseQuaternion:r.quaternion.clone(),mesh};(groups[ins.group]||root).add(g);instances.push(g);
- if(p.componentClearance){const cc=p.componentClearance,e=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(...cc.size)),new THREE.LineBasicMaterial({color:0x5d9a8c,transparent:true,opacity:.65}));e.position.set(...cc.center);e.visible=false;r.add(e);clearanceNodes.push({e,g});}if(['E01','E02'].includes(p.id)||/电能检测/.test(p.name)){const c=document.createElement('canvas'),isSolar=['E01','E02'].includes(p.id);c.width=isSolar?1000:420;c.height=isSolar?360:175;const ctx=c.getContext('2d');if(isSolar){ctx.fillStyle='#163752';ctx.fillRect(0,0,c.width,c.height);for(let i=0;i<2;i++)for(let j=0;j<5;j++){const w=c.width/2,h=c.height/5;ctx.fillStyle=(i+j)%2?'#366480':'#2c5774';ctx.fillRect(3+i*w,3+j*h,w-6,h-6);ctx.strokeStyle='#a6bec56a';ctx.beginPath();ctx.moveTo((i+.5)*w,j*h+4);ctx.lineTo((i+.5)*w,(j+1)*h-4);ctx.stroke();}ctx.strokeStyle='#b5c3bd';ctx.strokeRect(1,1,c.width-2,c.height-2);}else{ctx.fillStyle='#bdad88';ctx.fillRect(0,0,420,175);ctx.fillStyle='#213d36';ctx.fillRect(24,23,270,130);ctx.fillStyle='#c8d1b2';ctx.font='56px monospace';ctx.fillText('0.00',48,94);ctx.font='14px sans-serif';ctx.fillText('ENERGY / MODULE',43,131);ctx.fillStyle='#687561';ctx.fillRect(323,40,60,36);ctx.fillRect(323,100,60,36);}const m=new THREE.Mesh(new THREE.PlaneGeometry(isSolar?(p.size?.[0]||100):(p.size?.[0]||84),isSolar?(p.size?.[1]||70):(p.size?.[1]||35)),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),polygonOffset:true,polygonOffsetFactor:-2}));m.position.z=(p.size?.[2]||2)/2+.005;m.userData={partId:p.id,iid:ins.iid};r.add(m);}
-}
-for(const p of parts.filter(p=>['E01','E02'].includes(p.id)||/凸轮盘|储能模组|超级电容|树莓派/.test(p.name)).slice(0,6)){const g=instances.find(g=>g.userData.id===p.id);if(!g)continue;const e=document.createElement('div');e.className='model-label '+(p.cat==='electric'?'electric':'');e.textContent=p.name;e.onclick=()=>select(p.id,g.userData.iid);$('labels').append(e);labelNodes.push({e,g,pos:new THREE.Vector3(0,0,(p.size?.[2]||4)/2+1),off:[0,-8],inside:!['E01','E02'].includes(p.id)});}
-let target=new THREE.Vector3(0,0,52),radius=460,theta=-1.0,phi=.98,drag=null,last=performance.now(),angles={motor:0,rear:0,pto:0},isolationCenter=new THREE.Vector3();
-function updateCamera(){camera.position.set(target.x+radius*Math.sin(phi)*Math.cos(theta),target.y+radius*Math.sin(phi)*Math.sin(theta),target.z+radius*Math.cos(phi));camera.lookAt(target);camera.updateMatrixWorld();}
-function toast(s){$('toast').textContent=s;$('toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').style.display='none',3300);}
-function stop(){state.playing=false;$('play').textContent='▶ 运动演示';}
-function camSample(angle){const raw=(angle%(2*Math.PI)+2*Math.PI)%(2*Math.PI),t=state.camVariant==='straight'?0:raw,tab=spec.kinematics?.camTable||[];if(!tab.length)return{angle:t,lift:2.5,deltaRight:0,deltaLeft:0};const val=(r,k,n)=>r[k]??r[n];let a=tab[0],b=tab[tab.length-1];for(let n=1;n<tab.length;n++){if(val(tab[n],'angle',0)>=t){a=tab[n-1];b=tab[n];break;}}const aa=val(a,'angle',0),bb=val(b,'angle',0),u=bb===aa?0:Math.max(0,Math.min(1,(t-aa)/(bb-aa)));const out={angle:t};for(const[k,n]of[['lift',1],['deltaRight',2],['deltaLeft',3]])out[k]=(1-u)*val(a,k,n)+u*val(b,k,n);for(const[k,n]of[['rightPoint',4],['leftPoint',5],['sliderPoint',6],['dragRightPoint',7]]){const x=val(a,k,n),y=val(b,k,n);if(x&&y)out[k]=x.map((v,j)=>v*(1-u)+y[j]*u);}out.angle=raw;return out;}
-function poseRod(g,a,b){if(!a||!b)return;g.position.set(...a);g.userData.rotor.quaternion.setFromAxisAngle(new THREE.Vector3(0,0,1),Math.atan2(b[1]-a[1],b[0]-a[0]));}
-function servicePose(){const q=state.module==='base'?0:state.toolService,clamp=x=>Math.max(0,Math.min(1,x));return{couple:state.module==='base'?0:10*(1-clamp(q/.3)),lock:4*clamp((q-.3)/.2),slide:100*clamp((q-.5)/.5),grub:.6*clamp(q/.1)};}
-function motion(){
- const frozen=state.isolated||state.assembly,cam=camSample(angles.rear/(spec.parameters?.camReduction||30)+state.phase*Math.PI/180),sp=servicePose();state.cam=cam;
- groups.drawer.position.x=frozen?0:-110*state.drawer;groups.control.position.x=frozen?0:115*state.control;
- groups.selector.position.y=frozen?0:{drive:0,neutral:7.5,pto:15}[state.mode];groups.brake.position.y=frozen?0:state.mode==='pto'?-6:0;
- groups.steerL.rotation.z=frozen?0:cam.deltaLeft;groups.steerR.rotation.z=frozen?0:cam.deltaRight;groups.camFollower.position.x=frozen?0:cam.lift-2.5;
- const phi=-angles.pto,crank=5,rod=50,origin=insById['U04.01']?.pos||[85,21,24],sliderOrigin=spec.instances.find(i=>i.group==='pusherSlider')?.pos||[140,21,24],A=[origin[0]+crank*Math.cos(phi),36,origin[2]+crank*Math.sin(phi)],B=[A[0]+Math.sqrt(rod*rod-crank*crank*Math.sin(phi)**2),36,origin[2]];
- groups.pusherSlider.position.x=frozen?0:B[0]-sliderOrigin[0];state.pusherPhi=phi;state.pusherEndpoints={A,B};
- for(const g of instances){const d=g.userData,r=d.rotor;r.quaternion.copy(d.baseQuaternion);r.scale.set(...(d.mirror||[1,1,1]));g.position.copy(d.base).addScaledVector(d.explode,state.explode);if(frozen)continue;
-  let a=0,axis=new THREE.Vector3(0,1,0);if(d.spin==='motor')a=-angles.motor;if(d.spin==='rear')a=angles.rear;if(d.spin==='pto')a=angles.pto;if(d.spin==='cam'){a=cam.angle;axis.set(0,0,1);}if(d.spin==='frontL'||d.spin==='frontR')a=angles.rear;if(d.spin)r.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(axis,a));
-  if(d.group==='coupler')g.position.y+=sp.couple;
-  if(d.group==='moduleLock')g.position.y+=Math.sign(d.pos[1])*sp.lock;
-  if(d.id==='CS1')g.position.x+=sp.grub;
-  if(state.explode===0){
-   if(d.followPoint&&cam[d.followPoint]){g.position.x=cam[d.followPoint][0];g.position.y=cam[d.followPoint][1];g.position.z=d.jointZ;}
-   if(['crankSpacer','crankPin'].includes(d.group)){g.position.x=A[0];g.position.z=A[2];}
-   if(['sliderSpacer','sliderPin'].includes(d.group)){g.position.x=B[0];g.position.z=B[2];}
-   if(d.group==='spring'){r.scale.x=(20+cam.lift-2.5)/20;g.position.x=-2+(cam.lift-2.5)/2;}
-   if(d.group==='steeringRod')poseRod(g,cam.sliderPoint,cam.dragRightPoint);
-   if(d.group==='tieRod')poseRod(g,cam.rightPoint,cam.leftPoint);
-   if(d.group==='pusherRod'){g.position.set(...A);r.quaternion.setFromAxisAngle(new THREE.Vector3(0,1,0),-Math.atan2(B[2]-A[2],B[0]-A[0]));}
+// Simplified Solar Car 3D Interactive Workbench & Kinematics Engine
+(function () {
+  const spec = window.CAR_SPEC;
+  const meshesData = window.CAR_MESHES;
+  if (!spec || !meshesData) {
+    console.error("Missing CAR_SPEC or CAR_MESHES");
+    return;
   }
-  if(d.module===state.module&&state.module!=='base')g.position.x+=sp.slide;
- }
- $('phaseValue').textContent=Math.round(cam.angle*180/Math.PI)+'°';if(state.playing)$('phase').value=cam.angle*180/Math.PI;root.updateMatrixWorld(true);
- if($('toolServiceValue'))$('toolServiceValue').textContent=state.module==='base'?'先选择工具模块':state.toolService<.01?'已入销、已接轴':state.toolService<.3?'先松紧定钉、退联轴套':state.toolService<.5?'两侧锁钉各退4 mm':`模块沿+X抽出 ${Math.round(sp.slide)} mm`;
-}
-function updateVisibility(){const ip=(spec.innovation||[]).find(i=>i.id===state.innovation)?.parts;for(const g of instances){const d=g.userData;let visible=state.assembly?assembled.has(d.iid):state.isolated?d.iid===state.selectedInstance:moduleAllowed(d);if(!state.assembly&&!state.isolated){if(['E01','E02'].includes(d.id)||d.solarSupport)visible=visible&&state.solar;else if(d.shell||shellAttached.has(d.iid))visible=visible&&state.shell;}if(!state.assembly&&!state.isolated&&d.removeForService&&state[d.removeForService]>0)visible=false;g.visible=visible;const selected=d.iid===state.selectedInstance,related=ip?.includes(d.id),newPart=state.assembly&&currentSet.has(d.iid);g.traverse(m=>{if(!m.isMesh)return;const muted=!!ip&&!related,old=state.assembly&&!newPart,deckCut=state.cutaway&&!state.isolated&&!state.assembly&&d.id==='P01';m.material.emissive?.setHex(newPart?0x6e541c:selected?0x174d3b:related?0x164734:0);m.renderOrder=newPart?30:0;m.material.depthTest=!newPart;m.material.transparent=muted||old||deckCut||newPart;m.material.opacity=muted?.16:old?.42:deckCut?.2:1;m.material.depthWrite=!(muted||old||deckCut);});}
- for(const q of clearanceNodes)q.e.visible=state.clearance&&q.g.visible&&!state.assembly;root.position.copy(state.isolated?isolationCenter.clone().negate():new THREE.Vector3());grid.visible=floor.visible=!state.isolated;$('assemblyBtn').classList.toggle('active',!state.isolated);$('isolateBtn').classList.toggle('active',state.isolated);$('viewTitle').textContent=state.assembly?'逐件装配 · '+(state.step?`${state.step} / ${steps.length}`:'从零开始'):state.isolated?byId[state.selected].name:state.innovation?(spec.innovation||[]).find(i=>i.id===state.innovation).name:'单动力 · 模块化机械小车';$('viewSubtitle').textContent=state.assembly?`${moduleNames[state.module]} · 每步一个主体 / 配套紧固件随同`:state.isolated?`${state.selectedInstance} · 独立实例 / mm`:`${moduleNames[state.module]} / ${state.shell?'开放车架 / 单板光伏':'隐藏光伏支架'} / 机械凸轮转向`;$('shell').checked=state.shell;$('solar').checked=state.solar;$('cutaway').checked=state.cutaway;$('moduleStatus').textContent=state.module==='base'?'U形开放导轨 · 侧向定位锁销 · 独立联轴套':state.module==='brush'?'同一 PTO 驱动旋转刷；两侧定位锁销进入闭孔':'曲柄连杆水平往复；固定行程以完整尺寸表为准';$('modeStatus').textContent={drive:'行进挡',neutral:'空挡 N',pto:state.module==='base'?'PTO 空载':'PTO / '+moduleNames[state.module]}[state.mode];document.querySelectorAll('[data-module]').forEach(b=>b.classList.toggle('active',b.dataset.module===state.module));document.querySelectorAll('[data-cam]').forEach(b=>b.classList.toggle('active',b.dataset.cam===state.camVariant));document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.mode));
-}
-function select(id,iid){if(!byId[id])return;state.selected=id;state.selectedInstance=iid||spec.instances.find(i=>i.id===id)?.iid;state.innovation=null;state.feature=null;list();if(state.isolated)isolate(true);else{detail();updateVisibility();clearFeature();}}
-function clearFeature(){while(featureGroup.children.length){const o=featureGroup.children.pop();o.geometry?.dispose();o.material?.dispose();}}
-function points(p){if(p.type==='circle'||p.type==='dcircle')return Array.from({length:97},(_,i)=>new THREE.Vector2(p.r*Math.cos(i*Math.PI/48),p.r*Math.sin(i*Math.PI/48))).filter(q=>p.type!=='dcircle'||q.x<=p.flat+.001);if(p.type==='poly')return p.points.map(a=>new THREE.Vector2(...a));if(p.type==='slot'){const ps=[],a=(p.length-p.width)/2,r=p.width/2;for(let i=0;i<=32;i++){const q=-Math.PI/2+i*Math.PI/32;ps.push(new THREE.Vector2(a+r*Math.cos(q),r*Math.sin(q)));}for(let i=0;i<=32;i++){const q=Math.PI/2+i*Math.PI/32;ps.push(new THREE.Vector2(-a+r*Math.cos(q),r*Math.sin(q)));}const an=p.angle*Math.PI/180;return ps.map(v=>new THREE.Vector2(v.x*Math.cos(an)-v.y*Math.sin(an),v.x*Math.sin(an)+v.y*Math.cos(an)));}return[[-p.w/2,-p.h/2],[p.w/2,-p.h/2],[p.w/2,p.h/2],[-p.w/2,p.h/2]].map(a=>new THREE.Vector2(...a));}
-function showFeature(){stop();clearFeature();const p=byId[state.selected],g=instances.find(g=>g.userData.iid===state.selectedInstance&&g.visible);if(!p||!g){toast('此实例当前未显示；可切到单件查看。');return;}root.updateMatrixWorld(true);
- function loop(pr,u,v,axis,depth,rotate){let ps=points(pr);ps.push(ps[0].clone());ps=ps.map(q=>{const local=new THREE.Vector3(...(axis==='z'?[q.x+u,q.y+v,depth]:axis==='y'?[q.x+u,depth,q.y+v]:[depth,q.x+u,q.y+v]));if(rotate)local.applyEuler(new THREE.Euler(...rotate.map(a=>a*Math.PI/180)));return g.userData.rotor.localToWorld(local);});const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(ps),new THREE.LineBasicMaterial({color:0xc28c36,depthTest:false,transparent:true,opacity:1}));line.renderOrder=20;featureGroup.add(line);}
- for(const s of [...p.solids,...(p.subtractions||[])]){const ax=s.axis,c=s.center,u=c[ax==='x'?1:0],v=c[ax==='z'?1:2],dep=c['xyz'.indexOf(ax)];if(s.type==='frustum'){if(s.fid===state.feature){loop({type:'circle',r:s.rb},u,v,ax,dep-s.t/2,s.rotate);loop({type:'circle',r:s.rt},u,v,ax,dep+s.t/2,s.rotate);}continue;}if(s.type!=='extrude')continue;if(s.fid===state.feature)loop(s.profile,u,v,ax,dep+s.t/2+.05,s.rotate);for(const h of s.holes||[])if(h.fid===state.feature)loop(h.profile,u+h.u,v+h.v,ax,dep+s.t/2+.05,s.rotate);}
- for(const c of p.cutters||[])if(c.fid===state.feature){loop({type:'circle',r:c.d/2},c.u,c.v,c.axis,c.start);loop({type:'circle',r:c.d/2},c.u,c.v,c.axis,c.end);}if(!featureGroup.children.length)toast('此项是工艺、采购或配合标注，按完整表处理。');}
-function clearDims(){while(dimGroup.children.length){const o=dimGroup.children.pop();o.geometry?.dispose();o.material?.dispose();}dimLabels.splice(0).forEach(x=>x.e.remove());}
-function dimensions(){clearDims();if(!state.isolated)return;root.updateMatrixWorld(true);const g=instances.find(g=>g.visible);if(!g)return;const b=new THREE.Box3().setFromObject(g,true);if(byId[g.userData.id]?.visualRollers)b.setFromCenterAndSize(b.getCenter(new THREE.Vector3()),new THREE.Vector3(48,24.5,48));const lo=b.min,hi=b.max,s=b.getSize(new THREE.Vector3()),o=Math.max(...s.toArray())*.08+2;for(const[a,b,t]of[[[lo.x,lo.y-o,lo.z-o],[hi.x,lo.y-o,lo.z-o],`X ${s.x.toFixed(2)} mm`],[[hi.x+o,lo.y,lo.z-o],[hi.x+o,hi.y,lo.z-o],`Y ${s.y.toFixed(2)} mm`],[[hi.x+o,hi.y+o,lo.z],[hi.x+o,hi.y+o,hi.z],`Z ${s.z.toFixed(2)} mm`]]){const pa=new THREE.Vector3(...a),pb=new THREE.Vector3(...b);dimGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([pa,pb]),new THREE.LineBasicMaterial({color:0x7f9e83})));const e=document.createElement('div');e.className='model-label dim';e.textContent=t;$('labels').append(e);dimLabels.push({e,p:pa.clone().lerp(pb,.5)});}}
-function resetMotion(){stop();state.toolService=0;if($('toolService'))$('toolService').value=0;state.explode=state.drawer=state.control=state.phase=0;angles={motor:0,rear:0,pto:0};for(const id of['explode','drawer','control']){$(id).value=0;$(id+'Value').textContent='0%';}$('phase').value=0;motion();clearFeature();}
-function isolate(on){if(on&&!state.selected){toast('先从目录选择一个零件。');return;}if(on&&state.assembly)exitAssembly();resetMotion();state.innovation=null;state.isolated=on;root.position.set(0,0,0);motion();root.updateMatrixWorld(true);if(on){const g=instances.find(g=>g.userData.iid===state.selectedInstance);isolationCenter=new THREE.Box3().setFromObject(g,true).getCenter(new THREE.Vector3());}updateVisibility();detail();fit();dimensions();}
-function idea(id){if(state.assembly)exitAssembly();if(state.isolated)isolate(false);state.innovation=state.innovation===id?null:id;state.selected=state.selectedInstance=null;state.feature=null;clearFeature();list();detail();updateVisibility();}
-function fit(){root.updateMatrixWorld(true);const b=new THREE.Box3();(state.assembly?instances.filter(g=>moduleAllowed(g.userData)):instances.filter(g=>g.visible)).forEach(g=>b.union(new THREE.Box3().setFromObject(g,true)));if(b.isEmpty())return;target=b.getCenter(new THREE.Vector3());updateCamera();const right=new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld,0),up=new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld,1),near=camera.position.clone().sub(target).normalize(),tan=Math.tan(camera.fov*Math.PI/360);let distance=0;for(const x of[b.min.x,b.max.x])for(const y of[b.min.y,b.max.y])for(const z of[b.min.z,b.max.z]){const v=new THREE.Vector3(x,y,z).sub(target),dep=v.dot(near);distance=Math.max(distance,dep+Math.abs(v.dot(right))/(tan*Math.max(camera.aspect,.2)),dep+Math.abs(v.dot(up))/tan);}radius=Math.max(20,distance*1.12);updateCamera();}
-function resize(){const v=$('viewport');if(!v.clientWidth||!v.clientHeight)return;renderer.setSize(v.clientWidth,v.clientHeight,false);camera.aspect=v.clientWidth/v.clientHeight;camera.updateProjectionMatrix();updateCamera();}new ResizeObserver(resize).observe($('viewport'));
-function views(v){[theta,phi]=v==='top'?[-Math.PI/2,.001]:v==='front'?[0,Math.PI/2]:v==='side'?[-Math.PI/2,Math.PI/2]:[-1.0,.98];document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));updateCamera();}
 
-function setAssemblyStep(n){if(!state.assembly)return;state.step=Math.max(0,Math.min(steps.length,Math.round(n)));assembled=new Set();currentSet=new Set();for(let k=0;k<state.step;k++){assembled.add(steps[k].primary);steps[k].hardware.forEach(i=>assembled.add(i));}const st=steps[state.step-1];if(st){currentSet=new Set([st.primary,...st.hardware]);const i=insById[st.primary];state.selected=i.id;state.selectedInstance=i.iid;}else{state.selected=state.selectedInstance=null;}
- $('stepRange').value=state.step;$('stepJump').value=state.step;$('stepCount').textContent=`${state.step} / ${steps.length}`;$('stepPrev').disabled=!state.step;$('stepNext').disabled=state.step===steps.length;$('buildBadge').textContent=`已装 ${assembled.size} / ${spec.instances.filter(moduleAllowed).length} 个实例`;
- $('stepDetail').innerHTML=st?`<div class="build-card"><div class="build-stage">${esc(st.stage)} / STEP ${state.step}</div><h3>${esc(st.title)}</h3><h4>本步操作</h4><p>${esc(st.action)}</p><h4>使用配合</h4><p>${esc(st.mates)}</p>${st.hardware.length?`<h4>同时装配的紧固与辅助件</h4>${st.hardware.map(i=>`<button class="hardware-chip" data-iid="${i}" title="${esc(byId[insById[i].id].name)}">${i}</button>`).join('')}`:'<p class="micro">本步仅加入一个主体零件。</p>'}<p class="step-check">检查：${esc(st.check)}</p></div>`:`<div class="build-card"><div class="build-stage">准备 / STEP 0</div><h3>从固定底板开始</h3><p>点击“下一步”加入第一个零件。每步新增一个主体，相关螺钉和螺母可同时装配。</p><p>金色高亮为本步新件，已完成零件保留。可随时返回上一步或跳到指定步骤。</p></div>`;
- clearFeature();list();detail();motion();updateVisibility();
-}
-function startAssembly(){if(state.isolated)isolate(false);resetMotion();state.assembly=true;state.innovation=null;state.feature=null;$('startAssembly').hidden=true;$('stepControls').hidden=false;$('stepDetail').hidden=false;$('buildBadge').hidden=false;$('inspectorTitle').textContent='步骤与配合';$('inspectorEyebrow').textContent='ASSEMBLY / MATES';for(const id of['play','speed','phase','explode','drawer','control','shell','solar'])$(id).disabled=true;document.querySelectorAll('[data-mode]').forEach(b=>b.disabled=true);clearDims();setAssemblyStep(0);fit();}
-function exitAssembly(){state.assembly=false;$('startAssembly').hidden=false;$('stepControls').hidden=true;$('stepDetail').hidden=true;$('buildBadge').hidden=true;$('inspectorTitle').textContent='结构与建模';$('inspectorEyebrow').textContent='PARTS / DIMENSIONS';for(const id of['play','speed','phase','explode','drawer','control','shell','solar'])$(id).disabled=false;document.querySelectorAll('[data-mode]').forEach(b=>b.disabled=false);currentSet.clear();resetMotion();updateVisibility();detail();fit();}
-function setMode(mode){if(!['drive','neutral','pto'].includes(mode))return;if(mode!=='neutral'&&state.toolService>0){toast('先将模块插回、入侧锁销并接好轴套。');return;}const wasPlaying=state.playing;stop();state.mode=mode;state.explode=state.drawer=state.control=0;for(const id of['explode','drawer','control']){$(id).value=0;$(id+'Value').textContent='0%';}motion();updateVisibility();detail();if(mode==='pto')toast('实际操作：先停车 → 空挡 → 插驻车销 → PTO。演示已暂停动力并切换。');else if(wasPlaying)toast('动力已暂停，机械滑台切至'+{drive:'行进挡',neutral:'空挡'}[mode]+'。');}
-function setCamVariant(variant){if(!['sine','straight'].includes(variant))return;stop();state.camVariant=variant;state.innovation=null;state.selected=state.selectedInstance=null;resetMotion();refreshSteps();if(state.assembly)setAssemblyStep(0);else{detail();list();updateVisibility();}fit();}
-function setModule(module){if(!moduleNames[module])return;stop();state.module=module;state.innovation=null;state.selected=state.selectedInstance=null;state.feature=null;clearFeature();clearDims();state.isolated=false;resetMotion();refreshSteps();if(state.assembly)setAssemblyStep(0);else{detail();list();updateVisibility();}fit();}
+  const container = document.getElementById("canvas-container");
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0b1120);
 
-list();detail();requirements();refreshSteps();$('metricSize').innerHTML=sizeText()+' <em>mm</em>';
-$('parts').onclick=e=>{const r=e.target.closest('[data-id]');if(r)select(r.dataset.id);};$('parts').onkeydown=e=>{if(['Enter',' '].includes(e.key)){const r=e.target.closest('[data-id]');if(r){e.preventDefault();select(r.dataset.id);}}};$('search').oninput=e=>{state.query=e.target.value.toLowerCase();list();};document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));list();});$('resetFilter').onclick=()=>{state.query='';state.filter='all';$('search').value='';document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));list();};
- document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===b.dataset.page));document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x===b));resize();});$('detail').onclick=e=>{const b=e.target.closest('[data-idea]');if(b)idea(b.dataset.idea);};$('stepDetail').onclick=e=>{const b=e.target.closest('[data-iid]');if(b)select(insById[b.dataset.iid].id,b.dataset.iid);};
- document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>views(b.dataset.view));$('fit').onclick=fit;$('assemblyBtn').onclick=()=>{if(state.assembly)exitAssembly();isolate(false);};$('isolateBtn').onclick=()=>isolate(true);$('shell').onchange=e=>{state.shell=e.target.checked;state.innovation=null;updateVisibility();};$('solar').onchange=e=>{state.solar=e.target.checked;updateVisibility();};$('labelToggle').onchange=e=>state.labels=e.target.checked;$('cutaway').onchange=e=>{state.cutaway=e.target.checked;updateVisibility();};
- $('startAssembly').onclick=startAssembly;$('stepPrev').onclick=()=>setAssemblyStep(state.step-1);$('stepNext').onclick=()=>setAssemblyStep(state.step+1);$('stepZero').onclick=()=>setAssemblyStep(0);$('stepFinish').onclick=()=>setAssemblyStep(steps.length);$('exitAssembly').onclick=exitAssembly;$('stepRange').oninput=e=>setAssemblyStep(+e.target.value);$('stepJump').onchange=e=>setAssemblyStep(+e.target.value);
- $('speed').oninput=e=>{state.speed=+e.target.value;$('speedValue').textContent=state.speed+' rpm';};$('phase').oninput=e=>{stop();state.phase=+e.target.value-angles.rear/(spec.parameters?.camReduction||30)*180/Math.PI;motion();clearFeature();};
- for(const id of['explode','drawer','control'])$(id).oninput=e=>{if(id==='control'&&state.module!=='base'&&Number(e.target.value)>0){e.target.value=0;toast('先选择通用底座，移除前置工具后再前抽控制托盘；先卸止退钉、断开插头。');return;}if(state.isolated)isolate(false);stop();for(const other of['explode','drawer','control'])if(other!==id){state[other]=0;$(other).value=0;$(other+'Value').textContent='0%';}state[id]=+e.target.value/100;$(id+'Value').textContent=e.target.value+'%';motion();updateVisibility();clearFeature();if(id==='explode')fit();};
- document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));document.querySelectorAll('[data-module]').forEach(b=>b.onclick=()=>setModule(b.dataset.module));document.querySelectorAll('[data-cam]').forEach(b=>b.onclick=()=>setCamVariant(b.dataset.cam));$('play').onclick=()=>{if(state.toolService>0){toast('模块换装中，请先复位并锁紧后再运行。');return;}if(state.playing){stop();return;}if(state.isolated)isolate(false);state.explode=state.drawer=state.control=0;for(const id of['explode','drawer','control']){$(id).value=0;$(id+'Value').textContent='0%';}state.playing=true;$('play').textContent='Ⅱ 暂停演示';clearFeature();motion();updateVisibility();};$('home').onclick=()=>{if(state.assembly)exitAssembly();isolate(false);state.selected=state.selectedInstance=null;state.shell=state.solar=true;state.cutaway=false;state.mode='drive';state.innovation=null;list();detail();views('iso');updateVisibility();fit();};$('shot').onclick=()=>{renderer.render(scene,camera);const a=document.createElement('a');a.href=renderer.domElement.toDataURL('image/png');a.download=`太阳能小车-R5-${state.assembly?'装配第'+state.step+'步':state.isolated?state.selected:moduleNames[state.module]}.png`;a.click();toast('已导出三维图片；页面上的文字标注可用截图保留。');};
- const canvas=$('scene'),ray=new THREE.Raycaster(),pointer=new THREE.Vector2();canvas.oncontextmenu=e=>e.preventDefault();canvas.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY,button:e.button};canvas.setPointerCapture(e.pointerId);};canvas.onpointermove=e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(drag.button===2||e.shiftKey){const right=new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld,0),up=new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld,1);target.addScaledVector(right,-dx*radius*.0012).addScaledVector(up,dy*radius*.0012);}else{theta-=dx*.007;phi=Math.max(.02,Math.min(Math.PI-.02,phi-dy*.007));}drag.x=e.clientX;drag.y=e.clientY;updateCamera();};canvas.onpointerup=e=>{if(!drag)return;const click=Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<5&&drag.button===0;drag=null;if(click&&!state.isolated){const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const ms=[];instances.filter(g=>g.visible).forEach(g=>g.traverse(x=>{if(x.isMesh)ms.push(x);}));const h=ray.intersectObjects(ms)[0];if(h)select(h.object.userData.partId,h.object.userData.iid);}};canvas.onwheel=e=>{e.preventDefault();radius=Math.max(15,Math.min(2400,radius*Math.exp(e.deltaY*.001)));updateCamera();};
-function project(e,p,off=[0,0]){const v=p.clone().project(camera);e.style.left=((v.x+1)*.5*canvas.clientWidth+off[0])+'px';e.style.top=((-v.y+1)*.5*canvas.clientHeight+off[1])+'px';e.style.display=v.z>1||v.z< -1?'none':'';}
-function animate(now){requestAnimationFrame(animate);const dt=Math.min((now-last)/1000,.08);last=now;if(state.playing){const d=dt*state.speed*Math.PI/30;angles.motor+=d;if(state.mode==='drive')angles.rear+=d/(spec.parameters?.gearRatio||4);if(state.mode==='pto')angles.pto+=d/(spec.parameters?.gearRatio||4);motion();}root.updateMatrixWorld(true);for(const l of labelNodes){l.e.style.display='none';if(!state.labels||state.isolated||state.assembly||state.explode>.02||!l.g.visible||l.inside&&state.shell)continue;project(l.e,l.g.userData.rotor.localToWorld(l.pos.clone()),l.off);}for(const l of dimLabels)project(l.e,l.p);renderer.render(scene,camera);}
-const serviceBox=document.createElement('div');serviceBox.className='sliders';serviceBox.innerHTML='<label style="grid-column:1/-1"><span>模块换装顺序 <output id="toolServiceValue">先选择工具模块</output></span><input id="toolService" type="range" min="0" max="100" value="0"><small>停机空挡 → 松套钉退套10 → 两侧销各退4 → 沿X抽出。反向插回后再开PTO。</small></label>';$('motionNote').before(serviceBox);$('toolService').oninput=e=>{if(state.isolated)isolate(false);if(state.module==='base'){toast('先选择旋转刷或推杆工具。');e.target.value=0;return;}if(state.assembly)exitAssembly();stop();state.mode='neutral';state.explode=state.drawer=state.control=0;for(const id of['explode','drawer','control']){$(id).value=0;$(id+'Value').textContent='0%';}angles.pto=0;state.toolService=Number(e.target.value)/100;motion();updateVisibility();if(state.toolService>.5)fit();};
-const clearanceLabel=document.createElement('label');clearanceLabel.className='check';clearanceLabel.innerHTML='<input type="checkbox" id="clearanceToggle"> 电控预留边界';document.querySelector('.control-top').append(clearanceLabel);$('clearanceToggle').onchange=e=>{state.clearance=e.target.checked;updateVisibility();};
-resize();motion();updateVisibility();fit();requestAnimationFrame(animate);window.CAR_VIEW={spec,state,instances,scene,camera,renderer,root,drawer,control,groups,select,isolate,fit,views,stop,motion,resetMotion,startAssembly,setAssemblyStep,exitAssembly,setMode,setModule,setCamVariant,camSample,servicePose,get motionAngles(){return{...angles};},get activeSteps(){return steps;},get coverage(){return[...new Set(instances.map(g=>g.userData.id))];},get assembledIds(){return[...assembled];},get currentIds(){return[...currentSet];}};
+  const camera = new THREE.PerspectiveCamera(42, container.clientWidth / container.clientHeight, 1, 2500);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+
+  // Lights
+  const ambient = new THREE.AmbientLight(0xffffff, 0.65);
+  scene.add(ambient);
+  const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.85);
+  dirLight1.position.set(220, 340, 260);
+  scene.add(dirLight1);
+  const dirLight2 = new THREE.DirectionalLight(0x93c5fd, 0.45);
+  dirLight2.position.set(-220, -180, -140);
+  scene.add(dirLight2);
+
+  // Ground reference grid (Z-up in CAD -> Y-up in Three.js: we put car in CAD X, Z->Y, -Y->Z)
+  const grid = new THREE.GridHelper(360, 18, 0x334155, 0x1e293b);
+  grid.position.y = 0;
+  scene.add(grid);
+
+  // Root car group converting CAD (X forward, Y left, Z up) -> Three.js (X forward, Y up, Z right)
+  const carRoot = new THREE.Group();
+  scene.add(carRoot);
+
+  function cadToThreePos(x, y, z) {
+    return new THREE.Vector3(x, z, -y);
+  }
+
+  // Build Three.js BufferGeometry cache per partId
+  const geoCache = {};
+  for (const part of spec.parts) {
+    const m = meshesData[part.id];
+    const geom = new THREE.BufferGeometry();
+    if (m && m.positions && m.positions.length > 0) {
+      geom.setAttribute("position", new THREE.Float32BufferAttribute(m.positions, 3));
+      geom.setAttribute("normal", new THREE.Float32BufferAttribute(m.normals, 3));
+      geom.setIndex(m.indices);
+    }
+    geoCache[part.id] = geom;
+  }
+
+  const partById = {};
+  spec.parts.forEach((p) => { partById[p.id] = p; });
+
+  const instanceObjects = [];
+  let selectedPartId = null;
+  let hideShell = false;
+  let transparentSolar = false;
+  let activeStep = 0;
+  let explodeFactor = 0.0;
+
+  // Create each placement instance
+  spec.placements.forEach((pl) => {
+    const part = partById[pl.partId];
+    const geom = geoCache[pl.partId];
+    const isShell = pl.partId === "P18";
+    const mat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(pl.color || "#38bdf8"),
+      metalness: part.category.includes("电子") ? 0.15 : 0.35,
+      roughness: 0.42,
+      transparent: isShell,
+      opacity: isShell ? 0.32 : 1.0,
+      side: THREE.DoubleSide,
+    });
+
+    // Convert CAD coordinates inside mesh (u=x, v=y, w=z) by rotating mesh group so Z is up
+    const holder = new THREE.Group();
+    const basePos = cadToThreePos(pl.position[0], pl.position[1], pl.position[2]);
+    holder.position.copy(basePos);
+
+    const cadOrient = new THREE.Group();
+    // Map CAD (X, Y, Z) -> Three (X, Z, -Y): rotate -90 deg around X
+    cadOrient.rotation.x = -Math.PI / 2;
+    const mesh = new THREE.Mesh(geom, mat);
+    mesh.userData = { instance: pl, part: part };
+
+    // Subtle edge wireframe for crisp mechanical look
+    const edges = new THREE.EdgesGeometry(geom, 28);
+    const lineMat = new THREE.LineBasicMaterial({
+      color: 0x0f172a,
+      transparent: true,
+      opacity: 0.45,
+    });
+    const wire = new THREE.LineSegments(edges, lineMat);
+    mesh.add(wire);
+
+    cadOrient.add(mesh);
+    holder.add(cadOrient);
+    carRoot.add(holder);
+
+    // Compute explode direction from car center
+    const expDir = basePos.clone().sub(new THREE.Vector3(0, 42, 0));
+    if (expDir.length() < 5) expDir.set(0, 35, 0);
+    expDir.normalize();
+
+    instanceObjects.push({
+      pl,
+      part,
+      holder,
+      cadOrient,
+      mesh,
+      mat,
+      basePos,
+      expDir,
+    });
+  });
+
+  // Simple Orbit Camera Controller
+  let camSpherical = { radius: 310, theta: 0.72, phi: 1.05 };
+  let camTarget = new THREE.Vector3(0, 42, 0);
+  let isDragging = false;
+  let dragButton = 0;
+  let prevMouse = { x: 0, y: 0 };
+
+  function updateCamera() {
+    camSpherical.phi = Math.max(0.12, Math.min(Math.PI - 0.12, camSpherical.phi));
+    camSpherical.radius = Math.max(90, Math.min(900, camSpherical.radius));
+    const x = camTarget.x + camSpherical.radius * Math.sin(camSpherical.phi) * Math.cos(camSpherical.theta);
+    const y = camTarget.y + camSpherical.radius * Math.cos(camSpherical.phi);
+    const z = camTarget.z + camSpherical.radius * Math.sin(camSpherical.phi) * Math.sin(camSpherical.theta);
+    camera.position.set(x, y, z);
+    camera.lookAt(camTarget);
+  }
+  updateCamera();
+
+  renderer.domElement.addEventListener("contextmenu", (e) => e.preventDefault());
+  renderer.domElement.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    dragButton = e.button;
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+  window.addEventListener("mouseup", () => { isDragging = false; });
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - prevMouse.x;
+    const dy = e.clientY - prevMouse.y;
+    prevMouse = { x: e.clientX, y: e.clientY };
+    if (dragButton === 0) {
+      camSpherical.theta += dx * 0.008;
+      camSpherical.phi -= dy * 0.008;
+    } else {
+      const panSpeed = camSpherical.radius * 0.0015;
+      camTarget.x -= dx * panSpeed * Math.sin(camSpherical.theta);
+      camTarget.z += dx * panSpeed * Math.cos(camSpherical.theta);
+      camTarget.y += dy * panSpeed;
+    }
+    updateCamera();
+  });
+  renderer.domElement.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    camSpherical.radius *= e.deltaY > 0 ? 1.08 : 0.92;
+    updateCamera();
+  }, { passive: false });
+
+  // Raycast click to select part
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+  renderer.domElement.addEventListener("click", (e) => {
+    const rect = renderer.domElement.getBoundingClientRect();
+    mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const visibleMeshes = instanceObjects.filter((o) => o.holder.visible).map((o) => o.mesh);
+    const hits = raycaster.intersectObjects(visibleMeshes, false);
+    if (hits.length > 0) {
+      const hitPart = hits[0].object.userData.part;
+      if (hitPart) window.selectPart(hitPart.id);
+    }
+  });
+
+  // 5th-degree polynomial cam displacement s(theta) in mm
+  function camDisplacementMm(thetaRad) {
+    const deg = ((thetaRad * 180 / Math.PI) % 360 + 360) % 360;
+    const h = 3.8;
+    function poly5(u) {
+      u = Math.max(0, Math.min(1, u));
+      return u * u * u * (10 - 15 * u + 6 * u * u);
+    }
+    if (deg < 60) return 0;
+    if (deg < 150) return h * poly5((deg - 60) / 90);
+    if (deg < 210) return h * (1 - 2 * poly5((deg - 150) / 60));
+    if (deg < 300) return -h * (1 - poly5((deg - 210) / 90));
+    return 0;
+  }
+
+  let isPlaying = true;
+  let camAngleRad = 0;
+
+  function applyKinematicsAndVisibility() {
+    const sMm = camDisplacementMm(camAngleRad);
+    const steerAngleRad = Math.atan2(sMm, 18.0); // Lever arm L = 18 mm
+    const rearAxleRad = camAngleRad * 30.0;      // 1:30 worm ratio
+    const motorPinionRad = -rearAxleRad * 4.0;   // 1:4 spur gear ratio
+
+    instanceObjects.forEach((obj) => {
+      const { pl, part, holder, mesh, mat, basePos, expDir } = obj;
+
+      // Visibility by assembly step and toggles
+      let vis = activeStep === 0 || pl.step <= activeStep;
+      if (pl.partId === "P18" && hideShell) vis = false;
+      holder.visible = vis;
+
+      // Transparency for solar panel inspection or unselected dimming
+      if (pl.partId === "P18") {
+        mat.transparent = true;
+        mat.opacity = selectedPartId === "P18" ? 0.65 : 0.26;
+      } else if ((pl.partId === "E01" || pl.partId === "P15") && transparentSolar) {
+        mat.transparent = true;
+        mat.opacity = 0.25;
+      } else if (selectedPartId && selectedPartId !== part.id) {
+        mat.transparent = true;
+        mat.opacity = 0.28;
+      } else {
+        mat.transparent = false;
+        mat.opacity = 1.0;
+      }
+
+      if (selectedPartId === part.id) {
+        mat.emissive.setHex(0x1d4ed8);
+        mat.emissiveIntensity = 0.45;
+      } else {
+        mat.emissive.setHex(0x000000);
+        mat.emissiveIntensity = 0;
+      }
+
+      // Position = base + explode + kinematic translation
+      const pos = basePos.clone().addScaledVector(expDir, explodeFactor * 75.0);
+      mesh.rotation.set(0, 0, 0);
+
+      if (pl.motion === "motor_pinion") {
+        mesh.rotation.y = motorPinionRad;
+      } else if (pl.motion === "rear_axle") {
+        mesh.rotation.y = rearAxleRad;
+      } else if (pl.motion === "rear_free_wheel") {
+        mesh.rotation.y = rearAxleRad * 0.92;
+      } else if (pl.motion === "cam_shaft") {
+        mesh.rotation.z = camAngleRad;
+      } else if (pl.motion === "pushrod") {
+        pos.x += sMm;
+      } else if (pl.motion === "front_steer") {
+        mesh.rotation.z = steerAngleRad;
+      } else if (pl.motion === "front_wheel") {
+        mesh.rotation.z = steerAngleRad;
+      }
+
+      holder.position.copy(pos);
+    });
+
+    const deg = ((camAngleRad * 180 / Math.PI) % 360 + 360) % 360;
+    const steerDeg = steerAngleRad * 180 / Math.PI;
+    document.getElementById("kin-cam").textContent =
+      `凸轮相位 θ = ${deg.toFixed(1)}° | 推杆位移 s = ${(sMm >= 0 ? "+" : "") + sMm.toFixed(2)} mm`;
+    document.getElementById("kin-steer").textContent =
+      `前叉转向角 δ = ${(steerDeg >= 0 ? "+" : "") + steerDeg.toFixed(1)}°`;
+    document.getElementById("cam-angle-val").textContent = `${ Math.round(deg) }°`;
+    const slider = document.getElementById("cam-slider");
+    if (isPlaying && slider) slider.value = Math.round(deg);
+  }
+
+  // UI Exposed handlers
+  window.toggleAnimation = function () {
+    isPlaying = !isPlaying;
+    const btn = document.getElementById("btn-play");
+    btn.textContent = isPlaying ? "⏸ 暂停机构运动" : "▶ 播放机构运动";
+    btn.classList.toggle("active", isPlaying);
+  };
+
+  window.setCameraPreset = function (preset) {
+    camTarget.set(0, 42, 0);
+    if (preset === "iso") camSpherical = { radius: 310, theta: 0.72, phi: 1.05 };
+    if (preset === "top") camSpherical = { radius: 320, theta: 0.0, phi: 0.14 };
+    if (preset === "side") camSpherical = { radius: 300, theta: Math.PI / 2, phi: 1.48 };
+    if (preset === "front") camSpherical = { radius: 290, theta: 0.0, phi: 1.42 };
+    if (preset === "bottom") camSpherical = { radius: 300, theta: 0.5, phi: 2.65 };
+    updateCamera();
+  };
+
+  window.toggleShell = function () {
+    hideShell = !hideShell;
+    document.getElementById("btn-shell").classList.toggle("active", hideShell);
+    applyKinematicsAndVisibility();
+  };
+
+  window.toggleSolar = function () {
+    transparentSolar = !transparentSolar;
+    document.getElementById("btn-solar").classList.toggle("active", transparentSolar);
+    applyKinematicsAndVisibility();
+  };
+
+  window.setExplode = function (val) {
+    explodeFactor = Number(val) / 100.0;
+    document.getElementById("explode-val").textContent = `${val}%`;
+    applyKinematicsAndVisibility();
+  };
+
+  window.setManualCamAngle = function (degVal) {
+    isPlaying = false;
+    const btn = document.getElementById("btn-play");
+    btn.textContent = "▶ 播放机构运动";
+    btn.classList.remove("active");
+    camAngleRad = (Number(degVal) * Math.PI) / 180.0;
+    applyKinematicsAndVisibility();
+  };
+
+  window.resetSelection = function () {
+    selectedPartId = null;
+    document.querySelectorAll("#part-table-tbody tr").forEach((tr) => tr.classList.remove("selected"));
+    applyKinematicsAndVisibility();
+  };
+
+  window.selectPart = function (partId) {
+    selectedPartId = partId;
+    const p = partById[partId];
+    if (!p) return;
+    document.querySelectorAll("#part-table-tbody tr").forEach((tr) => {
+      tr.classList.toggle("selected", tr.dataset.partId === partId);
+    });
+    const dimsHtml = (p.keyDimensions || [])
+      .map((d) => `<li><strong>${d.name}</strong>：<code>${d.value}</code>（${d.note}）</li>`)
+      .join("");
+    document.getElementById("part-detail-body").innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-size:15px;font-weight:700;color:#f8fafc;">${p.name} <span style="color:#94a3b8;font-size:12px;">(${p.id})</span></span>
+        <a href="${p.drawingUrl}" target="_blank" style="color:#38bdf8;font-size:12px;">查看三视图 →</a>
+      </div>
+      <div style="background:#0f172a;border:1px solid #334155;padding:7px 10px;border-radius:6px;margin-bottom:8px;">
+        <div style="color:#94a3b8;font-size:11px;">1:1 对应 SolidWorks 零件文件名：</div>
+        <div style="color:#38bdf8;font-family:monospace;font-weight:700;font-size:13px;">solidworks/${p.solidworksFile}</div>
+      </div>
+      <div><strong>所属子系统：</strong>${p.subsystem}</div>
+      <div><strong>材料 / 工艺：</strong>${p.material}（${p.process}） | <strong>单车数量：</strong>${p.quantity} 件</div>
+      <div><strong>外包络尺寸：</strong><code>${p.size[0]} × ${p.size[1]} × ${p.size[2]} mm</code></div>
+      <div style="margin-top:4px;color:#cbd5e1;">${p.note}</div>
+      <ul style="margin:6px 0 0 18px;padding:0;">${dimsHtml}</ul>
+    `;
+    applyKinematicsAndVisibility();
+  };
+
+  window.setAssemblyStep = function (stepNum) {
+    activeStep = stepNum;
+    document.getElementById("step-btn-all").classList.toggle("active", stepNum === 0);
+    document.querySelectorAll(".step-item").forEach((el) => {
+      el.classList.toggle("active", Number(el.dataset.step) === stepNum);
+    });
+    applyKinematicsAndVisibility();
+  };
+
+  // Populate assembly steps
+  const stepsContainer = document.getElementById("steps-container");
+  spec.assemblySteps.forEach((s) => {
+    const div = document.createElement("div");
+    div.className = "step-item";
+    div.dataset.step = s.step;
+    div.innerHTML = `<div style="font-weight:700;color:#f8fafc;margin-bottom:3px;">${s.title}</div>
+                     <div style="color:#94a3b8;">${s.summary}</div>`;
+    div.onclick = () => window.setAssemblyStep(s.step);
+    stepsContainer.appendChild(div);
+  });
+
+  // Populate 1:1 part table
+  const tbody = document.getElementById("part-table-tbody");
+  spec.parts.forEach((p) => {
+    const tr = document.createElement("tr");
+    tr.dataset.partId = p.id;
+    tr.innerHTML = `
+      <td><code>${p.id}</code></td>
+      <td><strong>${p.name}</strong></td>
+      <td class="sw-code">${p.solidworksFile}</td>
+      <td>${p.quantity}</td>
+    `;
+    tr.onclick = () => window.selectPart(p.id);
+    tbody.appendChild(tr);
+  });
+
+  window.filterPartTable = function () {
+    const q = document.getElementById("part-search").value.toLowerCase();
+    document.querySelectorAll("#part-table-tbody tr").forEach((tr) => {
+      const p = partById[tr.dataset.partId];
+      const text = `${p.id} ${p.name} ${p.solidworksFile} ${p.subsystem} ${p.material}`.toLowerCase();
+      tr.style.display = text.includes(q) ? "" : "none";
+    });
+  };
+
+  // Select P01 by default so the detail card is populated immediately
+  window.selectPart("P01");
+  window.resetSelection();
+
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+    if (isPlaying) {
+      camAngleRad = (camAngleRad + 0.008) % (Math.PI * 2);
+      applyKinematicsAndVisibility();
+    }
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener("resize", () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
 })();
