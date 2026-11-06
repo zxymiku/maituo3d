@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>工创赛太阳能小车 — 极简机械设计 3D 工作台 (1:1 SolidWorks 零件对应)</title>
+  <title>工创赛太阳能小车 — 四轮同轴全向舵轮(非麦轮)与双凸轮底部传动 3D 工作台</title>
   <style>
     :root {
       --bg: #0b1120;
@@ -40,10 +40,10 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
     .brand h1 {
-      font-size: 17px;
+      font-size: 16px;
       margin: 0;
       font-weight: 700;
     }
@@ -58,14 +58,14 @@
     }
     .nav-links {
       display: flex;
-      gap: 10px;
-      font-size: 13px;
+      gap: 8px;
+      font-size: 12.5px;
     }
     .nav-links a {
       color: var(--text);
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 6px 12px;
+      padding: 6px 11px;
       border-radius: 6px;
       text-decoration: none;
       transition: all 0.15s;
@@ -76,7 +76,7 @@
     }
     .main-layout {
       display: grid;
-      grid-template-columns: 350px 1fr 410px;
+      grid-template-columns: 365px 1fr 415px;
       flex: 1;
       min-height: 0;
     }
@@ -87,8 +87,8 @@
       flex-direction: column;
       min-height: 0;
       overflow-y: auto;
-      padding: 14px;
-      gap: 14px;
+      padding: 13px;
+      gap: 12px;
     }
     .sidebar-right {
       border-right: none;
@@ -98,11 +98,11 @@
       background: rgba(30, 41, 59, 0.65);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 14px;
+      padding: 13px;
     }
     .card h2 {
-      font-size: 14px;
-      margin: 0 0 10px 0;
+      font-size: 13.5px;
+      margin: 0 0 9px 0;
       color: var(--accent);
       display: flex;
       align-items: center;
@@ -111,20 +111,20 @@
     .kpi-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 7px;
     }
     .kpi {
       background: #0f172a;
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 8px 10px;
+      padding: 7px 9px;
     }
     .kpi .label {
       font-size: 11px;
       color: var(--muted);
     }
     .kpi .val {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       margin-top: 2px;
       color: var(--text);
@@ -133,14 +133,14 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 7px;
     }
     button {
       background: var(--card);
       color: var(--text);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 6px 10px;
+      padding: 5px 9px;
       font-size: 12px;
       cursor: pointer;
       transition: all 0.15s;
@@ -151,14 +151,14 @@
       color: var(--accent);
     }
     .slider-row {
-      margin-top: 10px;
+      margin-top: 9px;
       font-size: 12px;
     }
     .slider-row label {
       display: flex;
       justify-content: space-between;
       color: var(--muted);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     input[type="range"] {
       width: 100%;
@@ -179,16 +179,17 @@
     }
     .hud-overlay {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(15, 23, 42, 0.85);
+      top: 12px;
+      left: 12px;
+      background: rgba(15, 23, 42, 0.86);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 10px 14px;
+      padding: 10px 13px;
       font-size: 12px;
       pointer-events: none;
-      max-width: 440px;
+      max-width: 470px;
       backdrop-filter: blur(6px);
+      line-height: 1.5;
     }
     .hud-overlay .title {
       font-weight: 700;
@@ -197,10 +198,10 @@
     }
     .kinematics-bar {
       position: absolute;
-      bottom: 14px;
-      left: 14px;
-      right: 14px;
-      background: rgba(15, 23, 42, 0.88);
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 8px 14px;
@@ -212,7 +213,7 @@
     }
     .search-box {
       width: 100%;
-      padding: 8px 10px;
+      padding: 7px 10px;
       border-radius: 6px;
       border: 1px solid var(--border);
       background: #0f172a;
@@ -221,7 +222,7 @@
       margin-bottom: 8px;
     }
     .part-table-wrap {
-      max-height: 320px;
+      max-height: 340px;
       overflow-y: auto;
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -232,7 +233,7 @@
       font-size: 12px;
     }
     table.part-table th, table.part-table td {
-      padding: 7px 8px;
+      padding: 6px 8px;
       border-bottom: 1px solid #1e293b;
       text-align: left;
     }
@@ -257,7 +258,7 @@
       border: 1px solid var(--border);
       background: #0f172a;
       border-radius: 6px;
-      padding: 8px 10px;
+      padding: 7px 9px;
       margin-bottom: 6px;
       font-size: 12px;
       cursor: pointer;
@@ -271,56 +272,61 @@
 <body>
   <header>
     <div class="brand">
-      <h1>工创赛太阳能小车 — 极简机械设计 3D 工作台</h1>
-      <span class="tag">38种零件 · 1:1 SolidWorks零件名对应</span>
-      <span class="tag" style="color:#10b981;border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.12);">单电机 1:4 齿轮 + 1:30 蜗轮凸轮转向</span>
+      <h1>工创赛太阳能小车 — 四轮同轴全向舵轮(非麦轮)与双凸轮底部传动工作台</h1>
+      <span class="tag">52种零件 · 1:1 SolidWorks零件名对应</span>
+      <span class="tag" style="color:#10b981;border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.12);">四轮同轴全向舵轮(非麦轮) + 锥齿四驱分动 + 双凸轮全向转向</span>
     </div>
     <div class="nav-links">
-      <a href="docs/零件图册/index.html" target="_blank">📐 零件工程图册 (38件)</a>
+      <a href="docs/零件图册/index.html" target="_blank">📐 零件工程图册 (52件)</a>
       <a href="docs/可筛选尺寸表.html" target="_blank">📏 可筛选尺寸与SW对照表</a>
-      <a href="docs/建模技术文档.html" target="_blank">🧮 凸轮公式与建模文档</a>
+      <a href="docs/建模技术文档.html" target="_blank">🧮 全向舵轮与双凸轮公式文档</a>
       <a href="docs/装配步骤.html" target="_blank">🔧 6步标准装配规程</a>
     </div>
   </header>
 
   <div class="main-layout">
-    <!-- Left Sidebar: Overview, Controls, Assembly Steps -->
+    <!-- Left Sidebar -->
     <div class="sidebar-left">
       <div class="card">
-        <h2>整车核心技术指标 <span>✅ 全部合规</span></h2>
+        <h2>全向底盘核心技术指标 <span>✅ 非麦轮全向移动</span></h2>
         <div class="kpi-grid">
           <div class="kpi">
             <div class="label">整车尺寸 (要求≤250×200)</div>
-            <div class="val">210 × 152 × 104 mm</div>
+            <div class="val">216 × 164 × 106 mm</div>
           </div>
           <div class="kpi">
-            <div class="label">零件种类 / 装配总数</div>
-            <div class="val" id="kpi-part-count">38 种 / 47 件</div>
+            <div class="label">零件种类 / 装配实例数</div>
+            <div class="val" id="kpi-part-count">52 种 / 106 件</div>
           </div>
           <div class="kpi">
-            <div class="label">单电机主减速比</div>
-            <div class="val">1 : 4 (18齿:72齿)</div>
+            <div class="label">单电机主减速 + 四驱分动</div>
+            <div class="val">1:4直齿 + 正交锥齿四驱</div>
           </div>
           <div class="kpi">
-            <div class="label">凸轮转向时基减速比</div>
-            <div class="val">1 : 30 (单头蜗杆:30齿)</div>
+            <div class="label">全向移动方式 (非麦轮)</div>
+            <div class="val">4轮独立同轴舵轮+双凸轮</div>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h2>3D 视图与机构运动控制</h2>
+        <h2>全方向转向移动模式与 3D 视图控制</h2>
+        <div style="font-size:11.5px;color:var(--muted);margin-bottom:4px;">切换全向舵轮运动模式（观察四角舵轮与横拉杆协同）：</div>
         <div class="btn-row">
+          <button id="mode-crab" class="active" onclick="window.setOmniMode('crab')">🦀 四轮同向全向斜行(蟹行平移)</button>
+          <button id="mode-turn" onclick="window.setOmniMode('turn')">🔄 四轮反向全向急转(原地回转)</button>
+          <button id="mode-dual" onclick="window.setOmniMode('dual')">〰️ 双凸轮复合全向轨迹</button>
+        </div>
+        <div class="btn-row" style="margin-top:8px;">
           <button id="btn-play" class="active" onclick="window.toggleAnimation()">⏸ 暂停机构运动</button>
+          <button onclick="window.setCameraPreset('bottom')">🔍 仰视底部传动箱</button>
           <button onclick="window.setCameraPreset('iso')">等轴测</button>
           <button onclick="window.setCameraPreset('top')">俯视图</button>
           <button onclick="window.setCameraPreset('side')">侧视图</button>
-          <button onclick="window.setCameraPreset('front')">前视图</button>
-          <button onclick="window.setCameraPreset('bottom')">仰视底盘(读卡器/电机座)</button>
         </div>
         <div class="btn-row">
-          <button id="btn-shell" onclick="window.toggleShell()">隐藏/显示快拆外壳</button>
-          <button id="btn-solar" onclick="window.toggleSolar()">透视顶部太阳能板</button>
+          <button id="btn-cutaway" onclick="window.toggleCutaway()">透视上层底板(看底部传动)</button>
+          <button id="btn-shell" onclick="window.toggleShell()">隐藏快拆外壳</button>
           <button onclick="window.resetSelection()">显示全部零件</button>
         </div>
         <div class="slider-row">
@@ -328,14 +334,14 @@
           <input id="explode-slider" type="range" min="0" max="100" value="0" oninput="window.setExplode(this.value)" />
         </div>
         <div class="slider-row">
-          <label><span>凸轮相位角 θ (手动观察推杆与前叉转角)</span><span id="cam-angle-val">0°</span></label>
+          <label><span>双凸轮相位角 θ (手动观察四轮全向偏转角)</span><span id="cam-angle-val">0°</span></label>
           <input id="cam-slider" type="range" min="0" max="360" value="0" oninput="window.setManualCamAngle(this.value)" />
         </div>
       </div>
 
       <div class="card">
         <h2>6 步渐进式装配教学 <span style="font-size:11px;color:var(--muted);">点击切换步骤</span></h2>
-        <div class="btn-row" style="margin-bottom:8px;">
+        <div class="btn-row" style="margin-bottom:6px;">
           <button class="active" id="step-btn-all" onclick="window.setAssemblyStep(0)">展示整车 (全6步)</button>
         </div>
         <div id="steps-container"></div>
@@ -346,25 +352,22 @@
     <div class="viewport-wrap">
       <div id="canvas-container"></div>
       <div class="hud-overlay">
-        <div class="title">纯机械凸轮转向与 1:4 齿轮传动实时仿真</div>
-        <div>• <strong>后桥驱动</strong>：<code>N20直流减速电机</code> → <code>18齿电机主动齿轮</code> : <code>72齿后轴从动大齿轮</code> (i=1:4) → <code>后左驱动轮</code></div>
-        <div>• <strong>凸轮转向</strong>：<code>0.5模单头蜗杆</code> : <code>30齿青铜蜗轮</code> (i=1:30) → <code>盘形转向凸轮</code> → <code>转向直线推杆</code> → <code>前轮转向叉架</code></div>
-        <div style="margin-top:4px;color:#38bdf8;">💡 鼠标左键旋转 · 右键平移 · 滚轮缩放 · 点击任意零件高亮查看其 1:1 SolidWorks 文件名</div>
+        <div class="title">底部四轮同轴锥齿分动 + 双凸轮正交连杆全向转向系统（绝不使用麦轮）</div>
+        <div>• <strong>底部四驱分动链</strong>：<code>N20直流减速电机</code> → <code>18齿:72齿(1:4)</code> → <code>底部横向主传动轴</code> → <code>底部纵向分动长轴</code> → 前/后<code>分动箱十字轴承座(16齿锥齿轮)</code> → 4套<code>舵轮同轴传力竖销</code> → <code>高抓地全向舵轮</code></div>
+        <div>• <strong>双凸轮全向转向链</strong>：<code>1:30蜗杆蜗轮</code> → <code>主航向盘形转向凸轮(C01)</code> + <code>差动转向副凸轮盘(C02)</code> → <code>前/后桥平行四边形转向横拉杆</code> → 4只<code>全向转向空心主销套筒</code>同步偏转</div>
       </div>
       <div class="kinematics-bar">
-        <span id="kin-motor">电机转速: 120 rpm | 后轴: 30 rpm (1:4)</span>
-        <span id="kin-cam">凸轮相位 θ = 0.0° | 推杆位移 s = +0.00 mm</span>
-        <span id="kin-steer">前叉转向角 δ = +0.0°</span>
+        <span id="kin-mode">当前模式: 四轮同向全向斜行(蟹行平移)</span>
+        <span id="kin-cam">双凸轮相位 θ = 0.0° | 主推杆 s1 = +0.00 mm</span>
+        <span id="kin-steer">前轮转角 δF = +0.0° | 后轮转角 δR = +0.0°</span>
       </div>
     </div>
 
-    <!-- Right Sidebar:Selected Part Detail + 1:1 Part Table -->
+    <!-- Right Sidebar -->
     <div class="sidebar-right">
       <div class="card" id="part-detail-card">
         <h2>选中零件详情 (网页名 1:1 对应 SolidWorks)</h2>
-        <div id="part-detail-body" style="font-size:12.5px;line-height:1.55;">
-          点击 3D 模型或下方零件表中的任意零件，即可查看其精确三维尺寸、建模特征以及一一对应的 SolidWorks 零件文件名 (<code>.SLDPRT</code>)。
-        </div>
+        <div id="part-detail-body" style="font-size:12.5px;line-height:1.55;"></div>
       </div>
 
       <div class="card" style="flex:1;display:flex;flex-direction:column;min-height:0;">

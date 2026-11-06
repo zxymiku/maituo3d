@@ -1,11 +1,8 @@
-// Simplified Solar Car 3D Interactive Workbench & Kinematics Engine
+// 4-Wheel Coaxial Swerve (Non-Mecanum) & Dual-Cam Omnidirectional Solar Car Workbench
 (function () {
   const spec = window.CAR_SPEC;
   const meshesData = window.CAR_MESHES;
-  if (!spec || !meshesData) {
-    console.error("Missing CAR_SPEC or CAR_MESHES");
-    return;
-  }
+  if (!spec || !meshesData) return;
 
   const container = document.getElementById("canvas-container");
   const scene = new THREE.Scene();
@@ -17,22 +14,18 @@
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
-  // Lights
-  const ambient = new THREE.AmbientLight(0xffffff, 0.65);
-  scene.add(ambient);
-  const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.85);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.68));
+  const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.88);
   dirLight1.position.set(220, 340, 260);
   scene.add(dirLight1);
-  const dirLight2 = new THREE.DirectionalLight(0x93c5fd, 0.45);
-  dirLight2.position.set(-220, -180, -140);
+  const dirLight2 = new THREE.DirectionalLight(0x93c5fd, 0.48);
+  dirLight2.position.set(-220, -220, -140);
   scene.add(dirLight2);
 
-  // Ground reference grid (Z-up in CAD -> Y-up in Three.js: we put car in CAD X, Z->Y, -Y->Z)
-  const grid = new THREE.GridHelper(360, 18, 0x334155, 0x1e293b);
+  const grid = new THREE.GridHelper(380, 19, 0x334155, 0x1e293b);
   grid.position.y = 0;
   scene.add(grid);
 
-  // Root car group converting CAD (X forward, Y left, Z up) -> Three.js (X forward, Y up, Z right)
   const carRoot = new THREE.Group();
   scene.add(carRoot);
 
@@ -40,7 +33,6 @@
     return new THREE.Vector3(x, z, -y);
   }
 
-  // Build Three.js BufferGeometry cache per partId
   const geoCache = {};
   for (const part of spec.parts) {
     const m = meshesData[part.id];
@@ -59,69 +51,54 @@
   const instanceObjects = [];
   let selectedPartId = null;
   let hideShell = false;
-  let transparentSolar = false;
+  let cutawayUpper = false;
   let activeStep = 0;
   let explodeFactor = 0.0;
+  let omniMode = "crab"; // 'crab' | 'turn' | 'dual'
 
-  // Create each placement instance
   spec.placements.forEach((pl) => {
     const part = partById[pl.partId];
     const geom = geoCache[pl.partId];
-    const isShell = pl.partId === "P18";
+    const isShell = pl.partId === "P30";
     const mat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(pl.color || "#38bdf8"),
-      metalness: part.category.includes("电子") ? 0.15 : 0.35,
-      roughness: 0.42,
+      metalness: part.category.includes("电子") ? 0.15 : 0.38,
+      roughness: 0.4,
       transparent: isShell,
-      opacity: isShell ? 0.32 : 1.0,
+      opacity: isShell ? 0.28 : 1.0,
       side: THREE.DoubleSide,
     });
 
-    // Convert CAD coordinates inside mesh (u=x, v=y, w=z) by rotating mesh group so Z is up
     const holder = new THREE.Group();
     const basePos = cadToThreePos(pl.position[0], pl.position[1], pl.position[2]);
     holder.position.copy(basePos);
 
     const cadOrient = new THREE.Group();
-    // Map CAD (X, Y, Z) -> Three (X, Z, -Y): rotate -90 deg around X
     cadOrient.rotation.x = -Math.PI / 2;
     const mesh = new THREE.Mesh(geom, mat);
     mesh.userData = { instance: pl, part: part };
 
-    // Subtle edge wireframe for crisp mechanical look
     const edges = new THREE.EdgesGeometry(geom, 28);
-    const lineMat = new THREE.LineBasicMaterial({
-      color: 0x0f172a,
-      transparent: true,
-      opacity: 0.45,
-    });
-    const wire = new THREE.LineSegments(edges, lineMat);
+    const wire = new THREE.LineSegments(
+      edges,
+      new THREE.LineBasicMaterial({ color: 0x0f172a, transparent: true, opacity: 0.45 })
+    );
     mesh.add(wire);
 
     cadOrient.add(mesh);
     holder.add(cadOrient);
     carRoot.add(holder);
 
-    // Compute explode direction from car center
-    const expDir = basePos.clone().sub(new THREE.Vector3(0, 42, 0));
+    const expDir = basePos.clone().sub(new THREE.Vector3(0, 38, 0));
     if (expDir.length() < 5) expDir.set(0, 35, 0);
     expDir.normalize();
 
-    instanceObjects.push({
-      pl,
-      part,
-      holder,
-      cadOrient,
-      mesh,
-      mat,
-      basePos,
-      expDir,
-    });
+    instanceObjects.push({ pl, part, holder, cadOrient, mesh, mat, basePos, expDir });
   });
 
-  // Simple Orbit Camera Controller
-  let camSpherical = { radius: 310, theta: 0.72, phi: 1.05 };
-  let camTarget = new THREE.Vector3(0, 42, 0);
+  // Orbit Camera
+  let camSpherical = { radius: 325, theta: 0.72, phi: 1.08 };
+  let camTarget = new THREE.Vector3(0, 38, 0);
   let isDragging = false;
   let dragButton = 0;
   let prevMouse = { x: 0, y: 0 };
@@ -166,7 +143,7 @@
     updateCamera();
   }, { passive: false });
 
-  // Raycast click to select part
+  // Raycast part selection
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
   renderer.domElement.addEventListener("click", (e) => {
@@ -182,18 +159,17 @@
     }
   });
 
-  // 5th-degree polynomial cam displacement s(theta) in mm
-  function camDisplacementMm(thetaRad) {
+  // 5th-degree polynomial cam profile
+  function camDisplacementMm(thetaRad, stroke) {
     const deg = ((thetaRad * 180 / Math.PI) % 360 + 360) % 360;
-    const h = 3.8;
     function poly5(u) {
       u = Math.max(0, Math.min(1, u));
       return u * u * u * (10 - 15 * u + 6 * u * u);
     }
-    if (deg < 60) return 0;
-    if (deg < 150) return h * poly5((deg - 60) / 90);
-    if (deg < 210) return h * (1 - 2 * poly5((deg - 150) / 60));
-    if (deg < 300) return -h * (1 - poly5((deg - 210) / 90));
+    if (deg < 40) return 0;
+    if (deg < 140) return stroke * poly5((deg - 40) / 100);
+    if (deg < 220) return stroke * (1 - 2 * poly5((deg - 140) / 80));
+    if (deg < 320) return -stroke * (1 - poly5((deg - 220) / 100));
     return 0;
   }
 
@@ -201,29 +177,42 @@
   let camAngleRad = 0;
 
   function applyKinematicsAndVisibility() {
-    const sMm = camDisplacementMm(camAngleRad);
-    const steerAngleRad = Math.atan2(sMm, 18.0); // Lever arm L = 18 mm
-    const rearAxleRad = camAngleRad * 30.0;      // 1:30 worm ratio
-    const motorPinionRad = -rearAxleRad * 4.0;   // 1:4 spur gear ratio
+    const s1 = camDisplacementMm(camAngleRad, 5.2);
+    let s2 = s1;
+    if (omniMode === "turn") {
+      s2 = -s1;
+    } else if (omniMode === "dual") {
+      s2 = camDisplacementMm(camAngleRad + Math.PI / 3, 4.2);
+    }
+
+    // Steering angles of front & rear coaxial swerve wheel pods (lever arm 14mm)
+    const steerFrontRad = Math.atan2(s1, 14.0);
+    const steerRearRad = Math.atan2(s2, 14.0);
+
+    // Whole-body subtle omnidirectional preview motion on the grid
+    carRoot.position.z = -s1 * 1.6;
+    carRoot.rotation.y = (steerFrontRad - steerRearRad) * 0.22;
+
+    const primaryShaftRad = camAngleRad * 30.0; // 1:30 worm ratio
+    const motorPinionRad = -primaryShaftRad * 4.0; // 1:4 primary gear ratio
+
+    const upperDeckIds = new Set(["P01", "E01", "P25", "P26", "E02", "P27", "E03", "E04", "P28", "E05", "P30"]);
 
     instanceObjects.forEach((obj) => {
       const { pl, part, holder, mesh, mat, basePos, expDir } = obj;
-
-      // Visibility by assembly step and toggles
       let vis = activeStep === 0 || pl.step <= activeStep;
-      if (pl.partId === "P18" && hideShell) vis = false;
+      if (pl.partId === "P30" && hideShell) vis = false;
       holder.visible = vis;
 
-      // Transparency for solar panel inspection or unselected dimming
-      if (pl.partId === "P18") {
+      if (pl.partId === "P30") {
         mat.transparent = true;
-        mat.opacity = selectedPartId === "P18" ? 0.65 : 0.26;
-      } else if ((pl.partId === "E01" || pl.partId === "P15") && transparentSolar) {
+        mat.opacity = selectedPartId === "P30" ? 0.65 : 0.24;
+      } else if (cutawayUpper && upperDeckIds.has(pl.partId) && selectedPartId !== pl.partId) {
         mat.transparent = true;
-        mat.opacity = 0.25;
+        mat.opacity = 0.16;
       } else if (selectedPartId && selectedPartId !== part.id) {
         mat.transparent = true;
-        mat.opacity = 0.28;
+        mat.opacity = 0.26;
       } else {
         mat.transparent = false;
         mat.opacity = 1.0;
@@ -237,41 +226,65 @@
         mat.emissiveIntensity = 0;
       }
 
-      // Position = base + explode + kinematic translation
-      const pos = basePos.clone().addScaledVector(expDir, explodeFactor * 75.0);
+      const pos = basePos.clone().addScaledVector(expDir, explodeFactor * 78.0);
       mesh.rotation.set(0, 0, 0);
 
       if (pl.motion === "motor_pinion") {
         mesh.rotation.y = motorPinionRad;
-      } else if (pl.motion === "rear_axle") {
-        mesh.rotation.y = rearAxleRad;
-      } else if (pl.motion === "rear_free_wheel") {
-        mesh.rotation.y = rearAxleRad * 0.92;
+      } else if (pl.motion === "primary_shaft") {
+        mesh.rotation.y = primaryShaftRad;
+      } else if (pl.motion === "long_shaft") {
+        mesh.rotation.x = primaryShaftRad;
+      } else if (pl.motion === "bevel_spin") {
+        mesh.rotation.z = primaryShaftRad;
       } else if (pl.motion === "cam_shaft") {
         mesh.rotation.z = camAngleRad;
-      } else if (pl.motion === "pushrod") {
-        pos.x += sMm;
-      } else if (pl.motion === "front_steer") {
-        mesh.rotation.z = steerAngleRad;
-      } else if (pl.motion === "front_wheel") {
-        mesh.rotation.z = steerAngleRad;
+      } else if (pl.motion === "cam_shaft_sub") {
+        mesh.rotation.z = -camAngleRad;
+      } else if (pl.motion === "pushrod_main") {
+        pos.x += s1;
+      } else if (pl.motion === "pushrod_rear") {
+        pos.x += s2;
+      } else if (pl.motion === "tie_rod_front") {
+        pos.z -= s1 * 1.1;
+      } else if (pl.motion === "tie_rod_rear") {
+        pos.z -= s2 * 1.1;
+      } else if (pl.motion === "swerve_front") {
+        mesh.rotation.z = steerFrontRad;
+      } else if (pl.motion === "swerve_rear") {
+        mesh.rotation.z = steerRearRad;
       }
 
       holder.position.copy(pos);
     });
 
     const deg = ((camAngleRad * 180 / Math.PI) % 360 + 360) % 360;
-    const steerDeg = steerAngleRad * 180 / Math.PI;
+    const fDeg = steerFrontRad * 180 / Math.PI;
+    const rDeg = steerRearRad * 180 / Math.PI;
+    const modeLabel =
+      omniMode === "crab"
+        ? "四轮同向全向斜行(蟹行平移 δF = δR)"
+        : omniMode === "turn"
+        ? "四轮反向全向急转(原地回转 δF = -δR)"
+        : "双凸轮复合全向轨迹(独立相位)";
+    document.getElementById("kin-mode").textContent = `当前模式: ${modeLabel}`;
     document.getElementById("kin-cam").textContent =
-      `凸轮相位 θ = ${deg.toFixed(1)}° | 推杆位移 s = ${(sMm >= 0 ? "+" : "") + sMm.toFixed(2)} mm`;
+      `双凸轮相位 θ = ${deg.toFixed(1)}° | 主推杆 s1 = ${(s1 >= 0 ? "+" : "") + s1.toFixed(2)} mm`;
     document.getElementById("kin-steer").textContent =
-      `前叉转向角 δ = ${(steerDeg >= 0 ? "+" : "") + steerDeg.toFixed(1)}°`;
-    document.getElementById("cam-angle-val").textContent = `${ Math.round(deg) }°`;
+      `前轮全向角 δF = ${(fDeg >= 0 ? "+" : "") + fDeg.toFixed(1)}° | 后轮全向角 δR = ${(rDeg >= 0 ? "+" : "") + rDeg.toFixed(1)}°`;
+    document.getElementById("cam-angle-val").textContent = `${Math.round(deg)}°`;
     const slider = document.getElementById("cam-slider");
     if (isPlaying && slider) slider.value = Math.round(deg);
   }
 
-  // UI Exposed handlers
+  window.setOmniMode = function (mode) {
+    omniMode = mode;
+    document.getElementById("mode-crab").classList.toggle("active", mode === "crab");
+    document.getElementById("mode-turn").classList.toggle("active", mode === "turn");
+    document.getElementById("mode-dual").classList.toggle("active", mode === "dual");
+    applyKinematicsAndVisibility();
+  };
+
   window.toggleAnimation = function () {
     isPlaying = !isPlaying;
     const btn = document.getElementById("btn-play");
@@ -280,24 +293,23 @@
   };
 
   window.setCameraPreset = function (preset) {
-    camTarget.set(0, 42, 0);
-    if (preset === "iso") camSpherical = { radius: 310, theta: 0.72, phi: 1.05 };
-    if (preset === "top") camSpherical = { radius: 320, theta: 0.0, phi: 0.14 };
-    if (preset === "side") camSpherical = { radius: 300, theta: Math.PI / 2, phi: 1.48 };
-    if (preset === "front") camSpherical = { radius: 290, theta: 0.0, phi: 1.42 };
-    if (preset === "bottom") camSpherical = { radius: 300, theta: 0.5, phi: 2.65 };
+    camTarget.set(0, 36, 0);
+    if (preset === "iso") camSpherical = { radius: 325, theta: 0.72, phi: 1.08 };
+    if (preset === "top") camSpherical = { radius: 330, theta: 0.0, phi: 0.14 };
+    if (preset === "side") camSpherical = { radius: 310, theta: Math.PI / 2, phi: 1.48 };
+    if (preset === "bottom") camSpherical = { radius: 295, theta: 0.55, phi: 2.55 };
     updateCamera();
+  };
+
+  window.toggleCutaway = function () {
+    cutawayUpper = !cutawayUpper;
+    document.getElementById("btn-cutaway").classList.toggle("active", cutawayUpper);
+    applyKinematicsAndVisibility();
   };
 
   window.toggleShell = function () {
     hideShell = !hideShell;
     document.getElementById("btn-shell").classList.toggle("active", hideShell);
-    applyKinematicsAndVisibility();
-  };
-
-  window.toggleSolar = function () {
-    transparentSolar = !transparentSolar;
-    document.getElementById("btn-solar").classList.toggle("active", transparentSolar);
     applyKinematicsAndVisibility();
   };
 
@@ -359,7 +371,6 @@
     applyKinematicsAndVisibility();
   };
 
-  // Populate assembly steps
   const stepsContainer = document.getElementById("steps-container");
   spec.assemblySteps.forEach((s) => {
     const div = document.createElement("div");
@@ -371,7 +382,6 @@
     stepsContainer.appendChild(div);
   });
 
-  // Populate 1:1 part table
   const tbody = document.getElementById("part-table-tbody");
   spec.parts.forEach((p) => {
     const tr = document.createElement("tr");
@@ -395,11 +405,9 @@
     });
   };
 
-  // Select P01 by default so the detail card is populated immediately
-  window.selectPart("P01");
+  window.selectPart("P11");
   window.resetSelection();
 
-  // Animation loop
   function animate() {
     requestAnimationFrame(animate);
     if (isPlaying) {

@@ -21,11 +21,11 @@
   <p><a href="index.html">← 返回零件图册总览</a> | <a href="../../index.html">返回 3D 交互工作台</a></p>
   <div class="card">
     <span class="badge">E01</span>
-    <span class="badge">04 太阳能供电与电控检测系统</span>
+    <span class="badge">05 太阳能供电与赛会电控检测系统</span>
     <span class="badge">赛会指定电子件</span>
     <h1 style="margin:10px 0 6px 0;">单晶硅太阳能电池板</h1>
     <p style="color:#38bdf8;font-family:monospace;margin:4px 0;">对应 SolidWorks 零件文件：<code>solidworks/单晶硅太阳能电池板.SLDPRT</code>（网页零件名与 SolidWorks 零件名 1:1 严格对应）</p>
-    <p style="color:#94a3b8;">符合三期考核规范尺寸(66×113×3mm)，平置安装于车身后上方太阳能板承载框内(Z=94mm)，顶部无任何遮挡</p>
+    <p style="color:#94a3b8;">严格符合三期考核尺寸(66×113×3mm)，平置安装于车体中后部正上方(X=-22,Y=0,Z=96mm)，受光面100%无遮挡</p>
     <svg viewBox="0 0 640 440" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a;border:1px solid #334155;border-radius:8px;">
   <defs>
     <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -39,7 +39,7 @@
   <text x="372" y="362" fill="#f8fafc" font-size="13" font-family="sans-serif" font-weight="bold">零件名称：单晶硅太阳能电池板</text>
   <text x="372" y="382" fill="#38bdf8" font-size="12" font-family="monospace">SolidWorks：单晶硅太阳能电池板.SLDPRT</text>
   <text x="372" y="400" fill="#cbd5e1" font-size="11" font-family="sans-serif">包络尺寸：66.0 × 113.0 × 3.0 mm</text>
-  <text x="372" y="418" fill="#94a3b8" font-size="11" font-family="sans-serif">材料：单晶硅+钢化玻璃层压 | 数量：1件</text>
+  <text x="372" y="418" fill="#94a3b8" font-size="11" font-family="sans-serif">材料：单晶硅+钢化玻璃 | 数量：1件</text>
 
   <!-- Front View (X-Z) -->
   <text x="150" y="38" fill="#94a3b8" font-size="12" text-anchor="middle" font-family="sans-serif">主视图 (X-Z) — 宽 66.0 × 高 3.0 mm</text>
@@ -67,14 +67,14 @@
     <h2>关键设计尺寸</h2>
     <table>
       <thead><tr><th>尺寸项目</th><th>名义值 / 公差</th><th>设计说明与装配配合</th></tr></thead>
-      <tbody><tr><td>外形尺寸</td><td><code>66.0 × 113.0 × 3.0 mm</code></td><td>严格匹配三期考核文档表1参数</td></tr><tr><td>安装高度</td><td><code>Z = 94.0 mm</code></td><td>受光面朝向+Z正上方，100%无遮挡</td></tr></tbody>
+      <tbody><tr><td>外形尺寸</td><td><code>66.0 × 113.0 × 3.0 mm</code></td><td>受光面朝+Z正上方</td></tr></tbody>
     </table>
   </div>
   <div class="card">
     <h2>SolidWorks 自动化建模特征序列 (sw_build_all.py)</h2>
     <table>
       <thead><tr><th>特征编号</th><th>特征名称</th><th>操作类型</th><th>基准面</th><th>拉伸范围</th></tr></thead>
-      <tbody><tr><td><code>E01-F01</code></td><td>太阳能电池板层压板</td><td>拉伸凸台</td><td>XY</td><td><code>[-1.5, 1.5] mm</code></td></tr></tbody>
+      <tbody><tr><td><code>E01-F01</code></td><td>单晶硅太阳能板主体</td><td>拉伸凸台</td><td>XY</td><td><code>[-1.5, 1.5] mm</code></td></tr></tbody>
     </table>
   </div>
 </div>

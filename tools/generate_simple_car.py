@@ -31,12 +31,12 @@ def main() -> None:
 
     spec_payload = {
         "project": {
-            "name": "工创赛太阳能小车（极简机械设计版）",
-            "version": "Simplified-V1",
-            "envelopeMm": [210.0, 152.0, 104.0],
+            "name": "工创赛太阳能小车（四轮同轴全向舵轮[非麦轮]与双凸轮底部传动版）",
+            "version": "OmniSwerve-V2",
+            "envelopeMm": [216.0, 164.0, 106.0],
             "limitsMm": {"maxLength": 250.0, "maxWidth": 200.0},
-            "driveRatio": "1 : 4 (18齿主动小齿轮 : 72齿后轴从动大齿轮, m=0.5)",
-            "steeringMechanism": "1:30单头蜗杆蜗轮 + 五次多项式盘形凸轮 s(u)=h(10u³-15u⁴+6u⁵) + 弹簧复位滚子推杆 + 前叉转向摆臂",
+            "driveRatio": "1 : 4 主减速 (18齿主动小齿轮 : 72齿主减速大齿轮) + 正交锥齿轮四轮同轴分动",
+            "steeringMechanism": "四轮独立同轴全向舵轮(非麦轮) + 1:30单头蜗杆蜗轮 + 上下双凸轮(主航向凸轮C01 + 差动副凸轮C02) + 前/后桥平行四边形转向横拉杆",
             "partTypeCount": len(parts),
             "totalInstanceCount": total_instances,
             "placementCount": len(placements),
@@ -64,7 +64,7 @@ def main() -> None:
     # Generate part catalog HTMLs, docs, CSVs, and root markdown files
     generate_part_catalog(parts, CATALOG_DIR)
     generate_docs_and_tables(parts, placements, steps, DOCS_DIR, ROOT)
-    write_webapp_files(WEB_DIR)
+    write_webapp_files(WEB_DIR, len(parts), len(placements))
 
     # Update root 交付文件清单.json
     manifest = {
