@@ -329,6 +329,11 @@
           <button id="btn-shell" onclick="window.toggleShell()">隐藏快拆外壳</button>
           <button onclick="window.resetSelection()">显示全部零件</button>
         </div>
+        <div class="btn-row">
+          <button id="btn-flow-drive" onclick="window.toggleFlowHighlight('drive')">⚡ 高亮四驱分动链</button>
+          <button id="btn-flow-steer" onclick="window.toggleFlowHighlight('steer')">🧭 高亮全向转向链</button>
+          <button id="btn-vectors" class="active" onclick="window.toggleVectors()">🎯 全向轨迹环与矢量</button>
+        </div>
         <div class="slider-row">
           <label><span>爆炸拆解视图 (Explode)</span><span id="explode-val">0%</span></label>
           <input id="explode-slider" type="range" min="0" max="100" value="0" oninput="window.setExplode(this.value)" />
@@ -393,6 +398,7 @@
   <script src="vendor/three.min.js"></script>
   <script src="model-data.js"></script>
   <script src="model-meshes.js"></script>
+  <script src="model-detail.js"></script>
   <script src="viewer-r4.js"></script>
 </body>
 </html>
